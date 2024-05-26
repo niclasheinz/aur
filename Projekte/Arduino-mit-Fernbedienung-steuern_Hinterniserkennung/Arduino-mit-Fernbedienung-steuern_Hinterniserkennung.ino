@@ -172,6 +172,8 @@ irrecv.resume();  //Der nächste Wert soll vom IR-Empfänger eingelesen werden
 
 }
 
+
+  ////////////////. NEEDS TO BE VERIFIED!!!  ////////////////////
 // Sender kurz ausschalten um Störungen des Signal zu vermeiden
   digitalWrite(SENDEN, LOW);
   delay(mo_re_1);
