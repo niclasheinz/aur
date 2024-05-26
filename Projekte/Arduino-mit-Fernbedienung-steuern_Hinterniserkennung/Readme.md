@@ -17,6 +17,19 @@
 // An/Aus Knopf  = 16753245
 
 
+##### V 4.x
 
+| Numbre  | Value |
+|--|--|
+| 1 | . |
+| 2 | . |
+| 3 | . |
+| 4 | . |
+| 5 | . |
+| 6 | . |
+| 7 | . |
+
+
+|
 ### Zu überprüfen
 * Ganze Entfernungsmessungssenor ist falsch programmiert
