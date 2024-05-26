@@ -1,7 +1,7 @@
 /* 
 #===============================================================================
 #
-#          FILE:  Projekt_12_IRFernbediengung_Motorsteuerung.ino
+#          FILE:  Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
 #
 #         USAGE:  Only compatible with Arduino ICE
 #
