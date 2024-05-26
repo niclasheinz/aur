@@ -31,30 +31,29 @@ connected to the input RECV_PIN.
 
 #include <IRremote.h>  
 
-int RECV_PIN = 11; // Infrarotsensor
 
 IRrecv irrecv(RECV_PIN);   // Infrarotsensor an Pin 11 ausliest.
 decode_results results;  // Dieser Befehl sorgt dafür, dass die Daten, die per Infrarot eingelesen werden unter „results“ abgespeichert werden.
-// Pin für den Sender
-int SENDEN = 7;
 
+// Variablen
+int SENDEN = 7; // Pin für den Sender
+int RECV_PIN = 11; // Infrarotsensor
 int mo_li_1 = 6;
 int mo_li_2 = 7;
 int mo_re_1 = 9;
 int mo_re_2 = 10;
+int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
 
-// Pin für das vom Objekt reflektierte Signal
-int ECHO = 3;
+long Entfernung = 0; // Variable for saving the distance
 
-// Variable für die Speicherung der Entfernung
-long Entfernung = 0;
 void setup() {
-Serial.begin(9600);    //Im Setup wird die Serielle Verbindung gestartet, damit man sich die Empfangenen Daten der Fernbedienung per seriellen Monitor ansehen kann.
 
+Serial.begin(9600);    //Starting serial monitor
+// Starting the receiver
   Serial.println("Enabling IRin");
-  irrecv.enableIRIn(); // Start the receiver
+  irrecv.enableIRIn();
   Serial.println("Starting IRin");
-  Serial.println("Waiting for Ping...");
+  Serial.println("Waiting for Pings...");
 
 
 //pinMode(1, OUTPUT);
@@ -102,11 +101,6 @@ if (results.value == 16718055) {
   digitalWrite(mo_re_2, LOW);
 }
 
-
-
-
-
-
 // Drive backwards
 if (results.value == 16743045) {
   Serial.println("Drive backwards (3)");
@@ -123,16 +117,9 @@ if (results.value == 16743045) {
 
   delay(500);
   digitalWrite(mo_li_2, HIGH);
-  digitalWrite(mo_re_2, HIGH);  
-
-
-
-
-
+  digitalWrite(mo_re_2, HIGH); 
   
 }
-
-
 
 // Turn right 
 if (results.value == 16716015) {
@@ -183,15 +170,13 @@ if (results.value == 16753245) {
 
 irrecv.resume();  //Der nächste Wert soll vom IR-Empfänger eingelesen werden
 
-
-
 }
 
 // Sender kurz ausschalten um Störungen des Signal zu vermeiden
   digitalWrite(SENDEN, LOW);
   delay(mo_re_1);
 
-  // Signal für mo_li_2 Micrsekunden senden, danach wieder ausschalten
+  // Signal für mo_li_2 Microsekunden senden, danach wieder ausschalten
   digitalWrite(SENDEN, HIGH);
   delayMicroseconds(mo_li_2);
   digitalWrite(SENDEN, LOW);
@@ -234,15 +219,3 @@ irrecv.resume();  //Der nächste Wert soll vom IR-Empfänger eingelesen werden
   }
 }
 
-// Requesting the values
-// 0             = 16738455
-// 1             = 16724175
-// 2             = 16718055
-// 3             = 16743045
-// 4             = 16716015
-// mo_re_1             = 16726215
-// mo_re_2             = 16734885
-// 7             = 16728765
-// 8             = 16730805
-// mo_li_2             = 16732845
-// An/Aus Knopf  = 16753245
