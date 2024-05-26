@@ -29,13 +29,9 @@ connected to the input RECV_PIN.
 //Infromationen über das ursprüngliche Programm „IrrecvDemo“.
 
 
-
-
-
-
 #include <IRremote.h>  
 
-int RECV_PIN = 11; //Infrarotsensor
+int RECV_PIN = 11; // Infrarotsensor
 
 IRrecv irrecv(RECV_PIN);   // Infrarotsensor an Pin 11 ausliest.
 decode_results results;  // Dieser Befehl sorgt dafür, dass die Daten, die per Infrarot eingelesen werden unter „results“ abgespeichert werden.
