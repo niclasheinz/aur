@@ -17,23 +17,17 @@
 #      REVISION:  ---
 #===============================================================================
  */
-/*
-* IRremote: IRrecvDemo - demonstrates
-receiving IR codes with IRrecv
-* An IR detector/demodulator must be
-connected to the input RECV_PIN.
-* Version 0.1 July, 2009
-* Copyright 2009 Ken Shirriff
-* http://arcfn.com
-*/   
-//Infromationen über das ursprüngliche Programm „IrrecvDemo“.
 
 
-#include <IRremote.h>  
+#include <IRremote.hpp>
+#define IR_RECEIVE_PIN 11
+int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX); // New essential definition vor the usage of the new libary
+void setup() {
+  Serial.begin(9600);
+  pinMode(4, OUTPUT); // PIN  for LED
+  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK); // Start the receiver
+}
 
-
-IRrecv irrecv(RECV_PIN);   // Infrarotsensor an Pin 11 ausliest.
-decode_results results;  // Dieser Befehl sorgt dafür, dass die Daten, die per Infrarot eingelesen werden unter „results“ abgespeichert werden.
 
 // Variablen
 int SENDEN = 7; // Pin für den Sender
@@ -73,104 +67,90 @@ pinMode(ECHO, INPUT);
 Serial.begin(9600);
 }
 
-void loop()
+void loop() {   //Der loop-Teil fällt durch den Rückgriff auf die „library“ sehr kurz aus. 
 
-{   //Der loop-Teil fällt durch den Rückgriff auf die „library“ sehr kurz aus. 
+if (IrReceiver.decode()) {
 
-if (irrecv.decode(&results)) {    //Wenn Daten empfangen wurden,
+  Serial.println(IrReceiver.decodedIRData.decodedRawData, DEC); // Print "old" raw data
+  //IrReceiver.printIRResultShort(&Serial); // Print complete received data in one line
+  //IrReceiver.printIRSendUsage(&Serial);   // Print the statement required to send this data
+  switch (IrReceiver.decodedIRData.decodedRawData){
+      case $zahl_1: //Drive forwards
+        Serial.println("motors on (2)");
+        digitalWrite(8, HIGH);
+        digitalWrite(mo_re_1, HIGH);
+        analogWrite(mo_re_1, 230);
+        digitalWrite(2, HIGH);
+        digitalWrite(mo_li_2, LOW);
+        digitalWrite(mo_re_2, LOW);
+      break;
+      case $zahl_2: // drive backwards
+          Serial.println("Drive backwards (3)"); 
+          digitalWrite(8, LOW);
+          digitalWrite(mo_re_1, LOW);
+          digitalWrite(2, LOW);
+          analogWrite(mo_li_2, 70);
+          analogWrite(mo_re_2, 70);
+          delay(500);
+          analogWrite(mo_li_2, 150);
+          analogWrite(mo_re_2, 150);
+          delay(500);
+          digitalWrite(mo_li_2, HIGH);
+          digitalWrite(mo_re_2, HIGH); 
+      break;
+      case $zahl_3: // turn right
+        Serial.println("Drehung nach rechts (4)");
+        digitalWrite(8, LOW);
+        digitalWrite(mo_re_1, LOW);
+        digitalWrite(2, LOW);
+        digitalWrite(mo_li_2, HIGH);
+        digitalWrite(mo_re_2, LOW);
+        delay(250);
+        digitalWrite(mo_li_2, LOW);
+      break;
+      case $zahl_4: // turn left
+        Serial.println("Drehung nach links (mo_re_1)");
+        digitalWrite(8, LOW);
+        digitalWrite(mo_re_1, LOW);
+        digitalWrite(2, LOW);
+        digitalWrite(8, HIGH);
+        digitalWrite(mo_li_2, LOW);
+        delay(250);
+        digitalWrite(8, LOW);
+      break;
+      case $on_off: // force stop all motors
+        Serial.println("Alles aus (Ein/Aus)");
+        Serial.println("Motor aus (3)");
+        digitalWrite(mo_li_2, LOW);
+        digitalWrite(mo_li_2, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(mo_re_2, LOW);
+        digitalWrite(mo_re_1, LOW);
+        digitalWrite(4, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(2, LOW);
 
-Serial.println(results.value, DEC); //werden sie als Dezimalzahl (DEC) an den Serial-Monitor ausgegeben.
+  }
+  }
 
-if (results.value == 16738455) {
-  Serial.println("Light off (0)");
-  digitalWrite(2, LOW);
-}
-if (results.value == 16724175) {
-  Serial.println("Light on (1)");
-  digitalWrite(2, HIGH);
-}
-
-// Drive forwards
-if (results.value == 16718055) {
-  Serial.println("motors on (2)");
-  digitalWrite(8, HIGH);
-  digitalWrite(mo_re_1, HIGH);
-  analogWrite(mo_re_1, 230);
-  digitalWrite(2, HIGH);
-  digitalWrite(mo_li_2, LOW);
-  digitalWrite(mo_re_2, LOW);
-}
-
-// Drive backwards
-if (results.value == 16743045) {
-  Serial.println("Drive backwards (3)");
-  digitalWrite(8, LOW);
-  digitalWrite(mo_re_1, LOW);
-  digitalWrite(2, LOW);
-
-    analogWrite(mo_li_2, 70);
-  analogWrite(mo_re_2, 70);
-
-  delay(500);
-  analogWrite(mo_li_2, 150);
-  analogWrite(mo_re_2, 150);
-
-  delay(500);
-  digitalWrite(mo_li_2, HIGH);
-  digitalWrite(mo_re_2, HIGH); 
-  
-}
-
-// Turn right 
-if (results.value == 16716015) {
-  Serial.println("Drehung nach rechts (4)");
-  digitalWrite(8, LOW);
-  digitalWrite(mo_re_1, LOW);
-  digitalWrite(2, LOW);
-  digitalWrite(mo_li_2, HIGH);
-  digitalWrite(mo_re_2, LOW);
-  delay(250);
-  digitalWrite(mo_li_2, LOW);
-}
-
-// Turn left
-if (results.value == 16726215) {
-  Serial.println("Drehung nach links (mo_re_1)");
-  digitalWrite(8, LOW);
-  digitalWrite(mo_re_1, LOW);
-  digitalWrite(2, LOW);
-  digitalWrite(8, HIGH);
-  digitalWrite(mo_li_2, LOW);
-  delay(250);
-  digitalWrite(8, LOW);
-}
-
-if (results.value == 16743045) {
-  Serial.println("Alles aus (Ein/Aus)");
-  digitalWrite(8, LOW);
-  digitalWrite(mo_re_1, LOW);
-  digitalWrite(2, LOW);
-}
-
-
-// cancel all commands and turn off
-if (results.value == 16753245) {
-  Serial.println("Motor aus (3)");
-  digitalWrite(mo_li_2, LOW);
-  digitalWrite(mo_li_2, LOW);
-  digitalWrite(8, LOW);
-  digitalWrite(7, LOW);
-  digitalWrite(mo_re_2, LOW);
-  digitalWrite(mo_re_1, LOW);
-  digitalWrite(4, LOW);
-  digitalWrite(3, LOW);
-  digitalWrite(2, LOW);
+IrReceiver.resume(); // Enable receiving of the next value
 
 }
 
-irrecv.resume();  //Der nächste Wert soll vom IR-Empfänger eingelesen werden
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   ////////////////. NEEDS TO BE VERIFIED!!!  ////////////////////
