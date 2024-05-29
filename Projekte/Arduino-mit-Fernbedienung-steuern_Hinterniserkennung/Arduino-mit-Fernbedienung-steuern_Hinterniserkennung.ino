@@ -36,11 +36,11 @@ int mo_li_2 = 7;
 int mo_re_1 = 9;
 int mo_re_2 = 10;
 
-// Für Entfernungsmesser
-int trigger=7; //Trigger-Pin des Ultraschallsensors an Pin7 des Arduino-Boards 
-int echo=4; // Echo-Pim des Ultraschallsensors an Pin6 des Arduino-Boards 
-long dauer=0; // Das Wort dauer ist jetzt eine Variable, unter der die Zeit gespeichert wird, die eine Schallwelle bis zur Reflektion und zurück benötigt. Startwert ist hier 0.
-long entfernung=0; // Das Wort „entfernung“ ist jetzt die variable, unter der die berechnete Entfernung gespeichert wird. Info: Anstelle von „int“ steht hier vor den beiden Variablen „long“. Das hat den Vorteil, dass eine größere Zahl gespeichert werden kann. Nachteil: Die Variable benötigt mehr Platz im Speicher.
+// For the range finder
+int trigger=7; 
+int echo=4; 
+long dauer=0; 
+long entfernung=0;
 
 void setup() {
 
@@ -70,7 +70,7 @@ pinMode(echo, INPUT); // Echo-Pin ist ein Eingang
 Serial.begin(9600);
 }
 
-void loop() {   //Der loop-Teil fällt durch den Rückgriff auf die „library“ sehr kurz aus. 
+void loop() {   
 
 if (IrReceiver.decode()) {
 
@@ -159,7 +159,6 @@ Serial.println(" cm");
 }
 delay(750); 
 }
-
   // nur Entfernungen < 100 anzeigen
   if (entfernung < 100) {
     // Messdaten anzeigen
