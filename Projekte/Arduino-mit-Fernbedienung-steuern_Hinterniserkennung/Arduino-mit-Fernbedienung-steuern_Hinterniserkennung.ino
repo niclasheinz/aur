@@ -30,15 +30,17 @@ void setup() {
 
 
 // Variablen
-int SENDEN = 7; // Pin für den Sender
-int RECV_PIN = 11; // Infrarotsensor
+
 int mo_li_1 = 6;
 int mo_li_2 = 7;
 int mo_re_1 = 9;
 int mo_re_2 = 10;
-int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
 
-long Entfernung = 0; // Variable for saving the distance
+// Für Entfernungsmesser
+int trigger=7; //Trigger-Pin des Ultraschallsensors an Pin7 des Arduino-Boards 
+int echo=4; // Echo-Pim des Ultraschallsensors an Pin6 des Arduino-Boards 
+long dauer=0; // Das Wort dauer ist jetzt eine Variable, unter der die Zeit gespeichert wird, die eine Schallwelle bis zur Reflektion und zurück benötigt. Startwert ist hier 0.
+long entfernung=0; // Das Wort „entfernung“ ist jetzt die variable, unter der die berechnete Entfernung gespeichert wird. Info: Anstelle von „int“ steht hier vor den beiden Variablen „long“. Das hat den Vorteil, dass eine größere Zahl gespeichert werden kann. Nachteil: Die Variable benötigt mehr Platz im Speicher.
 
 void setup() {
 
@@ -60,8 +62,9 @@ pinMode(7, OUTPUT);
 pinMode(8, OUTPUT);
 pinMode(mo_li_2, OUTPUT);
 pinMode(mo_li_2, OUTPUT);
-pinMode(SENDEN, OUTPUT);
-pinMode(ECHO, INPUT);
+Serial.begin (9600); //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
+pinMode(trigger, OUTPUT); // Trigger-Pin ist ein Ausgang
+pinMode(echo, INPUT); // Echo-Pin ist ein Eingang
 
 // Seriellen Monitor starten
 Serial.begin(9600);
@@ -138,49 +141,35 @@ IrReceiver.resume(); // Enable receiving of the next value
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ////////////////. NEEDS TO BE VERIFIED!!!  ////////////////////
+  //////////////// Entfernungsmesser  ////////////////////
 // Sender kurz ausschalten um Störungen des Signal zu vermeiden
-  digitalWrite(SENDEN, LOW);
-  delay(mo_re_1);
+ digitalWrite(trigger, LOW); 
+delay(5); 
+digitalWrite(trigger, HIGH); 
+delay(10); 
+digitalWrite(trigger, LOW);
+dauer = pulseIn(echo, HIGH);
+entfernung = (dauer/2) * 0.03432; 
+if (entfernung >= 500 || entfernung <= 0) { 
+Serial.println("Kein Messwert");
+}
+else { //  Ansonsten…
+Serial.print(entfernung); 
+Serial.println(" cm"); 
+}
+delay(750); 
+}
 
-  // Signal für mo_li_2 Microsekunden senden, danach wieder ausschalten
-  digitalWrite(SENDEN, HIGH);
-  delayMicroseconds(mo_li_2);
-  digitalWrite(SENDEN, LOW);
-
-  // pulseIn -> Zeit messen, bis das Signal zurückkommt
-  long Zeit = pulseIn(ECHO, HIGH);
-
-  // Entfernung in cm berechnen
-  // Zeit/2 -> nur eine Strecke
-  Entfernung = (Zeit / 2) * 0.03432;
-  delay(500);
 
   // nur Entfernungen < 100 anzeigen
-  if (Entfernung < 1000) 
-  {
+  if (entfernung < 1000) {
     // Messdaten anzeigen
    Serial.print("Entfernung in cm: ");
-   Serial.println(Entfernung);
+   Serial.println(entfernung);
   }
 
-   if (Entfernung < 40) {
-        Serial.print("Entfernung kleiner als 20 cm ");
+   if (entfernung < 40) {
+  Serial.print("Entfernung kleiner als 20 cm ");
   digitalWrite(mo_li_2, LOW);
   digitalWrite(mo_li_2, LOW);
   digitalWrite(8, LOW);
