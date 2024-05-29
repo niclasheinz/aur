@@ -178,7 +178,6 @@ delay(750);
   digitalWrite(4, LOW);
   digitalWrite(3, LOW);
   digitalWrite(2, LOW);
-
   digitalWrite(8, LOW);
   digitalWrite(mo_re_1, LOW);
   digitalWrite(2, LOW);
