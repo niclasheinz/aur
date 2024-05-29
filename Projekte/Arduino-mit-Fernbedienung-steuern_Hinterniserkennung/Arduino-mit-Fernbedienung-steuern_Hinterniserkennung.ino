@@ -143,7 +143,7 @@ IrReceiver.resume(); // Enable receiving of the next value
 
   //////////////// Entfernungsmesser  ////////////////////
 // Sender kurz ausschalten um Störungen des Signal zu vermeiden
- digitalWrite(trigger, LOW); 
+digitalWrite(trigger, LOW); 
 delay(5); 
 digitalWrite(trigger, HIGH); 
 delay(10); 
@@ -160,16 +160,15 @@ Serial.println(" cm");
 delay(750); 
 }
 
-
   // nur Entfernungen < 100 anzeigen
-  if (entfernung < 1000) {
+  if (entfernung < 100) {
     // Messdaten anzeigen
    Serial.print("Entfernung in cm: ");
    Serial.println(entfernung);
   }
 
    if (entfernung < 40) {
-  Serial.print("Entfernung kleiner als 20 cm ");
+  Serial.print("Entfernung kleiner als 40 cm ");
   digitalWrite(mo_li_2, LOW);
   digitalWrite(mo_li_2, LOW);
   digitalWrite(8, LOW);
