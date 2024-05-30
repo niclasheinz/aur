@@ -21,169 +21,152 @@
 
 #include <IRremote.hpp>
 #define IR_RECEIVE_PIN 11
-int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX); // New essential definition vor the usage of the new libary
+int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential definition vor the usage of the new libary
 void setup() {
   Serial.begin(9600);
-  pinMode(4, OUTPUT); // PIN  for LED
-  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK); // Start the receiver
+  pinMode(4, OUTPUT);                                     // PIN  for LED
+  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
+
+
+
+
+
+  // For the range finder
+  int echo = 4;
+  long dauer = 0;
+  long entfernung = 0;
+
+
+
+  Serial.begin(9600);  //Starting serial monitor
+
+
+  //pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(6, OUTPUT);
+  Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
+  pinMode(4, OUTPUT);  // 4-Pin ist ein Ausgang
+  pinMode(echo, INPUT);      // Echo-Pin ist ein Eingang
+
 }
 
+void loop() {
 
-// Variablen
+  if (IrReceiver.decode()) {
 
-int mo_li_1 = 6;
-int mo_li_2 = 7;
-int mo_re_1 = 9;
-int mo_re_2 = 10;
-
-// For the range finder
-int trigger=7; 
-int echo=4; 
-long dauer=0; 
-long entfernung=0;
-
-void setup() {
-
-Serial.begin(9600);    //Starting serial monitor
-// Starting the receiver
-  Serial.println("Enabling IRin");
-  irrecv.enableIRIn();
-  Serial.println("Starting IRin");
-  Serial.println("Waiting for Pings...");
-
-
-//pinMode(1, OUTPUT);
-pinMode(2, OUTPUT);
-pinMode(3, OUTPUT);
-pinMode(4, OUTPUT);
-pinMode(mo_re_1, OUTPUT);
-pinMode(mo_re_2, OUTPUT);
-pinMode(7, OUTPUT);
-pinMode(8, OUTPUT);
-pinMode(mo_li_2, OUTPUT);
-pinMode(mo_li_2, OUTPUT);
-Serial.begin (9600); //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
-pinMode(trigger, OUTPUT); // Trigger-Pin ist ein Ausgang
-pinMode(echo, INPUT); // Echo-Pin ist ein Eingang
-
-// Seriellen Monitor starten
-Serial.begin(9600);
-}
-
-void loop() {   
-
-if (IrReceiver.decode()) {
-
-  Serial.println(IrReceiver.decodedIRData.decodedRawData, DEC); // Print "old" raw data
-  //IrReceiver.printIRResultShort(&Serial); // Print complete received data in one line
-  //IrReceiver.printIRSendUsage(&Serial);   // Print the statement required to send this data
-  switch (IrReceiver.decodedIRData.decodedRawData){
-      case $zahl_1: //Drive forwards
+    Serial.println(IrReceiver.decodedIRData.decodedRawData, DEC);  // Print "old" raw data
+    //IrReceiver.printIRResultShort(&Serial); // Print complete received data in one line
+    //IrReceiver.printIRSendUsage(&Serial);   // Print the statement required to send this data
+    switch (IrReceiver.decodedIRData.decodedRawData) {
+      case 4077715200:  //Drive forwards
         Serial.println("motors on (2)");
         digitalWrite(8, HIGH);
-        digitalWrite(mo_re_1, HIGH);
-        analogWrite(mo_re_1, 230);
+        digitalWrite(9, HIGH);
+        analogWrite(9, 230);
         digitalWrite(2, HIGH);
-        digitalWrite(mo_li_2, LOW);
-        digitalWrite(mo_re_2, LOW);
-      break;
-      case $zahl_2: // drive backwards
-          Serial.println("Drive backwards (3)"); 
-          digitalWrite(8, LOW);
-          digitalWrite(mo_re_1, LOW);
-          digitalWrite(2, LOW);
-          analogWrite(mo_li_2, 70);
-          analogWrite(mo_re_2, 70);
-          delay(500);
-          analogWrite(mo_li_2, 150);
-          analogWrite(mo_re_2, 150);
-          delay(500);
-          digitalWrite(mo_li_2, HIGH);
-          digitalWrite(mo_re_2, HIGH); 
-      break;
-      case $zahl_3: // turn right
+       digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
+        break;
+      case 3877175040:  // drive backwards
+        Serial.println("Drive backwards (3)");
+        digitalWrite(8, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(2, LOW);
+        analogWrite(6, 70);
+        analogWrite(10, 70);
+        delay(500);
+        analogWrite(6, 150);
+        analogWrite(10, 150);
+        delay(500);
+        digitalWrite(6, HIGH);
+        digitalWrite(10, HIGH);
+        break;
+      case 2707357440:  // turn right
         Serial.println("Drehung nach rechts (4)");
         digitalWrite(8, LOW);
-        digitalWrite(mo_re_1, LOW);
+        digitalWrite(9, LOW);
         digitalWrite(2, LOW);
-        digitalWrite(mo_li_2, HIGH);
-        digitalWrite(mo_re_2, LOW);
+        digitalWrite(6, HIGH);
+        digitalWrite(10, LOW);
         delay(250);
-        digitalWrite(mo_li_2, LOW);
-      break;
-      case $zahl_4: // turn left
-        Serial.println("Drehung nach links (mo_re_1)");
+        digitalWrite(6, LOW);
+        break;
+      case 4144561920:  // turn left
+        Serial.println("Drehung nach links (9)");
         digitalWrite(8, LOW);
-        digitalWrite(mo_re_1, LOW);
+        digitalWrite(9, LOW);
         digitalWrite(2, LOW);
         digitalWrite(8, HIGH);
-        digitalWrite(mo_li_2, LOW);
+        digitalWrite(6, LOW);
         delay(250);
         digitalWrite(8, LOW);
-      break;
-      case $on_off: // force stop all motors
+        break;
+      case 3125149440:  // force stop all motors
         Serial.println("Alles aus (Ein/Aus)");
         Serial.println("Motor aus (3)");
-        digitalWrite(mo_li_2, LOW);
-        digitalWrite(mo_li_2, LOW);
+        digitalWrite(6, LOW);
+        digitalWrite(6, LOW);
         digitalWrite(8, LOW);
         digitalWrite(7, LOW);
-        digitalWrite(mo_re_2, LOW);
-        digitalWrite(mo_re_1, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(9, LOW);
         digitalWrite(4, LOW);
         digitalWrite(3, LOW);
         digitalWrite(2, LOW);
-
+    }
   }
-  }
 
-IrReceiver.resume(); // Enable receiving of the next value
-
+  IrReceiver.resume();  // Enable receiving of the next value
 }
 
-  //////////////// Entfernungsmesser  ////////////////////
+//////////////// Entfernungsmesser  ////////////////////
 // Sender kurz ausschalten um Störungen des Signal zu vermeiden
-digitalWrite(trigger, LOW); 
-delay(5); 
-digitalWrite(trigger, HIGH); 
-delay(10); 
-digitalWrite(trigger, LOW);
+digitalWrite(4, LOW);
+delay(5);
+digitalWrite(4, HIGH);
+delay(10);
+digitalWrite(4, LOW);
 dauer = pulseIn(echo, HIGH);
-entfernung = (dauer/2) * 0.03432; 
-if (entfernung >= 500 || entfernung <= 0) { 
-Serial.println("Kein Messwert");
+entfernung = (dauer / 2) * 0.03432;
+if (entfernung >= 500 || entfernung <= 0) {
+  Serial.println("Kein Messwert");
+} else {
+  Serial.print(entfernung);
+  Serial.println(" cm");
 }
-else { //  Ansonsten…
-Serial.print(entfernung); 
-Serial.println(" cm"); 
+delay(750);
 }
-delay(750); 
+// nur Entfernungen < 100 anzeigen
+if (entfernung < 100) {
+  // Messdaten anzeigen
+  Serial.print("Entfernung in cm: ");
+  Serial.println(entfernung);
 }
-  // nur Entfernungen < 100 anzeigen
-  if (entfernung < 100) {
-    // Messdaten anzeigen
-   Serial.print("Entfernung in cm: ");
-   Serial.println(entfernung);
-  }
 
-   if (entfernung < 40) {
+if (entfernung < 40) {
   Serial.print("Entfernung kleiner als 40 cm ");
-  digitalWrite(mo_li_2, LOW);
-  digitalWrite(mo_li_2, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(6, LOW);
   digitalWrite(8, LOW);
   digitalWrite(7, LOW);
-  digitalWrite(mo_re_2, LOW);
-  digitalWrite(mo_re_1, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite(9, LOW);
   digitalWrite(4, LOW);
   digitalWrite(3, LOW);
   digitalWrite(2, LOW);
   digitalWrite(8, LOW);
-  digitalWrite(mo_re_1, LOW);
+  digitalWrite(9, LOW);
   digitalWrite(2, LOW);
-  digitalWrite(mo_li_2, HIGH);
-  digitalWrite(mo_re_2, LOW);
+  digitalWrite(6, HIGH);
+  digitalWrite(10, LOW);
   delay(600);
-  digitalWrite(mo_li_2, LOW);  
-  }
+  digitalWrite(6, LOW);
 }
-
+}
