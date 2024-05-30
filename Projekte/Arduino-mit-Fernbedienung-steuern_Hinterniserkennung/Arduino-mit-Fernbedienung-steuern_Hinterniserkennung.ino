@@ -151,5 +151,23 @@ digitalWrite(SENDEN, LOW);
   }
   if (Entfernung < 40) {
     Serial.print("unter 40");
+        Serial.println("Alles aus (Ein/Aus)");
+        Serial.println("Motor aus (3)");
+        digitalWrite(6, LOW);
+        digitalWrite(6, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(4, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(2, LOW);
+        Serial.println("motors on (2)");
+        digitalWrite(8, HIGH);
+        digitalWrite(9, HIGH);
+        analogWrite(9, 230);
+        digitalWrite(2, HIGH);
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
 }
 }
