@@ -28,16 +28,6 @@ void setup() {
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 
 
-
-
-
-  // For the range finder
-  int echo = 4;
-  long dauer = 0;
-  long entfernung = 0;
-
-
-
   Serial.begin(9600);  //Starting serial monitor
 
 
@@ -124,49 +114,10 @@ void loop() {
   }
 
   IrReceiver.resume();  // Enable receiving of the next value
-}
+
 
 //////////////// Entfernungsmesser  ////////////////////
 // Sender kurz ausschalten um Störungen des Signal zu vermeiden
-digitalWrite(4, LOW);
-delay(5);
-digitalWrite(4, HIGH);
-delay(10);
-digitalWrite(4, LOW);
-dauer = pulseIn(echo, HIGH);
-entfernung = (dauer / 2) * 0.03432;
-if (entfernung >= 500 || entfernung <= 0) {
-  Serial.println("Kein Messwert");
-} else {
-  Serial.print(entfernung);
-  Serial.println(" cm");
-}
-delay(750);
-}
-// nur Entfernungen < 100 anzeigen
-if (entfernung < 100) {
-  // Messdaten anzeigen
-  Serial.print("Entfernung in cm: ");
-  Serial.println(entfernung);
-}
+// Sender kurz ausschalten um Störungen des Signal zu vermeiden
 
-if (entfernung < 40) {
-  Serial.print("Entfernung kleiner als 40 cm ");
-  digitalWrite(6, LOW);
-  digitalWrite(6, LOW);
-  digitalWrite(8, LOW);
-  digitalWrite(7, LOW);
-  digitalWrite(10, LOW);
-  digitalWrite(9, LOW);
-  digitalWrite(4, LOW);
-  digitalWrite(3, LOW);
-  digitalWrite(2, LOW);
-  digitalWrite(8, LOW);
-  digitalWrite(9, LOW);
-  digitalWrite(2, LOW);
-  digitalWrite(6, HIGH);
-  digitalWrite(10, LOW);
-  delay(600);
-  digitalWrite(6, LOW);
-}
 }
