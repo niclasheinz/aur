@@ -12,7 +12,7 @@
 #          BUGS:  ---
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz, nh@hpost.net
-#       COMPANY:  -
+#       COMPANY:  - 
 #       VERSION:  2.0
 #      REVISION:  ---
 #===============================================================================
@@ -24,19 +24,13 @@
 int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential definition vor the usage of the new libary
 
 int SENDEN = 4; // Pin für den Sender
-
 int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
-
 long Entfernung = 0; // Variable für die Speicherung der Entfernung
-
 void setup() {
   Serial.begin(9600);
   pinMode(4, OUTPUT);                                     // PIN  for LED
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
-
-
   Serial.begin(9600);  //Starting serial monitor
-
 
   //pinMode(1, OUTPUT);
   pinMode(2, OUTPUT);
