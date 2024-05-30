@@ -73,17 +73,17 @@ void loop() {
         break;
       case 3877175040:  // drive backwards
         Serial.println("Drive backwards (3)");
-        digitalWrite(8, LOW);
-        digitalWrite(9, LOW);
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
         digitalWrite(2, LOW);
         analogWrite(6, 70);
         analogWrite(10, 70);
         delay(500);
-        analogWrite(6, 150);
-        analogWrite(10, 150);
+        analogWrite(9, 150);
+        analogWrite(5, 150);
         delay(500);
-        digitalWrite(6, HIGH);
-        digitalWrite(10, HIGH);
+        digitalWrite(9, HIGH);
+        digitalWrite(5, HIGH);
         break;
       case 2707357440:  // turn right
         Serial.println("Drehung nach rechts (4)");
