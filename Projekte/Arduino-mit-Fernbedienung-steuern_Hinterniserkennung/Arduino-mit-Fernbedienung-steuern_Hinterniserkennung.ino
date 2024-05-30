@@ -22,6 +22,13 @@
 #include <IRremote.hpp>
 #define IR_RECEIVE_PIN 11
 int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential definition vor the usage of the new libary
+
+int SENDEN = 4; // Pin für den Sender
+
+int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
+
+long Entfernung = 0; // Variable für die Speicherung der Entfernung
+
 void setup() {
   Serial.begin(9600);
   pinMode(4, OUTPUT);                                     // PIN  for LED
@@ -43,8 +50,8 @@ void setup() {
   pinMode(6, OUTPUT);
   Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
   pinMode(4, OUTPUT);  // 4-Pin ist ein Ausgang
-  pinMode(echo, INPUT);      // Echo-Pin ist ein Eingang
-
+  pinMode(SENDEN, OUTPUT);
+  pinMode(ECHO, INPUT);
 }
 
 void loop() {
@@ -119,5 +126,30 @@ void loop() {
 //////////////// Entfernungsmesser  ////////////////////
 // Sender kurz ausschalten um Störungen des Signal zu vermeiden
 // Sender kurz ausschalten um Störungen des Signal zu vermeiden
+digitalWrite(SENDEN, LOW);
+ // delay(5);
 
+  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  digitalWrite(SENDEN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(SENDEN, LOW);
+
+  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  long Zeit = pulseIn(ECHO, HIGH);
+
+  // Entfernung in cm berechnen
+  // Zeit/2 -> nur eine Strecke
+  Entfernung = (Zeit / 2) * 0.03432;
+  delay(50);
+
+  // nur Entfernungen < 100 anzeigen
+  if (Entfernung < 1000) 
+  {
+    // Messdaten anzeigen
+    Serial.print("Entfernung in cm: ");
+    Serial.println(Entfernung);
+  }
+  if (Entfernung < 40) {
+    Serial.print("unter 40");
+}
 }
