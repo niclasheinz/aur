@@ -64,12 +64,12 @@ void loop() {
     switch (IrReceiver.decodedIRData.decodedRawData) {
       case 4077715200:  //Drive forwards
         Serial.println("motors on (2)");
-        digitalWrite(8, HIGH);
-        digitalWrite(9, HIGH);
-        analogWrite(9, 230);
+        digitalWrite(6, HIGH);
+        digitalWrite(10, HIGH);
+        analogWrite(10, 230);
         digitalWrite(2, HIGH);
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
+        digitalWrite(5, LOW);
+        digitalWrite(9, LOW);
         break;
       case 3877175040:  // drive backwards
         Serial.println("Drive backwards (3)");
@@ -162,6 +162,7 @@ digitalWrite(SENDEN, LOW);
         digitalWrite(4, LOW);
         digitalWrite(3, LOW);
         digitalWrite(2, LOW);
+        // drive backwards
         Serial.println("motors on (2)");
         digitalWrite(8, HIGH);
         digitalWrite(9, HIGH);
