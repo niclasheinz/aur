@@ -68,7 +68,7 @@ void loop() {
         digitalWrite(9, HIGH);
         analogWrite(9, 230);
         digitalWrite(2, HIGH);
-       digitalWrite(6, LOW);
+        digitalWrite(6, LOW);
         digitalWrite(10, LOW);
         break;
       case 3877175040:  // drive backwards
