@@ -78,6 +78,8 @@ void loop() {
         digitalWrite(2, LOW);
         analogWrite(6, 70);
         analogWrite(10, 70);
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
         delay(500);
         analogWrite(9, 150);
         analogWrite(5, 150);
@@ -100,11 +102,12 @@ void loop() {
         digitalWrite(8, LOW);
         digitalWrite(9, LOW);
         digitalWrite(2, LOW);
-        digitalWrite(8, HIGH);
+        digitalWrite(9, HIGH);
         digitalWrite(6, LOW);
         delay(250);
-        digitalWrite(8, LOW);
+        digitalWrite(9, LOW);
         break;
+      
       case 3125149440:  // force stop all motors
         Serial.println("Alles aus (Ein/Aus)");
         Serial.println("Motor aus (3)");
@@ -117,6 +120,7 @@ void loop() {
         digitalWrite(4, LOW);
         digitalWrite(3, LOW);
         digitalWrite(2, LOW);
+        digitalWrite(5, LOW);
     }
   }
 
@@ -153,7 +157,7 @@ digitalWrite(SENDEN, LOW);
     Serial.print("unter 40");
         Serial.println("Alles aus (Ein/Aus)");
         Serial.println("Motor aus (3)");
-        digitalWrite(6, LOW);
+        digitalWrite(5, LOW);
         digitalWrite(6, LOW);
         digitalWrite(8, LOW);
         digitalWrite(7, LOW);
@@ -162,6 +166,7 @@ digitalWrite(SENDEN, LOW);
         digitalWrite(4, LOW);
         digitalWrite(3, LOW);
         digitalWrite(2, LOW);
+        delay(1000);
         // drive backwards
         Serial.println("motors on (2)");
         digitalWrite(8, HIGH);
@@ -170,5 +175,17 @@ digitalWrite(SENDEN, LOW);
         digitalWrite(2, HIGH);
         digitalWrite(6, LOW);
         digitalWrite(10, LOW);
+        delay(2000);
+        digitalWrite(5, LOW);
+        digitalWrite(6, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(4, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(2, LOW);
+
+        
 }
 }
