@@ -57,7 +57,7 @@ void loop() {
     //IrReceiver.printIRSendUsage(&Serial);   // Print the statement required to send this data
     switch (IrReceiver.decodedIRData.decodedRawData) {
       case 4077715200:  //Drive forwards
-        Serial.println("motors on (2)");
+        Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
         digitalWrite(10, HIGH);
         analogWrite(10, 230);
@@ -82,7 +82,7 @@ void loop() {
         digitalWrite(5, HIGH);
         break;
       case 2707357440:  // turn right
-        Serial.println("Drehung nach rechts (4)");
+        Serial.println("Turn right (4)");
         digitalWrite(8, LOW);
         digitalWrite(9, LOW);
         digitalWrite(2, LOW);
@@ -92,7 +92,7 @@ void loop() {
         digitalWrite(6, LOW);
         break;
       case 4144561920:  // turn left
-        Serial.println("Drehung nach links (9)");
+        Serial.println("Turn left (9)");
         digitalWrite(8, LOW);
         digitalWrite(9, LOW);
         digitalWrite(2, LOW);
@@ -103,8 +103,8 @@ void loop() {
         break;
       
       case 3125149440:  // force stop all motors
-        Serial.println("Alles aus (Ein/Aus)");
-        Serial.println("Motor aus (3)");
+        Serial.println("stop all (Ein/Aus)");
+        Serial.println("Motors stopped (3)");
         digitalWrite(6, LOW);
         digitalWrite(6, LOW);
         digitalWrite(8, LOW);
@@ -149,8 +149,8 @@ digitalWrite(SENDEN, LOW);
   }
   if (Entfernung < 40) {
     Serial.print("unter 40");
-        Serial.println("Alles aus (Ein/Aus)");
-        Serial.println("Motor aus (3)");
+        Serial.println("stop all (Ein/Aus)");
+        Serial.println("stop Motor (3)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
         digitalWrite(8, LOW);
