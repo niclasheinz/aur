@@ -1,8 +1,6 @@
-# Arduino mit Fernsteuerung steuern & Hinterniserkennung
+# Control Arduino with remote control & obstacle detection
+### Remote control numbers
 
-### Zahlen der Fernbedienung
-
-##### V 4.x
 | Button | Value | Variable | Command |
 | ------ | ------ | ------ | ------ |
 |     On/Off    |  3125149440        |        |        |
