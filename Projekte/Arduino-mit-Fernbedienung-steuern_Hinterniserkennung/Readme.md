@@ -1,14 +1,14 @@
 # Control Arduino with remote control & obstacle detection
-My goal is to build and program a robot that can be controlled by a remote control. I am also working on an all-round obstacle detection system
+My goal is to build and program a robot that can be controlled by a remote control. I am also working on an all-round obstacle detection system.
 ### Remote control numbers
 
 | Button | Value | Variable | Command |
 | ------ | ------ | ------ | ------ |
 |     On/Off    |  3125149440        |        |        |
-|     Mode      |  3108437760          |        |        |
-|     Mute      |  3091726080          |        |        |
-|     Play      |  3141861120          |        |        |
-|     Previous  |  3208707840      |        |        |
+|     Mode      |  3108437760        |        |        |
+|     Mute      |  3091726080        |        |        |
+|     Play      |  3141861120        |        |        |
+|     Previous  |  3208707840        |        |        |
 |     Next      |  3158572800          |        |        |
 |     EQ        |  4161273600            |        |        |
 |     Quieter   |  3927310080       |        |        |
