@@ -2,7 +2,6 @@
 #===============================================================================
 #
 #          FILE:  Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
-#
 #         USAGE:  Only compatible with Arduino ICE
 #
 #   DESCRIPTION:
@@ -11,7 +10,7 @@
 #  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1
 #          BUGS:  ---
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
-#        AUTHOR:  Niclas Heinz, nh@hpost.net
+#        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
 #       COMPANY:  - 
 #       VERSION:  2.1
 #      REVISION:  ---
@@ -120,10 +119,7 @@ void loop() {
 
   IrReceiver.resume();  // Enable receiving of the next value
 
-
 //////////////// Entfernungsmesser  ////////////////////
-// Sender kurz ausschalten um Störungen des Signal zu vermeiden
-// Sender kurz ausschalten um Störungen des Signal zu vermeiden
 digitalWrite(SENDEN, LOW);
  // delay(5);
 
