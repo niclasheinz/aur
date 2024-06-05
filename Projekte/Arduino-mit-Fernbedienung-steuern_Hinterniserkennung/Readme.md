@@ -25,3 +25,6 @@ My goal is to build and program a robot that can be controlled by a remote contr
 |     7         |  3175284480      |        |        |
 |     8         |  2907897600      |        |        |
 |     9         |  3041591040      |        |        |
+
+
+### Needed pins
