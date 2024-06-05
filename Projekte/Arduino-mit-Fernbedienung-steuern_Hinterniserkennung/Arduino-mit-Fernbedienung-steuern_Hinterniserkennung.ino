@@ -59,10 +59,10 @@ void loop() {
         Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
         digitalWrite(10, HIGH);
-        analogWrite(10, 230);
-        digitalWrite(2, HIGH);
         digitalWrite(5, LOW);
         digitalWrite(9, LOW);
+        analogWrite(10, 230);
+        digitalWrite(2, HIGH);
         break;
       case 3877175040:  // drive backwards
         Serial.println("Drive backwards (3)");
