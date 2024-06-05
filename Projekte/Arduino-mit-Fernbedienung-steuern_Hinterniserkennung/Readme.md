@@ -31,14 +31,14 @@ My goal is to build and program a robot that can be controlled by a remote contr
 | Pin | Status | Usecase | 
 | ------ | ------ | ------ |
 
-|     1    |  3125149440        |        | 
-|     2    |  3125149440        |        | 
-|     3    |  3125149440        |        | 
-|     4    |  3125149440        |        | 
-|     5    |  3125149440        |        | 
-|     6    |  3125149440        |        | 
-|     7    |  3125149440        |        | 
-|     8    |  3125149440        |        | 
-|     9    |  3125149440        |        | 
-|     10   |  3125149440        |        | 
-|     11   |  3125149440        |        | 
+|     1    |  free        |        | 
+|     2    |  used        | LED Status lamp       | 
+|     3    |  used        | ECHO       | 
+|     4    |  used        | Transmitting (SENDEN)       | 
+|     5    |  free        |        | 
+|     6    |  used        | motor left 1       | 
+|     7    |  used        | motor left 2       | 
+|     8    |  free        |        | 
+|     9    |  used        | motor right 1       | 
+|     10   |  used        | motor right 2       | 
+|     11   |  used        |        | 
