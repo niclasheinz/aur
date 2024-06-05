@@ -42,3 +42,5 @@ My goal is to build and program a robot that can be controlled by a remote contr
 |     9    |  used        | motor right 1       | 
 |     10   |  used        | motor right 2       | 
 |     11   |  used        | -       | 
+|     12   |  free        | -       | 
+|     13   |  free        | -       | 
