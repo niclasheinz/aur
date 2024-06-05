@@ -41,10 +41,11 @@ void setup() {
   pinMode(8, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(6, OUTPUT);
-  Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
   pinMode(4, OUTPUT);  // 4-Pin ist ein Ausgang
   pinMode(SENDEN, OUTPUT);
   pinMode(ECHO, INPUT);
+  Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
+
 }
 
 void loop() {
