@@ -29,23 +29,6 @@ My goal is to build and program a robot that can be controlled by a remote contr
 
 ### Needed pins
 
-| Pin | Status | Usecase |
-| ------ | ------ | ------ |
-|   1     |   free     |        |
-|   2     |   used     |        |
-|   3     |   used     |        |
-|   4     |   used     |        |
-|   5     |        |        |
-|   6     |        |        |
-|   7     |        |        |
-|   8     |        |        |
-|   9     |        |        |
-|  10     |        |        |
-|  11     |        |        |
-|  12     |        |        |
-|  12     |        |        |
-
-
 | Pin | Status | Usecase | 
 | ------ | ------ | ------ |
 |     1    |  free        | -       | 
