@@ -27,7 +27,6 @@ int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
 long Entfernung = 0; // Variable für die Speicherung der Entfernung
 void setup() {
   Serial.begin(9600);
-  pinMode(4, OUTPUT);                                     // PIN  for LED
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
   Serial.begin(9600);  //Starting serial monitor
 
