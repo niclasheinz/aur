@@ -27,7 +27,6 @@ int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
 long Entfernung = 0; // Variable für die Speicherung der Entfernung
 void setup() {
   Serial.begin(9600);
-  pinMode(4, OUTPUT);                                     // PIN  for LED
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
   Serial.begin(9600);  //Starting serial monitor
 
@@ -41,10 +40,11 @@ void setup() {
   pinMode(8, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(6, OUTPUT);
-  Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
   pinMode(4, OUTPUT);  // 4-Pin ist ein Ausgang
   pinMode(SENDEN, OUTPUT);
   pinMode(ECHO, INPUT);
+  Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
+
 }
 
 void loop() {
@@ -59,10 +59,10 @@ void loop() {
         Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
         digitalWrite(10, HIGH);
-        analogWrite(10, 230);
-        digitalWrite(2, HIGH);
         digitalWrite(5, LOW);
         digitalWrite(9, LOW);
+        analogWrite(10, 230);
+        digitalWrite(2, HIGH);
         break;
       case 3877175040:  // drive backwards
         Serial.println("Drive backwards (3)");

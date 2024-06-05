@@ -1,4 +1,5 @@
 # Control Arduino with remote control & obstacle detection
+My goal is to build and program a robot that can be controlled by a remote control. I am also working on an all-round obstacle detection system
 ### Remote control numbers
 
 | Button | Value | Variable | Command |
@@ -24,3 +25,22 @@
 |     7         |  3175284480      |        |        |
 |     8         |  2907897600      |        |        |
 |     9         |  3041591040      |        |        |
+
+
+### Needed pins
+
+| Pin | Status | Usecase | 
+| ------ | ------ | ------ |
+|     1    |  free        | -       | 
+|     2    |  used        | LED Status lamp       | 
+|     3    |  used        | ECHO       | 
+|     4    |  used        | Transmitting (SENDEN)       | 
+|     5    |  free        | -       | 
+|     6    |  used        | motor left 1       | 
+|     7    |  used        | motor left 2       | 
+|     8    |  free        | -       | 
+|     9    |  used        | motor right 1       | 
+|     10   |  used        | motor right 2       | 
+|     11   |  used        | -       | 
+|     12   |  free        | -       | 
+|     13   |  free        | -       | 
