@@ -154,30 +154,30 @@ digitalWrite(SENDEN, LOW);
 }
 
 //////////////// Entfernungsmesser front  ////////////////////
-digitalWrite(SENDEN, LOW);
+digitalWrite(TRIGGER_right, LOW);
  // delay(5);
 
   // Signal für 10 Micrsekunden senden, danach wieder ausschalten
-  digitalWrite(SENDEN, HIGH);
+  digitalWrite(TRIGGER_right, HIGH);
   delayMicroseconds(10);
-  digitalWrite(SENDEN, LOW);
+  digitalWrite(TRIGGER_right, LOW);
 
   // pulseIn -> Zeit messen, bis das Signal zurückkommt
-  long Zeit = pulseIn(ECHO, HIGH);
+  long Zeit = pulseIn(ECHO_right, HIGH);
 
   // Entfernung in cm berechnen
   // Zeit/2 -> nur eine Strecke
-  Entfernung = (Zeit / 2) * 0.03432;
+  Distance_right = (Zeit / 2) * 0.03432;
   delay(50);
 
   // nur Entfernungen < 100 anzeigen
-  if (Entfernung < 1000) 
+  if (Distance_right < 1000) 
   {
     // Messdaten anzeigen
-    Serial.print("Entfernung in cm: ");
-    Serial.println(Entfernung);
+    Serial.print("Entfernung r in cm: ");
+    Serial.println(Distance_right);
   }
-  if (Entfernung < 40) {
+  if (TRIGGER_right < 40) {
     Serial.print("unter 40");
     
 }
