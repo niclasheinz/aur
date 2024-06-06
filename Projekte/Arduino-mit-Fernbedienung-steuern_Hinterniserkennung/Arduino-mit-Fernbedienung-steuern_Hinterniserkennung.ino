@@ -47,7 +47,7 @@ void setup() {
   pinMode(SENDEN, OUTPUT);
   pinMode(ECHO, INPUT);
   pinMode(TRIGGER_right,  OUTPUT);
-  pinMode(ECHO, INPUT);
+  pinMode(ECHO_right, INPUT);
   Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
 
 }
@@ -124,10 +124,38 @@ void loop() {
 
   IrReceiver.resume();  // Enable receiving of the next value
 
+//////////////// Entfernungsmesser front  ////////////////////
+digitalWrite(SENDEN, LOW);
+ // delay(5);
+
+  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  digitalWrite(SENDEN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(SENDEN, LOW);
+
+  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  long Zeit = pulseIn(ECHO, HIGH);
+
+  // Entfernung in cm berechnen
+  // Zeit/2 -> nur eine Strecke
+  Entfernung = (Zeit / 2) * 0.03432;
+  delay(50);
+
+  // nur Entfernungen < 100 anzeigen
+  if (Entfernung < 1000) 
+  {
+    // Messdaten anzeigen
+    Serial.print("Entfernung in cm: ");
+    Serial.println(Entfernung);
+  }
+  if (Entfernung < 40) {
+    Serial.print("unter 40");
+    
+}
 delay(100);
 //////////////// Entfernungsmesser right  ////////////////////
 digitalWrite(TRIGGER_right, LOW);
- // delay(5);
+  delay(5);
 
   // Signal für 10 Micrsekunden senden, danach wieder ausschalten
   digitalWrite(TRIGGER_right, HIGH);
@@ -150,7 +178,7 @@ digitalWrite(TRIGGER_right, LOW);
     Serial.println(Distance_right);
   }
   if (TRIGGER_right < 40) {
-    Serial.print("unter 40f");
+    Serial.print("right");
     
 }
 }
