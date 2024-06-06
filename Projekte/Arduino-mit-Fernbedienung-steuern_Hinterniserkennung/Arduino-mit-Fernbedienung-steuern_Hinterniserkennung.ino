@@ -174,7 +174,6 @@ digitalWrite(SENDEN, LOW);
         digitalWrite(5, HIGH);
         delay(2000);
         Serial.println("stop all (Ein/Aus)");
-        Serial.println("stop Motor (3)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
         digitalWrite(8, LOW);
