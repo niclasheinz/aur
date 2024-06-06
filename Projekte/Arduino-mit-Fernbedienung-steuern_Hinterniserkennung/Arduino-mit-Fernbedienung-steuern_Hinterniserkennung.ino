@@ -178,7 +178,7 @@ digitalWrite(TRIGGER_right, LOW);
     Serial.println(Distance_right);
   }
   if (TRIGGER_right < 40) {
-    Serial.print("unter 40");
+    Serial.print("unter 40f");
     
 }
 }
