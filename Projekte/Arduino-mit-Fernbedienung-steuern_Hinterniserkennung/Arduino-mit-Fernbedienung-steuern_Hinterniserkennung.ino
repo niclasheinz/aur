@@ -163,11 +163,11 @@ digitalWrite(TRIGGER_right, LOW);
   digitalWrite(TRIGGER_right, LOW);
 
   // pulseIn -> Zeit messen, bis das Signal zurückkommt
-  long Zeit = pulseIn(ECHO_right, HIGH);
+  long time_right = pulseIn(ECHO_right, HIGH);
 
   // Entfernung in cm berechnen
   // Zeit/2 -> nur eine Strecke
-  Distance_right = (Zeit / 2) * 0.03432;
+  Distance_right = (time_right / 2) * 0.03432;
   delay(50);
 
   // nur Entfernungen < 100 anzeigen
