@@ -24,6 +24,8 @@ int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential
 
 int SENDEN = 4; // Pin für den Sender
 int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
+int TRIGGER_right = 12;
+int ECHO_right = 13;
 long Entfernung = 0; // Variable für die Speicherung der Entfernung
 void setup() {
   Serial.begin(9600);
@@ -42,6 +44,8 @@ void setup() {
   pinMode(6, OUTPUT);
   pinMode(4, OUTPUT);  // 4-Pin ist ein Ausgang
   pinMode(SENDEN, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(TRIGGER_right,  OUTPUT);
   pinMode(ECHO, INPUT);
   Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
 
@@ -145,45 +149,7 @@ digitalWrite(SENDEN, LOW);
   }
   if (Entfernung < 40) {
     Serial.print("unter 40");
-        Serial.println("stop all (Ein/Aus)");
-        Serial.println("stop Motor (3)");
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
-        delay(1000);
-        // drive backwards
-        Serial.println("Drive backwards (3)");
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(2, LOW);
-        analogWrite(6, 70);
-        analogWrite(10, 70);
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        delay(500);
-        analogWrite(9, 150);
-        analogWrite(5, 150);
-        delay(500);
-        digitalWrite(9, HIGH);
-        digitalWrite(5, HIGH);
-        delay(2000);
-        Serial.println("stop all (Ein/Aus)");
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
-        delay(1000);
+        
 
         
 }
