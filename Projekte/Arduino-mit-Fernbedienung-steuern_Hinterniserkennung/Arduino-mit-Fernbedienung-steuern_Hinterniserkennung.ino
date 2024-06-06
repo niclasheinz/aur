@@ -123,7 +123,7 @@ void loop() {
 
   IrReceiver.resume();  // Enable receiving of the next value
 
-//////////////// Entfernungsmesser  ////////////////////
+//////////////// Entfernungsmesser front  ////////////////////
 digitalWrite(SENDEN, LOW);
  // delay(5);
 
@@ -149,8 +149,44 @@ digitalWrite(SENDEN, LOW);
   }
   if (Entfernung < 40) {
     Serial.print("unter 40");
-        
-
-        
+    Serial.println("stop all (Ein/Aus)");
+        Serial.println("stop Motor (3)");
+        digitalWrite(5, LOW);
+        digitalWrite(6, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(4, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(2, LOW);
+        delay(1000);
+        // drive backwards
+        Serial.println("Drive backwards (3)");
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(2, LOW);
+        analogWrite(6, 70);
+        analogWrite(10, 70);
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
+        delay(500);
+        analogWrite(9, 150);
+        analogWrite(5, 150);
+        delay(500);
+        digitalWrite(9, HIGH);
+        digitalWrite(5, HIGH);
+        delay(2000);
+        Serial.println("stop all (Ein/Aus)");
+        digitalWrite(5, LOW);
+        digitalWrite(6, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(4, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(2, LOW);
+        delay(1000);
 }
 }
