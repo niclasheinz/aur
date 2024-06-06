@@ -214,7 +214,7 @@ digitalWrite(TRIGGER_right, LOW);
     Serial.print("Entfernung r in cm: ");
     Serial.println(Distance_right);
   }
-  if (TRIGGER_right < 40) {
+  if (Distance_right < 40) {
     Serial.print("right");
     Serial.println("stop all (Ein/Aus)");
         Serial.println("stop Motor (3)");
