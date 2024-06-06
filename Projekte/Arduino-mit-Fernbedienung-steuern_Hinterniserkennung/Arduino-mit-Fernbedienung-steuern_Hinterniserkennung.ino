@@ -153,7 +153,7 @@ digitalWrite(SENDEN, LOW);
     
 }
 
-//////////////// Entfernungsmesser front  ////////////////////
+//////////////// Entfernungsmesser right  ////////////////////
 digitalWrite(TRIGGER_right, LOW);
  // delay(5);
 
