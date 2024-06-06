@@ -155,7 +155,7 @@ digitalWrite(SENDEN, LOW);
 delay(100);
 //////////////// Entfernungsmesser right  ////////////////////
 digitalWrite(TRIGGER_right, LOW);
- // delay(5);
+  delay(5);
 
   // Signal für 10 Micrsekunden senden, danach wieder ausschalten
   digitalWrite(TRIGGER_right, HIGH);
@@ -178,7 +178,7 @@ digitalWrite(TRIGGER_right, LOW);
     Serial.println(Distance_right);
   }
   if (TRIGGER_right < 40) {
-    Serial.print("unter 40f");
+    Serial.print("right");
     
 }
 }
