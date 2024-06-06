@@ -49,7 +49,6 @@ void setup() {
   pinMode(TRIGGER_right,  OUTPUT);
   pinMode(ECHO_right, INPUT);
   Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
-
 }
 
 void loop() {
