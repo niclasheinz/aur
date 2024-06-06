@@ -7,7 +7,7 @@
 #   DESCRIPTION:
 #
 #       OPTIONS:  ---
-#  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1
+#  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1 by shirriff
 #          BUGS:  ---
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
@@ -158,23 +158,20 @@ digitalWrite(SENDEN, LOW);
         digitalWrite(2, LOW);
         delay(1000);
         // drive backwards
-        Serial.println("motors on (2)");
-        digitalWrite(8, HIGH);
-        digitalWrite(9, HIGH);
-        analogWrite(9, 230);
-        digitalWrite(2, HIGH);
+        Serial.println("Drive backwards (3)");
         digitalWrite(6, LOW);
         digitalWrite(10, LOW);
-        delay(2000);
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
         digitalWrite(2, LOW);
+        analogWrite(6, 70);
+        analogWrite(10, 70);
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
+        delay(500);
+        analogWrite(9, 150);
+        analogWrite(5, 150);
+        delay(500);
+        digitalWrite(9, HIGH);
+        digitalWrite(5, HIGH);
 
         
 }
