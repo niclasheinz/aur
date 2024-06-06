@@ -7,7 +7,7 @@
 #   DESCRIPTION:
 #
 #       OPTIONS:  ---
-#  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1
+#  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1 by shirriff
 #          BUGS:  ---
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
@@ -24,7 +24,10 @@ int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential
 
 int SENDEN = 4; // Pin für den Sender
 int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
+int TRIGGER_right = 12;
+int ECHO_right = 13;
 long Entfernung = 0; // Variable für die Speicherung der Entfernung
+long Distance_right = 0;
 void setup() {
   Serial.begin(9600);
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
@@ -42,6 +45,8 @@ void setup() {
   pinMode(6, OUTPUT);
   pinMode(4, OUTPUT);  // 4-Pin ist ein Ausgang
   pinMode(SENDEN, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(TRIGGER_right,  OUTPUT);
   pinMode(ECHO, INPUT);
   Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
 
@@ -119,63 +124,33 @@ void loop() {
 
   IrReceiver.resume();  // Enable receiving of the next value
 
-//////////////// Entfernungsmesser  ////////////////////
-digitalWrite(SENDEN, LOW);
+delay(100);
+//////////////// Entfernungsmesser right  ////////////////////
+digitalWrite(TRIGGER_right, LOW);
  // delay(5);
 
   // Signal für 10 Micrsekunden senden, danach wieder ausschalten
-  digitalWrite(SENDEN, HIGH);
+  digitalWrite(TRIGGER_right, HIGH);
   delayMicroseconds(10);
-  digitalWrite(SENDEN, LOW);
+  digitalWrite(TRIGGER_right, LOW);
 
   // pulseIn -> Zeit messen, bis das Signal zurückkommt
-  long Zeit = pulseIn(ECHO, HIGH);
+  long time_right = pulseIn(ECHO_right, HIGH);
 
   // Entfernung in cm berechnen
   // Zeit/2 -> nur eine Strecke
-  Entfernung = (Zeit / 2) * 0.03432;
+  Distance_right = (time_right / 2) * 0.03432;
   delay(50);
 
   // nur Entfernungen < 100 anzeigen
-  if (Entfernung < 1000) 
+  if (Distance_right < 1000) 
   {
     // Messdaten anzeigen
-    Serial.print("Entfernung in cm: ");
-    Serial.println(Entfernung);
+    Serial.print("Entfernung r in cm: ");
+    Serial.println(Distance_right);
   }
-  if (Entfernung < 40) {
-    Serial.print("unter 40");
-        Serial.println("stop all (Ein/Aus)");
-        Serial.println("stop Motor (3)");
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
-        delay(1000);
-        // drive backwards
-        Serial.println("motors on (2)");
-        digitalWrite(8, HIGH);
-        digitalWrite(9, HIGH);
-        analogWrite(9, 230);
-        digitalWrite(2, HIGH);
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        delay(2000);
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
-
-        
+  if (TRIGGER_right < 40) {
+    Serial.print("unter 40f");
+    
 }
 }
