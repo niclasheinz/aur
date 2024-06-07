@@ -25,9 +25,12 @@ int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential
 int SENDEN = 4; // Pin für den Sender
 int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
 int TRIGGER_right = 12;
+int TRIGGER_left = ;
 int ECHO_right = 13;
+int ECHO_left = ;
 long Entfernung = 0; // Variable für die Speicherung der Entfernung
 long Distance_right = 0;
+long Distance_left = ;
 void setup() {
   Serial.begin(9600);
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
@@ -256,4 +259,71 @@ digitalWrite(TRIGGER_right, LOW);
         digitalWrite(2, LOW);
         delay(1000);
 }
+//////////////// Entfernungsmesser left  ////////////////////
+digitalWrite(TRIGGER_left, LOW);
+  delay(5);
+
+  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  digitalWrite(TRIGGER_left, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIGGER_left, LOW);
+
+  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  long time_left = pulseIn(ECHO_left, HIGH);
+
+  // Entfernung in cm berechnen
+  // Zeit/2 -> nur eine Strecke
+  Distance_left = (time_left / 2) * 0.03432;
+  delay(50);
+
+  // nur Entfernungen < 100 anzeigen
+  if (Distance_left < 1000) 
+  {
+    // Messdaten anzeigen
+    Serial.print("Entfernung r in cm: ");
+    Serial.println(Distance_left);
+  }
+  if (Distance_left < 40) {
+    Serial.print("right");
+    Serial.println("stop all (Ein/Aus)");
+        Serial.println("stop Motor (3)");
+        digitalWrite(5, LOW);
+        digitalWrite(6, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(4, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(2, LOW);
+        delay(1000);
+        // drive backwards
+        Serial.println("Drive backwards (3)");
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(2, LOW);
+        analogWrite(6, 70);
+        analogWrite(10, 70);
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
+        delay(500);
+        analogWrite(9, 150);
+        analogWrite(5, 150);
+        delay(500);
+        digitalWrite(9, HIGH);
+        digitalWrite(5, HIGH);
+        delay(2000);
+        Serial.println("stop all (Ein/Aus)");
+        digitalWrite(5, LOW);
+        digitalWrite(6, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(4, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(2, LOW);
+        delay(1000);
+}
+
 }
