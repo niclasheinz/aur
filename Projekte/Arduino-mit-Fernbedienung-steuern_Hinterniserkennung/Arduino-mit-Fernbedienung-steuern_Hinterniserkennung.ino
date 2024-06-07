@@ -25,12 +25,13 @@ int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential
 int SENDEN = 4; // Pin für den Sender
 int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
 int TRIGGER_right = 12;
-int TRIGGER_left = ;
+int TRIGGER_left = 7;
 int ECHO_right = 13;
-int ECHO_left = ;
-long Entfernung = 0; // Variable für die Speicherung der Entfernung
-long Distance_right = 0;
-long Distance_left = ;
+int ECHO_left = 8;
+// Variable for saving the distance
+long Entfernung = 0; 
+long Distance_right = 0; 
+long Distance_left = 0;
 void setup() {
   Serial.begin(9600);
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
