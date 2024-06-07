@@ -1,14 +1,14 @@
 # Control Arduino with remote control & obstacle detection
-My goal is to build and program a robot that can be controlled by a remote control. I am also working on an all-round obstacle detection system
+My goal is to build and program a robot that can be controlled by a remote control. I am also working on an all-round obstacle detection system.
 ### Remote control numbers
 
 | Button | Value | Variable | Command |
 | ------ | ------ | ------ | ------ |
 |     On/Off    |  3125149440        |        |        |
-|     Mode      |  3108437760          |        |        |
-|     Mute      |  3091726080          |        |        |
-|     Play      |  3141861120          |        |        |
-|     Previous  |  3208707840      |        |        |
+|     Mode      |  3108437760        |        |        |
+|     Mute      |  3091726080        |        |        |
+|     Play      |  3141861120        |        |        |
+|     Previous  |  3208707840        |        |        |
 |     Next      |  3158572800          |        |        |
 |     EQ        |  4161273600            |        |        |
 |     Quieter   |  3927310080       |        |        |
@@ -35,12 +35,12 @@ My goal is to build and program a robot that can be controlled by a remote contr
 |     2    |  used        | LED Status lamp       | 
 |     3    |  used        | ECHO       | 
 |     4    |  used        | Transmitting (SENDEN)       | 
-|     5    |  free        | -       | 
-|     6    |  used        | motor left 1       | 
-|     7    |  used        | motor left 2       | 
-|     8    |  free        | -       | 
+|     5    |  used        | motor left 1       | 
+|     6    |  used        | motor left 2       | 
+|     7    |  used        | Obstacle Sensor left (TRIGGER)       | 
+|     8    |  used        | Obstacle Sensor left (ECHO)       | 
 |     9    |  used        | motor right 1       | 
 |     10   |  used        | motor right 2       | 
 |     11   |  used        | -       | 
-|     12   |  free        | -       | 
-|     13   |  free        | -       | 
+|     12   |  used        | Obstacle Sensor right (Trigger)       | 
+|     13   |  used        | Obstacle Sensor right (ECHO)       | 
