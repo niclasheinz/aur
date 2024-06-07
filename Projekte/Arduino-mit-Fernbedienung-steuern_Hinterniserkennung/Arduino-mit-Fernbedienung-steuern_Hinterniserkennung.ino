@@ -12,7 +12,7 @@
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
 #       COMPANY:  - 
-#       VERSION:  2.1
+#       VERSION:  4.0
 #      REVISION:  ---
 #===============================================================================
  */
