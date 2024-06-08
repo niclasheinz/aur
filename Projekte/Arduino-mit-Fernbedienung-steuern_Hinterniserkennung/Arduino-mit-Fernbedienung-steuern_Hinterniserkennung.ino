@@ -29,7 +29,7 @@ int TRIGGER_left = 7;
 int ECHO_right = 13;
 int ECHO_left = 8;
 // Variable for saving the distance
-long Entfernung = 0; 
+long Distance_front = 0; 
 long Distance_right = 0; 
 long Distance_left = 0;
 void setup() {
@@ -141,17 +141,17 @@ digitalWrite(SENDEN, LOW);
 
   // Entfernung in cm berechnen
   // Zeit/2 -> nur eine Strecke
-  Entfernung = (Zeit / 2) * 0.03432;
+  Distance_front = (Zeit / 2) * 0.03432;
   delay(50);
 
   // nur Entfernungen < 100 anzeigen
-  if (Entfernung < 1000) 
+  if (Distance_front < 1000) 
   {
     // Messdaten anzeigen
-    Serial.print("Entfernung in cm: ");
-    Serial.println(Entfernung);
+    Serial.print("Distance Front in cm: ");
+    Serial.println(Distance_front);
   }
-  if (Entfernung < 40) {
+  if (Distance_front < 40) {
     Serial.print("unter 40");
     Serial.println("stop all (Ein/Aus)");
         Serial.println("stop Motor (3)");
