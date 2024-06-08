@@ -12,7 +12,7 @@
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
 #       COMPANY:  - 
-#       VERSION:  4.2
+#       VERSION:  4.3
 #      REVISION:  ---
 #===============================================================================
  */
@@ -152,11 +152,11 @@ digitalWrite(TRIGGER_front, LOW);
   digitalWrite(TRIGGER_front, LOW);
 
   // pulseIn -> Zeit messen, bis das Signal zurückkommt
-  long Zeit = pulseIn(ECHO_front, HIGH);
+  long time_front = pulseIn(ECHO_front, HIGH);
 
   // Entfernung in cm berechnen
   // Zeit/2 -> nur eine Strecke
-  Distance_front = (Zeit / 2) * 0.03432;
+  Distance_front = (time_front / 2) * 0.03432;
   delay(50);
 
   // nur Entfernungen < 100 anzeigen
