@@ -20,8 +20,6 @@
 
 #include <IRremote.hpp>
 #define IR_RECEIVE_PIN 11
-int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential definition vor the usage of the new libary
-
 int TRIGGER_front = 4; // Pin für den Sender
 int TRIGGER_right = 12;
 int TRIGGER_left = 7;
@@ -51,13 +49,12 @@ void setup() {
   // Serial Monitor
   Serial.begin(9600);        // Start serial communication to receive data using serial monitor
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
-
 }
+
 
 void loop() {
 
   if (IrReceiver.decode()) {
-
     Serial.println(IrReceiver.decodedIRData.decodedRawData, DEC);  // Print "old" raw data
     //IrReceiver.printIRResultShort(&Serial); // Print complete received data in one line
     //IrReceiver.printIRSendUsage(&Serial);   // Print the statement required to send this data
@@ -299,6 +296,15 @@ digitalWrite(TRIGGER_left, LOW);
         delay(1000);
         // drive backwards
         Serial.println("Drive backwards (3)");
+
+        delay(2000);
+        
+        delay(1000);
+}
+
+}
+
+void drive_backwards() {
         digitalWrite(6, LOW);
         digitalWrite(10, LOW);
         digitalWrite(2, LOW);
@@ -312,7 +318,9 @@ digitalWrite(TRIGGER_left, LOW);
         delay(500);
         digitalWrite(9, HIGH);
         digitalWrite(5, HIGH);
-        delay(2000);
+}
+
+void stop_all() {
         Serial.println("stop all (On/Off)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
@@ -323,7 +331,4 @@ digitalWrite(TRIGGER_left, LOW);
         digitalWrite(4, LOW);
         digitalWrite(3, LOW);
         digitalWrite(2, LOW);
-        delay(1000);
-}
-
 }
