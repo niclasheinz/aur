@@ -12,7 +12,7 @@
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
 #       COMPANY:  - 
-#       VERSION:  4.0
+#       VERSION:  4.1
 #      REVISION:  ---
 #===============================================================================
  */
@@ -22,10 +22,10 @@
 #define IR_RECEIVE_PIN 11
 int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential definition vor the usage of the new libary
 
-int SENDEN = 4; // Pin für den Sender
-int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
+int TRIGGER_front = 4; // Pin für den Sender
 int TRIGGER_right = 12;
 int TRIGGER_left = 7;
+int ECHO_front = 3; 
 int ECHO_right = 13;
 int ECHO_left = 8;
 // Variable for saving the distance
@@ -48,11 +48,11 @@ void setup() {
   pinMode(6, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(4, OUTPUT);  // 4-Pin ist ein Ausgang
-  pinMode(SENDEN, OUTPUT);
-  pinMode(ECHO, INPUT);
+  pinMode(TRIGGER_front, OUTPUT);
+  pinMode(ECHO_front, INPUT);
   pinMode(TRIGGER_right,  OUTPUT);
   pinMode(ECHO_right, INPUT);
-  Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
+  Serial.begin(9600);        // Start serial communication to receive data using serial monitor
 }
 
 void loop() {
@@ -110,7 +110,7 @@ void loop() {
         break;
       
       case 3125149440:  // force stop all motors
-        Serial.println("stop all (Ein/Aus)");
+        Serial.println("stop all (On/Off)");
         Serial.println("Motors stopped (3)");
         digitalWrite(6, LOW);
         digitalWrite(6, LOW);
@@ -128,16 +128,16 @@ void loop() {
   IrReceiver.resume();  // Enable receiving of the next value
 
 //////////////// Entfernungsmesser front  ////////////////////
-digitalWrite(SENDEN, LOW);
+digitalWrite(TRIGGER_front, LOW);
  // delay(5);
 
   // Signal für 10 Micrsekunden senden, danach wieder ausschalten
-  digitalWrite(SENDEN, HIGH);
+  digitalWrite(TRIGGER_front, HIGH);
   delayMicroseconds(10);
-  digitalWrite(SENDEN, LOW);
+  digitalWrite(TRIGGER_front, LOW);
 
   // pulseIn -> Zeit messen, bis das Signal zurückkommt
-  long Zeit = pulseIn(ECHO, HIGH);
+  long Zeit = pulseIn(ECHO_front, HIGH);
 
   // Entfernung in cm berechnen
   // Zeit/2 -> nur eine Strecke
@@ -153,7 +153,7 @@ digitalWrite(SENDEN, LOW);
   }
   if (Distance_front < 40) {
     Serial.print("unter 40");
-    Serial.println("stop all (Ein/Aus)");
+    Serial.println("stop all (On/Off)");
         Serial.println("stop Motor (3)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
@@ -181,7 +181,7 @@ digitalWrite(SENDEN, LOW);
         digitalWrite(9, HIGH);
         digitalWrite(5, HIGH);
         delay(2000);
-        Serial.println("stop all (Ein/Aus)");
+        Serial.println("stop all (On/Off)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
         digitalWrite(8, LOW);
@@ -220,7 +220,7 @@ digitalWrite(TRIGGER_right, LOW);
   }
   if (Distance_right < 40) {
     Serial.print("right");
-    Serial.println("stop all (Ein/Aus)");
+    Serial.println("stop all (On/Off)");
         Serial.println("stop Motor (3)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
@@ -248,7 +248,7 @@ digitalWrite(TRIGGER_right, LOW);
         digitalWrite(9, HIGH);
         digitalWrite(5, HIGH);
         delay(2000);
-        Serial.println("stop all (Ein/Aus)");
+        Serial.println("stop all (On/Off)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
         digitalWrite(8, LOW);
@@ -275,7 +275,7 @@ digitalWrite(TRIGGER_left, LOW);
   // Entfernung in cm berechnen
   // Zeit/2 -> nur eine Strecke
   Distance_left = (time_left / 2) * 0.03432;
-  delay(50);
+  delay(5);
 
   // nur Entfernungen < 100 anzeigen
   if (Distance_left < 1000) 
@@ -284,9 +284,9 @@ digitalWrite(TRIGGER_left, LOW);
     Serial.print("Entfernung r in cm: ");
     Serial.println(Distance_left);
   }
-  if (Distance_left < 40) {
+  if (Distance_left < 60) {
     Serial.print("right");
-    Serial.println("stop all (Ein/Aus)");
+    Serial.println("stop all (On/Off)");
         Serial.println("stop Motor (3)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
@@ -314,7 +314,7 @@ digitalWrite(TRIGGER_left, LOW);
         digitalWrite(9, HIGH);
         digitalWrite(5, HIGH);
         delay(2000);
-        Serial.println("stop all (Ein/Aus)");
+        Serial.println("stop all (On/Off)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
         digitalWrite(8, LOW);
