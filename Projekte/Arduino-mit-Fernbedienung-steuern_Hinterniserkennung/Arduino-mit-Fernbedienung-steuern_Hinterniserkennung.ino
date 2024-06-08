@@ -2,7 +2,7 @@
 #===============================================================================
 #
 #          FILE:  Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
-#         USAGE:  Only compatible with Arduino ICE
+#         USAGE:  Only compatible with Arduino IDE
 #
 #   DESCRIPTION:
 #
@@ -12,7 +12,7 @@
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
 #       COMPANY:  - 
-#       VERSION:  4.1
+#       VERSION:  4.2
 #      REVISION:  ---
 #===============================================================================
  */
