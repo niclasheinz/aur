@@ -95,14 +95,7 @@ void loop() {
         digitalWrite(6, LOW);
         break;
       case 4144561920:  // turn left
-        Serial.println("Turn left (9)");
-        digitalWrite(8, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(2, LOW);
-        digitalWrite(9, HIGH);
-        digitalWrite(6, LOW);
-        delay(250);
-        digitalWrite(9, LOW);
+        turn_left();
         break;
       
       case 3125149440:  // force stop all motors
@@ -282,29 +275,18 @@ digitalWrite(TRIGGER_left, LOW);
   }
   if (Distance_left < 60) {
     Serial.print("right");
-    Serial.println("stop all (On/Off)");
-        Serial.println("stop Motor (3)");
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
+        stop_all();
         delay(1000);
-        // drive backwards
-        Serial.println("Drive backwards (3)");
-
+        drive_backwards();
         delay(2000);
-        
+        stop_all();
         delay(1000);
 }
 
 }
 
 void drive_backwards() {
+        Serial.println("Drive backwards (3)");
         digitalWrite(6, LOW);
         digitalWrite(10, LOW);
         digitalWrite(2, LOW);
@@ -331,4 +313,15 @@ void stop_all() {
         digitalWrite(4, LOW);
         digitalWrite(3, LOW);
         digitalWrite(2, LOW);
+}
+
+void turn_left() {
+        Serial.println("Turn left (9)");
+        digitalWrite(8, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(2, LOW);
+        digitalWrite(9, HIGH);
+        digitalWrite(6, LOW);
+        delay(250);
+        digitalWrite(9, LOW);
 }
