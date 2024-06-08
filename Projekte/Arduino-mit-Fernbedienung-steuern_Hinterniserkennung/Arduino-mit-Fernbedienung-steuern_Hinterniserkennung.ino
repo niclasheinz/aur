@@ -60,57 +60,20 @@ void loop() {
     //IrReceiver.printIRSendUsage(&Serial);   // Print the statement required to send this data
     switch (IrReceiver.decodedIRData.decodedRawData) {
       case 4077715200:  //Drive forwards
-        Serial.println("Drive forwards (2)");
-        digitalWrite(6, HIGH);
-        digitalWrite(10, HIGH);
-        digitalWrite(5, LOW);
-        digitalWrite(9, LOW);
-        analogWrite(10, 230);
-        digitalWrite(2, HIGH);
+        drive_forwards();
         break;
       case 3877175040:  // drive backwards
-        Serial.println("Drive backwards (3)");
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(2, LOW);
-        analogWrite(6, 70);
-        analogWrite(10, 70);
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        delay(500);
-        analogWrite(9, 150);
-        analogWrite(5, 150);
-        delay(500);
-        digitalWrite(9, HIGH);
-        digitalWrite(5, HIGH);
+        drive_backwards();
         break;
       case 2707357440:  // turn right
-        Serial.println("Turn right (4)");
-        digitalWrite(8, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(2, LOW);
-        digitalWrite(6, HIGH);
-        digitalWrite(10, LOW);
-        delay(250);
-        digitalWrite(6, LOW);
+        turn_right();
         break;
       case 4144561920:  // turn left
         turn_left();
         break;
-      
       case 3125149440:  // force stop all motors
-        Serial.println("stop all (On/Off)");
-        Serial.println("Motors stopped (3)");
-        digitalWrite(6, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
-        digitalWrite(5, LOW);
+        stop_all();
+        break;
     }
   }
 
@@ -285,6 +248,16 @@ digitalWrite(TRIGGER_left, LOW);
 
 }
 
+void drive_forwards() {
+       Serial.println("Drive forwards (2)");
+        digitalWrite(6, HIGH);
+        digitalWrite(10, HIGH);
+        digitalWrite(5, LOW);
+        digitalWrite(9, LOW);
+        analogWrite(10, 230);
+        digitalWrite(2, HIGH);
+}
+
 void drive_backwards() {
         Serial.println("Drive backwards (3)");
         digitalWrite(6, LOW);
@@ -324,4 +297,14 @@ void turn_left() {
         digitalWrite(6, LOW);
         delay(250);
         digitalWrite(9, LOW);
+}
+void turn_right() {
+        Serial.println("Turn right (4)");
+        digitalWrite(8, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(2, LOW);
+        digitalWrite(6, HIGH);
+        digitalWrite(10, LOW);
+        delay(250);
+        digitalWrite(6, LOW);
 }
