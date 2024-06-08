@@ -42,5 +42,13 @@ My goal is to build and program a robot that can be controlled by a remote contr
 |     9    |  used        | motor right 1       | 
 |     10   |  used        | motor right 2       | 
 |     11   |  used        | -       | 
+<<<<<<< Updated upstream
 |     12   |  used        | Obstacle Sensor right (Trigger)       | 
 |     13   |  used        | Obstacle Sensor right (ECHO)       | 
+=======
+|     12   |  free        | -       | 
+|     13   |  free        | -       | 
+
+
+
+>>>>>>> Stashed changes
