@@ -12,7 +12,9 @@
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
 #       COMPANY:  - 
+<<<<<<< Projekte/Arduino-mit-Fernbedienung-steuern_Hinterniserkennung/Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
 #       VERSION:  4.3
+=======
 #      REVISION:  ---
 #===============================================================================
  */
