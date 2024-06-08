@@ -51,6 +51,69 @@ void setup() {
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
+// Manöver, die der Arduino unterstützt
+
+void drive_forwards() {
+       Serial.println("Drive forwards (2)");
+        digitalWrite(6, HIGH);
+        digitalWrite(10, HIGH);
+        digitalWrite(5, LOW);
+        digitalWrite(9, LOW);
+        analogWrite(10, 230);
+        digitalWrite(2, HIGH);
+}
+
+void drive_backwards() {
+        Serial.println("Drive backwards (3)");
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(2, LOW);
+        analogWrite(6, 70);
+        analogWrite(10, 70);
+        digitalWrite(6, LOW);
+        digitalWrite(10, LOW);
+        delay(500);
+        analogWrite(9, 150);
+        analogWrite(5, 150);
+        delay(500);
+        digitalWrite(9, HIGH);
+        digitalWrite(5, HIGH);
+}
+
+void stop_all() {
+        Serial.println("stop all (On/Off)");
+        digitalWrite(5, LOW);
+        digitalWrite(6, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(4, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(2, LOW);
+}
+
+void turn_left() {
+        Serial.println("Turn left (9)");
+        digitalWrite(8, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(2, LOW);
+        digitalWrite(9, HIGH);
+        digitalWrite(6, LOW);
+        delay(250);
+        digitalWrite(9, LOW);
+}
+void turn_right() {
+        Serial.println("Turn right (4)");
+        digitalWrite(8, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(2, LOW);
+        digitalWrite(6, HIGH);
+        digitalWrite(10, LOW);
+        delay(250);
+        digitalWrite(6, LOW);
+}
+
 
 void loop() {
 
@@ -246,65 +309,4 @@ digitalWrite(TRIGGER_left, LOW);
         delay(1000);
 }
 
-}
-
-void drive_forwards() {
-       Serial.println("Drive forwards (2)");
-        digitalWrite(6, HIGH);
-        digitalWrite(10, HIGH);
-        digitalWrite(5, LOW);
-        digitalWrite(9, LOW);
-        analogWrite(10, 230);
-        digitalWrite(2, HIGH);
-}
-
-void drive_backwards() {
-        Serial.println("Drive backwards (3)");
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(2, LOW);
-        analogWrite(6, 70);
-        analogWrite(10, 70);
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        delay(500);
-        analogWrite(9, 150);
-        analogWrite(5, 150);
-        delay(500);
-        digitalWrite(9, HIGH);
-        digitalWrite(5, HIGH);
-}
-
-void stop_all() {
-        Serial.println("stop all (On/Off)");
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
-}
-
-void turn_left() {
-        Serial.println("Turn left (9)");
-        digitalWrite(8, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(2, LOW);
-        digitalWrite(9, HIGH);
-        digitalWrite(6, LOW);
-        delay(250);
-        digitalWrite(9, LOW);
-}
-void turn_right() {
-        Serial.println("Turn right (4)");
-        digitalWrite(8, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(2, LOW);
-        digitalWrite(6, HIGH);
-        digitalWrite(10, LOW);
-        delay(250);
-        digitalWrite(6, LOW);
 }
