@@ -2,7 +2,7 @@
 #===============================================================================
 #
 #          FILE:  Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
-#         USAGE:  Only compatible with Arduino ICE
+#         USAGE:  Only compatible with Arduino IDE
 #
 #   DESCRIPTION:
 #
@@ -12,7 +12,9 @@
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
 #       COMPANY:  - 
-#       VERSION:  3.0
+<<<<<<< Projekte/Arduino-mit-Fernbedienung-steuern_Hinterniserkennung/Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
+#       VERSION:  4.3
+=======
 #      REVISION:  ---
 #===============================================================================
  */
@@ -20,20 +22,18 @@
 
 #include <IRremote.hpp>
 #define IR_RECEIVE_PIN 11
-int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential definition vor the usage of the new libary
-
-int SENDEN = 4; // Pin für den Sender
-int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
+int TRIGGER_front = 4; // Pin für den Sender
 int TRIGGER_right = 12;
+int TRIGGER_left = 7;
+int ECHO_front = 3; 
 int ECHO_right = 13;
-long Entfernung = 0; // Variable für die Speicherung der Entfernung
-long Distance_right = 0;
+int ECHO_left = 8;
+// Variable for saving the distance
+long Distance_front = 0; 
+long Distance_right = 0; 
+long Distance_left = 0;
 void setup() {
-  Serial.begin(9600);
-  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
-  Serial.begin(9600);  //Starting serial monitor
-
-  //pinMode(1, OUTPUT);
+  // Activate pins 
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
   pinMode(4, OUTPUT);
@@ -43,32 +43,29 @@ void setup() {
   pinMode(8, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(6, OUTPUT);
-  pinMode(4, OUTPUT);  // 4-Pin ist ein Ausgang
-  pinMode(SENDEN, OUTPUT);
-  pinMode(ECHO, INPUT);
+  pinMode(4, OUTPUT);  
+  pinMode(TRIGGER_front, OUTPUT);
+  pinMode(ECHO_front, INPUT);
   pinMode(TRIGGER_right,  OUTPUT);
   pinMode(ECHO_right, INPUT);
-  Serial.begin(9600);        //Serielle kommunikation starten, damit man sich später die Werte am serial monitor ansehen kann.
+  // Serial Monitor
+  Serial.begin(9600);        // Start serial communication to receive data using serial monitor
+  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
-void loop() {
+// Manöver, die der Arduino unterstützt
 
-  if (IrReceiver.decode()) {
-
-    Serial.println(IrReceiver.decodedIRData.decodedRawData, DEC);  // Print "old" raw data
-    //IrReceiver.printIRResultShort(&Serial); // Print complete received data in one line
-    //IrReceiver.printIRSendUsage(&Serial);   // Print the statement required to send this data
-    switch (IrReceiver.decodedIRData.decodedRawData) {
-      case 4077715200:  //Drive forwards
-        Serial.println("Drive forwards (2)");
+void drive_forwards() {
+       Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
         digitalWrite(10, HIGH);
         digitalWrite(5, LOW);
         digitalWrite(9, LOW);
         analogWrite(10, 230);
         digitalWrite(2, HIGH);
-        break;
-      case 3877175040:  // drive backwards
+}
+
+void drive_backwards() {
         Serial.println("Drive backwards (3)");
         digitalWrite(6, LOW);
         digitalWrite(10, LOW);
@@ -83,18 +80,22 @@ void loop() {
         delay(500);
         digitalWrite(9, HIGH);
         digitalWrite(5, HIGH);
-        break;
-      case 2707357440:  // turn right
-        Serial.println("Turn right (4)");
-        digitalWrite(8, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(2, LOW);
-        digitalWrite(6, HIGH);
-        digitalWrite(10, LOW);
-        delay(250);
+}
+
+void stop_all() {
+        Serial.println("stop all (On/Off)");
+        digitalWrite(5, LOW);
         digitalWrite(6, LOW);
-        break;
-      case 4144561920:  // turn left
+        digitalWrite(8, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(9, LOW);
+        digitalWrite(4, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(2, LOW);
+}
+
+void turn_left() {
         Serial.println("Turn left (9)");
         digitalWrite(8, LOW);
         digitalWrite(9, LOW);
@@ -103,90 +104,77 @@ void loop() {
         digitalWrite(6, LOW);
         delay(250);
         digitalWrite(9, LOW);
-        break;
-      
-      case 3125149440:  // force stop all motors
-        Serial.println("stop all (Ein/Aus)");
-        Serial.println("Motors stopped (3)");
-        digitalWrite(6, LOW);
-        digitalWrite(6, LOW);
+}
+void turn_right() {
+        Serial.println("Turn right (4)");
         digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
         digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
         digitalWrite(2, LOW);
-        digitalWrite(5, LOW);
+        digitalWrite(6, HIGH);
+        digitalWrite(10, LOW);
+        delay(250);
+        digitalWrite(6, LOW);
+}
+
+
+void loop() {
+
+  if (IrReceiver.decode()) {
+    Serial.println(IrReceiver.decodedIRData.decodedRawData, DEC);  // Print "old" raw data
+    //IrReceiver.printIRResultShort(&Serial); // Print complete received data in one line
+    //IrReceiver.printIRSendUsage(&Serial);   // Print the statement required to send this data
+    switch (IrReceiver.decodedIRData.decodedRawData) {
+      case 4077715200:  //Drive forwards
+        drive_forwards();
+        break;
+      case 3877175040:  // drive backwards
+        drive_backwards();
+        break;
+      case 2707357440:  // turn right
+        turn_right();
+        break;
+      case 4144561920:  // turn left
+        turn_left();
+        break;
+      case 3125149440:  // force stop all motors
+        stop_all();
+        break;
     }
   }
 
   IrReceiver.resume();  // Enable receiving of the next value
 
 //////////////// Entfernungsmesser front  ////////////////////
-digitalWrite(SENDEN, LOW);
+digitalWrite(TRIGGER_front, LOW);
  // delay(5);
 
   // Signal für 10 Micrsekunden senden, danach wieder ausschalten
-  digitalWrite(SENDEN, HIGH);
+  digitalWrite(TRIGGER_front, HIGH);
   delayMicroseconds(10);
-  digitalWrite(SENDEN, LOW);
+  digitalWrite(TRIGGER_front, LOW);
 
   // pulseIn -> Zeit messen, bis das Signal zurückkommt
-  long Zeit = pulseIn(ECHO, HIGH);
+  long time_front = pulseIn(ECHO_front, HIGH);
 
   // Entfernung in cm berechnen
   // Zeit/2 -> nur eine Strecke
-  Entfernung = (Zeit / 2) * 0.03432;
+  Distance_front = (time_front / 2) * 0.03432;
   delay(50);
 
   // nur Entfernungen < 100 anzeigen
-  if (Entfernung < 1000) 
+  if (Distance_front < 1000) 
   {
     // Messdaten anzeigen
-    Serial.print("Entfernung in cm: ");
-    Serial.println(Entfernung);
+    Serial.print("Distance Front in cm: ");
+    Serial.println(Distance_front);
   }
-  if (Entfernung < 40) {
+  if (Distance_front < 40) {
     Serial.print("unter 40");
-    Serial.println("stop all (Ein/Aus)");
-        Serial.println("stop Motor (3)");
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
+        stop_all();
         delay(1000);
-        // drive backwards
-        Serial.println("Drive backwards (3)");
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(2, LOW);
-        analogWrite(6, 70);
-        analogWrite(10, 70);
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        delay(500);
-        analogWrite(9, 150);
-        analogWrite(5, 150);
-        delay(500);
-        digitalWrite(9, HIGH);
-        digitalWrite(5, HIGH);
+        drive_backwards();
         delay(2000);
-        Serial.println("stop all (Ein/Aus)");
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
+        stop_all();
         delay(1000);
 }
 delay(100);
@@ -214,46 +202,48 @@ digitalWrite(TRIGGER_right, LOW);
     Serial.print("Entfernung r in cm: ");
     Serial.println(Distance_right);
   }
-  if (TRIGGER_right < 40) {
+  if (Distance_right < 40) {
     Serial.print("right");
-    Serial.println("stop all (Ein/Aus)");
-        Serial.println("stop Motor (3)");
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
+        stop_all(); // stop all
         delay(1000);
         // drive backwards
-        Serial.println("Drive backwards (3)");
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(2, LOW);
-        analogWrite(6, 70);
-        analogWrite(10, 70);
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
-        delay(500);
-        analogWrite(9, 150);
-        analogWrite(5, 150);
-        delay(500);
-        digitalWrite(9, HIGH);
-        digitalWrite(5, HIGH);
+        drive_backwards();
         delay(2000);
-        Serial.println("stop all (Ein/Aus)");
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
-        digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(4, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(2, LOW);
+        stop_all();
         delay(1000);
 }
+//////////////// Entfernungsmesser left  ////////////////////
+digitalWrite(TRIGGER_left, LOW);
+  delay(5);
+
+  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  digitalWrite(TRIGGER_left, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIGGER_left, LOW);
+
+  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  long time_left = pulseIn(ECHO_left, HIGH);
+
+  // Entfernung in cm berechnen
+  // Zeit/2 -> nur eine Strecke
+  Distance_left = (time_left / 2) * 0.03432;
+  delay(5);
+
+  // nur Entfernungen < 100 anzeigen
+  if (Distance_left < 1000) 
+  {
+    // Messdaten anzeigen
+    Serial.print("Entfernung r in cm: ");
+    Serial.println(Distance_left);
+  }
+  if (Distance_left < 60) {
+    Serial.print("right");
+        stop_all();
+        delay(1000);
+        drive_backwards();
+        delay(2000);
+        stop_all();
+        delay(1000);
+}
+
 }
