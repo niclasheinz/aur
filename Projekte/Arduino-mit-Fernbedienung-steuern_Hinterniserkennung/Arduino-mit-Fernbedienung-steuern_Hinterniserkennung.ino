@@ -15,7 +15,7 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  4.3
+#       VERSION:  5.0
 #      REVISION:  ---
 #===============================================================================
  */
@@ -109,6 +109,7 @@ void turn_left() { // turning left
         delay(250);
         digitalWrite(9, LOW);
 }
+
 void turn_right() { //turning right
         Serial.println("Turn right (4)");
         digitalWrite(8, LOW);
