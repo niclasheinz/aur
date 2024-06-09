@@ -27,13 +27,16 @@
 int TRIGGER_front = 4;
 int TRIGGER_right = 12;
 int TRIGGER_left = 7;
+int TRIGGER_back = 1;
 int ECHO_front = 3; 
 int ECHO_right = 13;
 int ECHO_left = 8;
+int ECHO_back = 2;
 // Variable for saving the distance
 long Distance_front = 0; 
 long Distance_right = 0; 
 long Distance_left = 0;
+long Distance_back = 0;
 void setup() {
   // Activate pins 
   pinMode(2, OUTPUT);
@@ -240,6 +243,40 @@ digitalWrite(TRIGGER_left, LOW);
   }
   if (Distance_left < 60) {
     Serial.print("right");
+        stop_all();
+        delay(1000);
+        drive_backwards();
+        delay(2000);
+        stop_all();
+        delay(1000);
+}
+
+//////////////// Obstacle Detector back  ////////////////////
+digitalWrite(TRIGGER_back, LOW);
+  delay(5);
+
+  // transmit signal for 10 microseconds, afterwards turn off
+  digitalWrite(TRIGGER_back, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIGGER_back, LOW);
+
+  // pulseIn -> time measurement, until receiving a signal
+  long time_back = pulseIn(ECHO_back, HIGH);
+
+  // calculate distance in cm
+  // time/2 -> only one track
+  Distance_back = (time_left / 2) * 0.03432;
+  delay(5);
+
+  // display only distance < 100
+  if (Distance_back < 1000) 
+  {
+    // display measurement data
+    Serial.print("Distance in cm (back): ");
+    Serial.println(Distance_back);
+  }
+  if (Distance_back < 60) {
+        Serial.print("Near an obstacle behind the arduino")
         stop_all();
         delay(1000);
         drive_backwards();
