@@ -56,7 +56,7 @@ void setup() {
 
 // manoeuvre that the arduino script supports
 
-void drive_forwards() {
+void drive_forwards() { // driving forwards
        Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
         digitalWrite(10, HIGH);
@@ -66,7 +66,7 @@ void drive_forwards() {
         digitalWrite(2, HIGH);
 }
 
-void drive_backwards() {
+void drive_backwards() { // driving backwards
         Serial.println("Drive backwards (3)");
         digitalWrite(6, LOW);
         digitalWrite(10, LOW);
@@ -83,7 +83,7 @@ void drive_backwards() {
         digitalWrite(5, HIGH);
 }
 
-void stop_all() {
+void stop_all() { //stop all motors
         Serial.println("stop all (On/Off)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
@@ -96,7 +96,7 @@ void stop_all() {
         digitalWrite(2, LOW);
 }
 
-void turn_left() {
+void turn_left() { // turning left
         Serial.println("Turn left (9)");
         digitalWrite(8, LOW);
         digitalWrite(9, LOW);
@@ -106,7 +106,7 @@ void turn_left() {
         delay(250);
         digitalWrite(9, LOW);
 }
-void turn_right() {
+void turn_right() { //turning right
         Serial.println("Turn right (4)");
         digitalWrite(8, LOW);
         digitalWrite(9, LOW);
