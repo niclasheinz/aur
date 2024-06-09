@@ -213,27 +213,27 @@ digitalWrite(TRIGGER_right, LOW);
         stop_all();
         delay(1000);
 }
-//////////////// Entfernungsmesser left  ////////////////////
+//////////////// Obstacle Detector left  ////////////////////
 digitalWrite(TRIGGER_left, LOW);
   delay(5);
 
-  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  // transmit signal for 10 microseconds, afterwards turn off
   digitalWrite(TRIGGER_left, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGGER_left, LOW);
 
-  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  // pulseIn -> time measurement, until receiving a signal
   long time_left = pulseIn(ECHO_left, HIGH);
 
-  // Entfernung in cm berechnen
-  // Zeit/2 -> nur eine Strecke
+  // calculate distance in cm
+  // time/2 -> only one track
   Distance_left = (time_left / 2) * 0.03432;
   delay(5);
 
-  // nur Entfernungen < 100 anzeigen
+  // display only distance < 100
   if (Distance_left < 1000) 
   {
-    // Messdaten anzeigen
+    // display measurement data
     Serial.print("Entfernung r in cm: ");
     Serial.println(Distance_left);
   }
