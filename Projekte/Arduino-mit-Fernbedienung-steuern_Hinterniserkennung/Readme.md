@@ -1,5 +1,5 @@
 # Control Arduino with remote control & obstacle detection
-My goal is to build and program a robot that can be controlled by a remote control. I am also working on an all-round obstacle detection system.
+My goal is to build and program a robot that can be controlled by a remote control. I am also working on an all-round obstacle detection system. 
 ### Remote control numbers
 
 | Button | Value | Variable | Command |
