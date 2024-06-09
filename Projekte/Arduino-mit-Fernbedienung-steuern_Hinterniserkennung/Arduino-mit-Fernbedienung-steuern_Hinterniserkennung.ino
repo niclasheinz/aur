@@ -20,7 +20,6 @@
 #===============================================================================
  */
 
-
 #include <IRremote.hpp>
 #define IR_RECEIVE_PIN 11
 // Pins for the obstacle detectors
@@ -38,24 +37,24 @@ long Distance_right = 0;
 long Distance_left = 0;
 long Distance_back = 0;
 void setup() {
-  // Activate pins 
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(9, OUTPUT);
-  pinMode(10, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(8, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(4, OUTPUT);  
-  pinMode(TRIGGER_front, OUTPUT);
-  pinMode(ECHO_front, INPUT);
-  pinMode(TRIGGER_right,  OUTPUT);
-  pinMode(ECHO_right, INPUT);
-  // Serial Monitor
-  Serial.begin(9600);        // Start serial communication to receive data using serial monitor
-  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
+// Activate pins 
+pinMode(2, OUTPUT);
+pinMode(3, OUTPUT);
+pinMode(4, OUTPUT);
+pinMode(9, OUTPUT);
+pinMode(10, OUTPUT);
+pinMode(7, OUTPUT);
+pinMode(8, OUTPUT);
+pinMode(6, OUTPUT);
+pinMode(6, OUTPUT);
+pinMode(4, OUTPUT);  
+pinMode(TRIGGER_front, OUTPUT);
+pinMode(ECHO_front, INPUT);
+pinMode(TRIGGER_right,  OUTPUT);
+pinMode(ECHO_right, INPUT);
+// Serial Monitor
+Serial.begin(9600);        // Start serial communication to receive data using serial monitor
+IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
 // manoeuvre that the arduino script supports
