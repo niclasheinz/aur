@@ -120,7 +120,6 @@ void turn_right() { //turning right
         digitalWrite(6, LOW);
 }
 
-
 void loop() {
 
   if (IrReceiver.decode()) {
@@ -182,7 +181,7 @@ digitalWrite(TRIGGER_front, LOW);
         delay(1000);
 }
 delay(100);
-//////////////// Entfernungsmesser right  ////////////////////
+//////////////// Obstacle Detector right  ////////////////////
 digitalWrite(TRIGGER_right, LOW);
   delay(5);
 
