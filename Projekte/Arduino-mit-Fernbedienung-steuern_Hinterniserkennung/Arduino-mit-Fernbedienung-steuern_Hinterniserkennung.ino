@@ -3,6 +3,7 @@
 #
 #          FILE:  Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
 #         USAGE:  Only compatible with Arduino IDE
+# ARDUINO MODEL:  Arduino Uno
 #
 #   DESCRIPTION:  My goal is to build and program a robot that can be controlled
                   by a remote control. I am also working on an all-round obstacle
