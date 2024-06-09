@@ -4,9 +4,10 @@
 #          FILE:  Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
 #         USAGE:  Only compatible with Arduino IDE
 #
-#   DESCRIPTION:
+#   DESCRIPTION:  My goal is to build and program a robot that can be controlled
+                  by a remote control. I am also working on an all-round obstacle
+                  detection system.
 #
-#       OPTIONS:  ---
 #  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1 by shirriff
 #          BUGS:  ---
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
