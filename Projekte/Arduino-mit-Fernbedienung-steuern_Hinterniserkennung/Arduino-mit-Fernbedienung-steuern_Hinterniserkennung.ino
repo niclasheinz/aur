@@ -145,27 +145,27 @@ void loop() {
 
   IrReceiver.resume();  // Enable receiving of the next value
 
-//////////////// Entfernungsmesser front  ////////////////////
+//////////////// Obstacle Detector front  ////////////////////
 digitalWrite(TRIGGER_front, LOW);
  // delay(5);
 
-  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  // transmit signal for 10 microseconds, afterwards turn off
   digitalWrite(TRIGGER_front, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGGER_front, LOW);
 
-  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  // pulseIn -> time measurement, until receiving a signal
   long time_front = pulseIn(ECHO_front, HIGH);
 
-  // Entfernung in cm berechnen
-  // Zeit/2 -> nur eine Strecke
+  // calculate distance in cm
+  // time/2 -> only one track
   Distance_front = (time_front / 2) * 0.03432;
   delay(50);
 
-  // nur Entfernungen < 100 anzeigen
+  // display only distance < 100
   if (Distance_front < 1000) 
   {
-    // Messdaten anzeigen
+    // display measurement data
     Serial.print("Distance Front in cm: ");
     Serial.println(Distance_front);
   }
