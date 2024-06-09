@@ -183,23 +183,23 @@ delay(100);
 digitalWrite(TRIGGER_right, LOW);
   delay(5);
 
-  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  // transmit signal for 10 microseconds, afterwards turn off
   digitalWrite(TRIGGER_right, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGGER_right, LOW);
 
-  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  // pulseIn -> time measurement, until receiving a signal
   long time_right = pulseIn(ECHO_right, HIGH);
 
-  // Entfernung in cm berechnen
-  // Zeit/2 -> nur eine Strecke
+  // calculate distance in cm
+  // time/2 -> only one track
   Distance_right = (time_right / 2) * 0.03432;
   delay(50);
 
-  // nur Entfernungen < 100 anzeigen
+  // display only distance < 100
   if (Distance_right < 1000) 
   {
-    // Messdaten anzeigen
+    // display measurement data
     Serial.print("Entfernung r in cm: ");
     Serial.println(Distance_right);
   }
