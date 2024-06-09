@@ -22,7 +22,8 @@
 
 #include <IRremote.hpp>
 #define IR_RECEIVE_PIN 11
-int TRIGGER_front = 4; // Pin für den Sender
+// Pins for the obstacle detectors
+int TRIGGER_front = 4;
 int TRIGGER_right = 12;
 int TRIGGER_left = 7;
 int ECHO_front = 3; 
