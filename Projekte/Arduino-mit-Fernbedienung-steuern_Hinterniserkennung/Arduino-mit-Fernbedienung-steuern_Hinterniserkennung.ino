@@ -51,7 +51,7 @@ void setup() {
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
-// Manöver, die der Arduino unterstützt
+// manoeuvre that the arduino script supports
 
 void drive_forwards() {
        Serial.println("Drive forwards (2)");
