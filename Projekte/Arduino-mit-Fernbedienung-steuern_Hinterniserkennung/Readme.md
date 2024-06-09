@@ -28,7 +28,6 @@ My goal is to build and program a robot that can be controlled by a remote contr
 
 
 ### Needed pins
-
 | Pin | Status | Usecase | 
 | ------ | ------ | ------ |
 |     1    |  used        | Obstacle Sensor back (TRIGGER)       | 
