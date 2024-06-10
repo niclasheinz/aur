@@ -125,6 +125,10 @@ void bypass_left() {
     Serial.println("Bypass left")
 }
 
+void bypass_right() {
+    Serial.println("Bypass left")
+}
+
 void loop() {
 
   if (IrReceiver.decode()) {
