@@ -121,11 +121,11 @@ void turn_right() { //turning right
         digitalWrite(6, LOW);
 }
 
-void bypass_left() {
+void bypass_left() { // function for bypass objects from left side
     Serial.println("Bypass left")
 }
 
-void bypass_right() {
+void bypass_right() { // function for bypass objects from right side
     Serial.println("Bypass right")
 }
 
