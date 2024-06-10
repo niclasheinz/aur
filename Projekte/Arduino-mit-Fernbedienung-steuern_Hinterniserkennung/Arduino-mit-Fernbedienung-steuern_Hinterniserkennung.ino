@@ -121,6 +121,10 @@ void turn_right() { //turning right
         digitalWrite(6, LOW);
 }
 
+void bypass_left() {
+    Serial.println("Bypass left")
+}
+
 void loop() {
 
   if (IrReceiver.decode()) {
