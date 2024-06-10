@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-06-10T20:04:08.233Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="3kDDLVKsYDKH5OlWZ5Yy" version="24.5.1" type="device">
+<mxfile host="Electron" modified="2024-06-10T20:05:14.688Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="VqR0OCj-g_IExD2VJLx4" version="24.5.1" type="device">
   <diagram name="bypass strategy left" id="dR8AafDq_mMVZ9N_Uit_">
     <mxGraphModel dx="1714" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
@@ -1455,6 +1455,21 @@
         </mxCell>
         <mxCell id="AN7pkXZCnYP8iV07z2iw-773" value="&lt;font color=&quot;#ffffff&quot;&gt;&lt;span style=&quot;font-size: 42px;&quot;&gt;5&lt;/span&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1694.3" y="1101.07" width="266" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-776" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="187" y="1230" width="263" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-777" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="1230" width="263" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-778" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="1230" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-779" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="1230" width="430" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-780" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1596" y="1230" width="464" height="250" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
