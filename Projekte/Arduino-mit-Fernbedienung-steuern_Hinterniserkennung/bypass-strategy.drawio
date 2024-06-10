@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-06-10T20:09:42.888Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="pkUor9Qme1TWzREAWFUC" version="24.5.1" type="device">
+<mxfile host="Electron" modified="2024-06-10T20:10:32.646Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="s5fnQ48ybqUuSEyzDkJv" version="24.5.1" type="device">
   <diagram name="bypass strategy left" id="dR8AafDq_mMVZ9N_Uit_">
     <mxGraphModel dx="1114" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
@@ -1468,8 +1468,8 @@
         <mxCell id="AN7pkXZCnYP8iV07z2iw-779" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Arduino turns left until the normal route is reached&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1130" y="1230" width="430" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="AN7pkXZCnYP8iV07z2iw-780" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1596" y="1230" width="464" height="250" as="geometry" />
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-780" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Arduino turns right for normal route, as if there wasn&#39;t a obstacle&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1596" y="1230" width="464" height="110" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
