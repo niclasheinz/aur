@@ -126,7 +126,7 @@ void bypass_left() {
 }
 
 void bypass_right() {
-    Serial.println("Bypass left")
+    Serial.println("Bypass right")
 }
 
 void loop() {
