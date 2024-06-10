@@ -3,57 +3,63 @@
 #
 #          FILE:  Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
 #         USAGE:  Only compatible with Arduino IDE
+# ARDUINO MODEL:  Arduino Uno
 #
-#   DESCRIPTION:
+#   DESCRIPTION:  My goal is to build and program a robot that can be controlled
+                  by a remote control. I am also working on an all-round obstacle
+                  detection system.
 #
-#       OPTIONS:  ---
 #  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1 by shirriff
 #          BUGS:  ---
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
-#        AUTHOR:  Niclas Heinz, niclas.heinz@hpost.net
+#        AUTHOR:  Niclas Heinz
+#        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  4.3
+#       VERSION:  5.0
 #      REVISION:  ---
 #===============================================================================
  */
 
-
 #include <IRremote.hpp>
 #define IR_RECEIVE_PIN 11
-int TRIGGER_front = 4; // Pin für den Sender
+// Pins for the obstacle detectors
+int TRIGGER_front = 4;
 int TRIGGER_right = 12;
 int TRIGGER_left = 7;
+int TRIGGER_back = 1;
 int ECHO_front = 3; 
 int ECHO_right = 13;
 int ECHO_left = 8;
+int ECHO_back = 2;
 // Variable for saving the distance
 long Distance_front = 0; 
 long Distance_right = 0; 
 long Distance_left = 0;
+long Distance_back = 0;
 void setup() {
-  // Activate pins 
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(9, OUTPUT);
-  pinMode(10, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(8, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(4, OUTPUT);  
-  pinMode(TRIGGER_front, OUTPUT);
-  pinMode(ECHO_front, INPUT);
-  pinMode(TRIGGER_right,  OUTPUT);
-  pinMode(ECHO_right, INPUT);
-  // Serial Monitor
-  Serial.begin(9600);        // Start serial communication to receive data using serial monitor
-  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
+// Activate pins 
+pinMode(2, OUTPUT);
+pinMode(3, OUTPUT);
+pinMode(4, OUTPUT);
+pinMode(9, OUTPUT);
+pinMode(10, OUTPUT);
+pinMode(7, OUTPUT);
+pinMode(8, OUTPUT);
+pinMode(6, OUTPUT);
+pinMode(6, OUTPUT);
+pinMode(4, OUTPUT);  
+pinMode(TRIGGER_front, OUTPUT);
+pinMode(ECHO_front, INPUT);
+pinMode(TRIGGER_right,  OUTPUT);
+pinMode(ECHO_right, INPUT);
+// Serial Monitor
+Serial.begin(9600);        // Start serial communication to receive data using serial monitor
+IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
-// Manöver, die der Arduino unterstützt
+// manoeuvre that the arduino script supports
 
-void drive_forwards() {
+void drive_forwards() { // driving forwards
        Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
         digitalWrite(10, HIGH);
@@ -63,7 +69,7 @@ void drive_forwards() {
         digitalWrite(2, HIGH);
 }
 
-void drive_backwards() {
+void drive_backwards() { // driving backwards
         Serial.println("Drive backwards (3)");
         digitalWrite(6, LOW);
         digitalWrite(10, LOW);
@@ -80,7 +86,7 @@ void drive_backwards() {
         digitalWrite(5, HIGH);
 }
 
-void stop_all() {
+void stop_all() { //stop all motors
         Serial.println("stop all (On/Off)");
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
@@ -93,7 +99,7 @@ void stop_all() {
         digitalWrite(2, LOW);
 }
 
-void turn_left() {
+void turn_left() { // turning left
         Serial.println("Turn left (9)");
         digitalWrite(8, LOW);
         digitalWrite(9, LOW);
@@ -103,7 +109,8 @@ void turn_left() {
         delay(250);
         digitalWrite(9, LOW);
 }
-void turn_right() {
+
+void turn_right() { //turning right
         Serial.println("Turn right (4)");
         digitalWrite(8, LOW);
         digitalWrite(9, LOW);
@@ -113,7 +120,6 @@ void turn_right() {
         delay(250);
         digitalWrite(6, LOW);
 }
-
 
 void loop() {
 
@@ -142,27 +148,27 @@ void loop() {
 
   IrReceiver.resume();  // Enable receiving of the next value
 
-//////////////// Entfernungsmesser front  ////////////////////
+//////////////// Obstacle Detector front  ////////////////////
 digitalWrite(TRIGGER_front, LOW);
  // delay(5);
 
-  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  // transmit signal for 10 microseconds, afterwards turn off
   digitalWrite(TRIGGER_front, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGGER_front, LOW);
 
-  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  // pulseIn -> time measurement, until receiving a signal
   long time_front = pulseIn(ECHO_front, HIGH);
 
-  // Entfernung in cm berechnen
-  // Zeit/2 -> nur eine Strecke
+  // calculate distance in cm
+  // time/2 -> only one track
   Distance_front = (time_front / 2) * 0.03432;
   delay(50);
 
-  // nur Entfernungen < 100 anzeigen
+  // display only distance < 100
   if (Distance_front < 1000) 
   {
-    // Messdaten anzeigen
+    // display measurement data
     Serial.print("Distance Front in cm: ");
     Serial.println(Distance_front);
   }
@@ -176,27 +182,27 @@ digitalWrite(TRIGGER_front, LOW);
         delay(1000);
 }
 delay(100);
-//////////////// Entfernungsmesser right  ////////////////////
+//////////////// Obstacle Detector right  ////////////////////
 digitalWrite(TRIGGER_right, LOW);
   delay(5);
 
-  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  // transmit signal for 10 microseconds, afterwards turn off
   digitalWrite(TRIGGER_right, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGGER_right, LOW);
 
-  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  // pulseIn -> time measurement, until receiving a signal
   long time_right = pulseIn(ECHO_right, HIGH);
 
-  // Entfernung in cm berechnen
-  // Zeit/2 -> nur eine Strecke
+  // calculate distance in cm
+  // time/2 -> only one track
   Distance_right = (time_right / 2) * 0.03432;
   delay(50);
 
-  // nur Entfernungen < 100 anzeigen
+  // display only distance < 100
   if (Distance_right < 1000) 
   {
-    // Messdaten anzeigen
+    // display measurement data
     Serial.print("Entfernung r in cm: ");
     Serial.println(Distance_right);
   }
@@ -210,32 +216,66 @@ digitalWrite(TRIGGER_right, LOW);
         stop_all();
         delay(1000);
 }
-//////////////// Entfernungsmesser left  ////////////////////
+//////////////// Obstacle Detector left  ////////////////////
 digitalWrite(TRIGGER_left, LOW);
   delay(5);
 
-  // Signal für 10 Micrsekunden senden, danach wieder ausschalten
+  // transmit signal for 10 microseconds, afterwards turn off
   digitalWrite(TRIGGER_left, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGGER_left, LOW);
 
-  // pulseIn -> Zeit messen, bis das Signal zurückkommt
+  // pulseIn -> time measurement, until receiving a signal
   long time_left = pulseIn(ECHO_left, HIGH);
 
-  // Entfernung in cm berechnen
-  // Zeit/2 -> nur eine Strecke
+  // calculate distance in cm
+  // time/2 -> only one track
   Distance_left = (time_left / 2) * 0.03432;
   delay(5);
 
-  // nur Entfernungen < 100 anzeigen
+  // display only distance < 100
   if (Distance_left < 1000) 
   {
-    // Messdaten anzeigen
+    // display measurement data
     Serial.print("Entfernung r in cm: ");
     Serial.println(Distance_left);
   }
   if (Distance_left < 60) {
     Serial.print("right");
+        stop_all();
+        delay(1000);
+        drive_backwards();
+        delay(2000);
+        stop_all();
+        delay(1000);
+}
+
+//////////////// Obstacle Detector back  ////////////////////
+digitalWrite(TRIGGER_back, LOW);
+  delay(5);
+
+  // transmit signal for 10 microseconds, afterwards turn off
+  digitalWrite(TRIGGER_back, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIGGER_back, LOW);
+
+  // pulseIn -> time measurement, until receiving a signal
+  long time_back = pulseIn(ECHO_back, HIGH);
+
+  // calculate distance in cm
+  // time/2 -> only one track
+  Distance_back = (time_left / 2) * 0.03432;
+  delay(5);
+
+  // display only distance < 100
+  if (Distance_back < 1000) 
+  {
+    // display measurement data
+    Serial.print("Distance in cm (back): ");
+    Serial.println(Distance_back);
+  }
+  if (Distance_back < 60) {
+        Serial.print("Near an obstacle behind the arduino")
         stop_all();
         delay(1000);
         drive_backwards();
