@@ -1,9 +1,33 @@
-<mxfile host="Electron" modified="2024-06-10T19:32:38.726Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="2k1-MKw1ggHyBSw7awJz" version="24.5.1" type="device">
+<mxfile host="Electron" modified="2024-06-10T19:36:32.222Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="HdmWuMgc-KKch2YAcwKg" version="24.5.1" type="device">
   <diagram name="bypass strategy left" id="dR8AafDq_mMVZ9N_Uit_">
-    <mxGraphModel dx="1238" dy="866" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="602" dy="421" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-1" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;BYPASS STRATEGY LEFT&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="500" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-2" value="Scenario 1:&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="130" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-8" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="140.00058083755675" y="360" width="98.07883832488648" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-6" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rotation=-30;" vertex="1" parent="AN7pkXZCnYP8iV07z2iw-8">
+          <mxGeometry x="6.039419162443238" y="76" width="33" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-5" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rotation=-30;" vertex="1" parent="AN7pkXZCnYP8iV07z2iw-8">
+          <mxGeometry x="59.03941916244324" y="76" width="33" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-4" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rotation=-30;" vertex="1" parent="AN7pkXZCnYP8iV07z2iw-8">
+          <mxGeometry x="59.03941916244324" y="10.29000000000002" width="33" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-7" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rotation=-30;" vertex="1" parent="AN7pkXZCnYP8iV07z2iw-8">
+          <mxGeometry x="6.039419162443238" y="10.29000000000002" width="33" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="AN7pkXZCnYP8iV07z2iw-3" value="Arduino Uno" style="rounded=1;whiteSpace=wrap;html=1;rotation=-90;" vertex="1" parent="AN7pkXZCnYP8iV07z2iw-8">
+          <mxGeometry x="-10.960580837556762" y="30" width="120" height="60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
