@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-06-10T20:11:55.433Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="Hm9AaedyKiI-V6LmMCaY" version="24.5.1" type="device">
+<mxfile host="Electron" modified="2024-06-11T07:13:57.473Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="6rbNS-4V6gDD4CBKCc4M" version="24.5.1" type="device">
   <diagram name="bypass strategy left" id="dR8AafDq_mMVZ9N_Uit_">
-    <mxGraphModel dx="3713" dy="2597" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="1591" dy="1113" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -24,9 +24,6 @@
         </mxCell>
         <mxCell id="AN7pkXZCnYP8iV07z2iw-234" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="AN7pkXZCnYP8iV07z2iw-179" vertex="1">
           <mxGeometry x="-1095.6423076923074" y="212.42373926306828" width="279.7384615384615" height="500.77220077220085" as="geometry" />
-        </mxCell>
-        <mxCell id="AN7pkXZCnYP8iV07z2iw-2" value="Scenario 1:&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="AN7pkXZCnYP8iV07z2iw-179" vertex="1">
-          <mxGeometry x="-1130.6096153846152" y="235.18611202544105" width="139.86923076923074" height="34.143559143559145" as="geometry" />
         </mxCell>
         <mxCell id="AN7pkXZCnYP8iV07z2iw-20" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Obstacle&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12.304347826087024;" parent="AN7pkXZCnYP8iV07z2iw-179" vertex="1">
           <mxGeometry x="-1049.0192307692307" y="371.7603485996777" width="69.93461538461537" height="79.66830466830469" as="geometry" />
@@ -1471,7 +1468,7 @@
         <mxCell id="AN7pkXZCnYP8iV07z2iw-780" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Arduino turns right for normal route, as if there wasn&#39;t a obstacle&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1596" y="1230" width="464" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="n58d83yM64I7eCY7qbFN-1" value="10. 06.2024, Niclas Heinz" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="n58d83yM64I7eCY7qbFN-1" value="10. 06.2024, Niclas Heinz" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry y="1624" width="90" height="30" as="geometry" />
         </mxCell>
       </root>
