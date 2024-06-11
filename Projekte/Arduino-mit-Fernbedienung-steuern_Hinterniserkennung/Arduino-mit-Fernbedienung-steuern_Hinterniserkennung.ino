@@ -121,6 +121,14 @@ void turn_right() { //turning right
         digitalWrite(6, LOW);
 }
 
+void bypass_left() { // function for bypass objects from left side
+    Serial.println("Bypass left")
+}
+
+void bypass_right() { // function for bypass objects from right side
+    Serial.println("Bypass right")
+}
+
 void loop() {
 
   if (IrReceiver.decode()) {
@@ -203,7 +211,7 @@ digitalWrite(TRIGGER_right, LOW);
   if (Distance_right < 1000) 
   {
     // display measurement data
-    Serial.print("Entfernung r in cm: ");
+    Serial.print("Distance from right in cm: ");
     Serial.println(Distance_right);
   }
   if (Distance_right < 40) {
@@ -237,7 +245,7 @@ digitalWrite(TRIGGER_left, LOW);
   if (Distance_left < 1000) 
   {
     // display measurement data
-    Serial.print("Entfernung r in cm: ");
+    Serial.print("Distance from left in cm: ");
     Serial.println(Distance_left);
   }
   if (Distance_left < 60) {
@@ -271,7 +279,7 @@ digitalWrite(TRIGGER_back, LOW);
   if (Distance_back < 1000) 
   {
     // display measurement data
-    Serial.print("Distance in cm (back): ");
+    Serial.print("Distance from back in cm: ");
     Serial.println(Distance_back);
   }
   if (Distance_back < 60) {
