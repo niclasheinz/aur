@@ -1,7 +1,7 @@
 /* 
 #===============================================================================
 #
-#          FILE:  Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
+#          FILE:  Arduino-with-remote-control_obstacle-detection.ino
 #         USAGE:  Only compatible with Arduino IDE
 # ARDUINO MODEL:  Arduino Uno
 #
