@@ -6,8 +6,8 @@
 # ARDUINO MODEL:  Arduino Uno
 #
 #   DESCRIPTION:  My goal is to build and program a robot that can be controlled
-                  by a remote control. I am also working on an all-round obstacle
-                  detection system.
+                  by a remote control. I'm also working on an all-round obstacle
+                  detection system with a easy bypass functionality.
 #
 #  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1 by shirriff
 #          BUGS:  ---
