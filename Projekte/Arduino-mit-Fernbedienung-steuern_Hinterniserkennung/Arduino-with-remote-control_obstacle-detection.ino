@@ -56,7 +56,7 @@ Serial.begin(9600);        // Start serial communication to receive data using s
 IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
-// manoeuvre that the arduino script supports
+// manoeuvre that the arduino script supports //
 
 void drive_forwards() { // driving forwards
        Serial.println("Drive forwards (2)");
@@ -132,6 +132,7 @@ void bypass_left() { // function for bypass objects from left side
 
 void bypass_right() { // function for bypass objects from right side
     Serial.println("Bypass right")
+    // 1. reduce speed
 }
 
 void force_stop(){ // if distance to one of the sensors is lower than 30 -> force stop
