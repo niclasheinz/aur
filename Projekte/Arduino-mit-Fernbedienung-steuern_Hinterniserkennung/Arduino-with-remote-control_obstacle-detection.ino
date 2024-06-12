@@ -15,8 +15,7 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  5.1
-#      REVISION:  ---
+#       VERSION:  5.2
 #===============================================================================
  */
 
