@@ -1,22 +1,21 @@
 /* 
 #===============================================================================
 #
-#          FILE:  Arduino-mit-Fernbedienung-steuern_Hinterniserkennung.ino
+#          FILE:  Arduino-with-remote-control_obstacle-detection.ino
 #         USAGE:  Only compatible with Arduino IDE
 # ARDUINO MODEL:  Arduino Uno
 #
 #   DESCRIPTION:  My goal is to build and program a robot that can be controlled
-                  by a remote control. I am also working on an all-round obstacle
-                  detection system.
+                  by a remote control. I'm also working on an all-round obstacle
+                  detection system with a easy bypass functionality.
 #
-#  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1 by shirriff
+#  REQUIREMENTS:  Arduino Uno, Arduino IDE, IRremote 4.3.1 by shirriff and this script of course :)
 #          BUGS:  ---
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  5.0
-#      REVISION:  ---
+#       VERSION:  5.2
 #===============================================================================
  */
 
@@ -123,10 +122,23 @@ void turn_right() { //turning right
 
 void bypass_left() { // function for bypass objects from left side
     Serial.println("Bypass left")
+    //reduce speed
+    //turn right
+    //drive straight
+    //turn left
+    //drive straight
+    //turn left
 }
 
 void bypass_right() { // function for bypass objects from right side
     Serial.println("Bypass right")
+}
+
+void force_stop(){ // if distance to one of the sensors is lower than 30 -> force stop
+  if (Distance_front < 30 || Distance_back < 30 || Distance_right < 30 || Distance_left < 30) {
+    Serial.println("Executing force-stop in 1s");
+    stop_all();
+  }
 }
 
 void loop() {
@@ -187,7 +199,6 @@ digitalWrite(TRIGGER_front, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
 delay(100);
 //////////////// Obstacle Detector right  ////////////////////
@@ -222,7 +233,6 @@ digitalWrite(TRIGGER_right, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
 //////////////// Obstacle Detector left  ////////////////////
 digitalWrite(TRIGGER_left, LOW);
@@ -255,7 +265,6 @@ digitalWrite(TRIGGER_left, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
 
 //////////////// Obstacle Detector back  ////////////////////
@@ -289,7 +298,5 @@ digitalWrite(TRIGGER_back, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
-
 }
