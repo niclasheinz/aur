@@ -135,7 +135,7 @@ void bypass_right() { // function for bypass objects from right side
     Serial.println("Bypass right")
 }
 
-void force_stop(){
+void force_stop(){ // if distance to one of the sensors is lower than 40 -> force stop
   if (Distance_front < 40 || Distance_back < 40 || Distance_right < 40 || Distance_left < 40) {
     Serial.println("Executing force-stop in 1s");
   }
