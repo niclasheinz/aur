@@ -193,7 +193,6 @@ digitalWrite(TRIGGER_front, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
 delay(100);
 //////////////// Obstacle Detector right  ////////////////////
