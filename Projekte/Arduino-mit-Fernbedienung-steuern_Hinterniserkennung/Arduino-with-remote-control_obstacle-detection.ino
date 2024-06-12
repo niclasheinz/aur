@@ -294,7 +294,6 @@ digitalWrite(TRIGGER_back, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
 
 }
