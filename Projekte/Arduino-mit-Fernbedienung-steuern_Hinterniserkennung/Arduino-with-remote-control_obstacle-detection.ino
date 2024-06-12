@@ -133,6 +133,11 @@ void bypass_left() { // function for bypass objects from left side
 void bypass_right() { // function for bypass objects from right side
     Serial.println("Bypass right")
     // 1. reduce speed
+    // 2. turn left
+    // 3. drive straight
+    // 4. turn right
+    // 5. drive traight
+    // 6. turn right
 }
 
 void force_stop(){ // if distance to one of the sensors is lower than 30 -> force stop
