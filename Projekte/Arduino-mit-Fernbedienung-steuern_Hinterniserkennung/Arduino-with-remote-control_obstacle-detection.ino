@@ -15,7 +15,7 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  5.0
+#       VERSION:  5.1
 #      REVISION:  ---
 #===============================================================================
  */
@@ -293,5 +293,4 @@ digitalWrite(TRIGGER_back, LOW);
         delay(2000);
         stop_all();
 }
-
 }
