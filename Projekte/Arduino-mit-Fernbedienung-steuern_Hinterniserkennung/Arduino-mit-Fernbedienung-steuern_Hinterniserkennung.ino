@@ -299,7 +299,7 @@ digitalWrite(TRIGGER_back, LOW);
     Serial.println(Distance_back);
   }
   if (Distance_back < 60) {
-        Serial.print("Near an obstacle behind the arduino")
+        Serial.print("Near an obstacle behind the arduino");
         stop_all();
         delay(1000);
         drive_backwards();
