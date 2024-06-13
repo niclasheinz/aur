@@ -176,8 +176,7 @@ void loop() {
   IrReceiver.resume();  // Enable receiving of the next value
 
 //////////////// Obstacle Detector front  ////////////////////
-void obstacle_detector_front() {
-  digitalWrite(TRIGGER_front, LOW);
+digitalWrite(TRIGGER_front, LOW);
  // delay(5);
 
   // transmit signal for 10 microseconds, afterwards turn off
@@ -208,45 +207,10 @@ void obstacle_detector_front() {
         delay(750);
         stop_all();
 }
-}
-//////////////// Obstacle Detector right  ////////////////////
-void obstacle_detector_right() {
-  digitalWrite(TRIGGER_right, LOW);
-  delay(5);
+delay(100);
 
-  // transmit signal for 10 microseconds, afterwards turn off
-  digitalWrite(TRIGGER_right, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIGGER_right, LOW);
-
-  // pulseIn -> time measurement, until receiving a signal
-  long time_right = pulseIn(ECHO_right, HIGH);
-
-  // calculate distance in cm
-  // time/2 -> only one track
-  Distance_right = (time_right / 2) * 0.03432;
-  delay(50);
-
-  // display only distance < 100
-  if (Distance_right < 1000) 
-  {
-    // display measurement data
-    Serial.print("Distance from right in cm: ");
-    Serial.println(Distance_right);
-  }
-  if (Distance_right < 40) {
-    Serial.print("right");
-        stop_all(); // stop all
-        delay(500);
-        // drive backwards
-        drive_backwards();
-        delay(750);
-        stop_all();
-}
-}
 //////////////// Obstacle Detector left  ////////////////////
-void obstacle_detector_left(){
-  digitalWrite(TRIGGER_left, LOW);
+digitalWrite(TRIGGER_left, LOW);
   delay(5);
 
   // transmit signal for 10 microseconds, afterwards turn off
@@ -270,47 +234,12 @@ void obstacle_detector_left(){
     Serial.println(Distance_left);
   }
   if (Distance_left < 60) {
-    Serial.print("right");
+    Serial.print("Obstacle detection left side");
         stop_all();
         delay(500);
         drive_backwards();
         delay(750);
         stop_all();
 }
-}
 
-//////////////// Obstacle Detector back  ////////////////////
-void obstracle_detector_back() {
-  digitalWrite(TRIGGER_back, LOW);
-  delay(5);
-
-  // transmit signal for 10 microseconds, afterwards turn off
-  digitalWrite(TRIGGER_back, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIGGER_back, LOW);
-
-  // pulseIn -> time measurement, until receiving a signal
-  long time_back = pulseIn(ECHO_back, HIGH);
-
-  // calculate distance in cm
-  // time/2 -> only one track
-  Distance_back = (time_left / 2) * 0.03432;
-  delay(5);
-
-  // display only distance < 100
-  if (Distance_back < 1000) 
-  {
-    // display measurement data
-    Serial.print("Distance from back in cm: ");
-    Serial.println(Distance_back);
-  }
-  if (Distance_back < 60) {
-        Serial.print("Near an obstacle behind the arduino");
-        stop_all();
-        delay(500);
-        drive_backwards();
-        delay(750);
-        stop_all();
-}
-}
 }
