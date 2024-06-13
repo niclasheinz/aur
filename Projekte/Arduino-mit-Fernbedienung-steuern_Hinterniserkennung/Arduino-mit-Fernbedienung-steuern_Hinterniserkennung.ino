@@ -132,7 +132,7 @@ void bypass_left() { // function for bypass objects from left side
 }
 
 void bypass_right() { // function for bypass objects from right side
-    Serial.println("Bypass right")
+    Serial.println("Bypass right");
     // 1. reduce speed
     // 2. turn left // using analogWrite
     // 3. drive straight
