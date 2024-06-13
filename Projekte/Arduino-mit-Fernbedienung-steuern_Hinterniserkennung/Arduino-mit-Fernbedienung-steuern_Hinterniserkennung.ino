@@ -15,7 +15,7 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  5.2
+#       VERSION:  6.0
 #===============================================================================
  */
 
@@ -198,11 +198,11 @@ digitalWrite(TRIGGER_front, LOW);
   if (Distance_front < 1000) 
   {
     // display measurement data
-//    Serial.print("Distance Front in cm: ");
- //   Serial.println(Distance_front);
+    Serial.print("Distance Front in cm: ");
+    Serial.println(Distance_front);
   }
   if (Distance_front < 40) {
-  //  Serial.print("unter 40");
+        Serial.print("Obstacle detected front side");
         stop_all();
         delay(500);
         drive_backwards();
@@ -232,11 +232,11 @@ digitalWrite(TRIGGER_right, LOW);
   if (Distance_right < 1000) 
   {
     // display measurement data
- //   Serial.print("Distance from right in cm: ");
- //   Serial.println(Distance_right);
+    Serial.print("Distance from right in cm: ");
+    Serial.println(Distance_right);
   }
   if (Distance_right < 40) {
-   // Serial.print("right");
+       Serial.print("Obstacle detected right side");
         stop_all(); // stop all
         delay(500);
         // drive backwards
@@ -244,38 +244,6 @@ digitalWrite(TRIGGER_right, LOW);
         delay(750);
         stop_all();
 }
-//////////////// Obstacle Detector left  ////////////////////
-digitalWrite(TRIGGER_left, LOW);
-  delay(5);
 
-  // transmit signal for 10 microseconds, afterwards turn off
-  digitalWrite(TRIGGER_left, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIGGER_left, LOW);
-
-  // pulseIn -> time measurement, until receiving a signal
-  long time_left = pulseIn(ECHO_left, HIGH);
-
-  // calculate distance in cm
-  // time/2 -> only one track
-  Distance_left = (time_left / 2) * 0.03432;
-  delay(50);
-
-  // display only distance < 100
-  if (Distance_left  < 1000) 
-  {
-    // display measurement data
- //   Serial.print("Distance from right in cm: ");
- //   Serial.println(Distance_right);
-  }
-  if (Distance_left < 40) {
-   // Serial.print("right");
-        stop_all(); // stop all
-        delay(500);
-        // drive backwards
-        drive_backwards();
-        delay(750);
-        stop_all();
-}
 
 }
