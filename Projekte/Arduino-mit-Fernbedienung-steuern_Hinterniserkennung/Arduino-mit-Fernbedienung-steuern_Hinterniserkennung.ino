@@ -202,9 +202,9 @@ digitalWrite(TRIGGER_front, LOW);
   if (Distance_front < 40) {
     Serial.print("unter 40");
         stop_all();
-        delay(1000);
+        delay(500);
         drive_backwards();
-        delay(2000);
+        delay(750);
         stop_all();
 }
 delay(100);
@@ -235,10 +235,10 @@ digitalWrite(TRIGGER_right, LOW);
   if (Distance_right < 40) {
     Serial.print("right");
         stop_all(); // stop all
-        delay(1000);
+        delay(500);
         // drive backwards
         drive_backwards();
-        delay(2000);
+        delay(750);
         stop_all();
 }
 //////////////// Obstacle Detector left  ////////////////////
@@ -268,9 +268,9 @@ digitalWrite(TRIGGER_left, LOW);
   if (Distance_left < 60) {
     Serial.print("right");
         stop_all();
-        delay(1000);
+        delay(500);
         drive_backwards();
-        delay(2000);
+        delay(750);
         stop_all();
 }
 
@@ -301,9 +301,9 @@ digitalWrite(TRIGGER_back, LOW);
   if (Distance_back < 60) {
         Serial.print("Near an obstacle behind the arduino");
         stop_all();
-        delay(1000);
+        delay(500);
         drive_backwards();
-        delay(2000);
+        delay(750);
         stop_all();
 }
 }
