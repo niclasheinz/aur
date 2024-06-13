@@ -176,7 +176,8 @@ void loop() {
   IrReceiver.resume();  // Enable receiving of the next value
 
 //////////////// Obstacle Detector front  ////////////////////
-digitalWrite(TRIGGER_front, LOW);
+void obstacle_detector_front() {
+  digitalWrite(TRIGGER_front, LOW);
  // delay(5);
 
   // transmit signal for 10 microseconds, afterwards turn off
@@ -207,9 +208,10 @@ digitalWrite(TRIGGER_front, LOW);
         delay(750);
         stop_all();
 }
-delay(100);
+}
 //////////////// Obstacle Detector right  ////////////////////
-digitalWrite(TRIGGER_right, LOW);
+void obstacle_detector_right() {
+  digitalWrite(TRIGGER_right, LOW);
   delay(5);
 
   // transmit signal for 10 microseconds, afterwards turn off
@@ -241,8 +243,10 @@ digitalWrite(TRIGGER_right, LOW);
         delay(750);
         stop_all();
 }
+}
 //////////////// Obstacle Detector left  ////////////////////
-digitalWrite(TRIGGER_left, LOW);
+void obstacle_detector_left(){
+  digitalWrite(TRIGGER_left, LOW);
   delay(5);
 
   // transmit signal for 10 microseconds, afterwards turn off
@@ -273,9 +277,11 @@ digitalWrite(TRIGGER_left, LOW);
         delay(750);
         stop_all();
 }
+}
 
 //////////////// Obstacle Detector back  ////////////////////
-digitalWrite(TRIGGER_back, LOW);
+void obstracle_detector_back() {
+  digitalWrite(TRIGGER_back, LOW);
   delay(5);
 
   // transmit signal for 10 microseconds, afterwards turn off
@@ -305,5 +311,6 @@ digitalWrite(TRIGGER_back, LOW);
         drive_backwards();
         delay(750);
         stop_all();
+}
 }
 }
