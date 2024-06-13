@@ -9,14 +9,13 @@
                   by a remote control. I'm also working on an all-round obstacle
                   detection system with a easy bypass functionality.
 #
-#  REQUIREMENTS:  Arduino, Arduino-Desktopapp, IRremote 4.3.1 by shirriff
+#  REQUIREMENTS:  Arduino Uno, Arduino IDE, IRremote 4.3.1 by shirriff and this script of course :)
 #          BUGS:  ---
 #         NOTES:  I'm using version 4 of the IRremote Libary. With a different version, parts may not work.
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  5.0
-#      REVISION:  ---
+#       VERSION:  5.2
 #===============================================================================
  */
 
@@ -57,7 +56,7 @@ Serial.begin(9600);        // Start serial communication to receive data using s
 IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
-// manoeuvre that the arduino script supports
+// manoeuvre that the arduino script supports //
 
 void drive_forwards() { // driving forwards
        Serial.println("Drive forwards (2)");
@@ -123,16 +122,30 @@ void turn_right() { //turning right
 
 void bypass_left() { // function for bypass objects from left side
     Serial.println("Bypass left")
-    //reduce speed
-    //turn right
-    //drive straight
-    //turn left
-    //drive straight
-    //turn left
+    // 1. reduce speed
+    delay(250);
+    // 2. turn right with analogWrite
+    // 3. drive straight
+    // 4. turn left
+    // 5. drive straight
+    // 6. turn left
 }
 
 void bypass_right() { // function for bypass objects from right side
     Serial.println("Bypass right")
+    // 1. reduce speed
+    // 2. turn left // using analogWrite
+    // 3. drive straight
+    // 4. turn right
+    // 5. drive traight
+    // 6. turn right
+}
+
+void force_stop(){ // if distance to one of the sensors is lower than 30 -> force stop
+  if (Distance_front < 30 || Distance_back < 30 || Distance_right < 30 || Distance_left < 30) {
+    Serial.println("Executing force-stop in 1s");
+    stop_all();
+  }
 }
 
 void loop() {
@@ -193,7 +206,6 @@ digitalWrite(TRIGGER_front, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
 delay(100);
 //////////////// Obstacle Detector right  ////////////////////
@@ -228,7 +240,6 @@ digitalWrite(TRIGGER_right, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
 //////////////// Obstacle Detector left  ////////////////////
 digitalWrite(TRIGGER_left, LOW);
@@ -261,7 +272,6 @@ digitalWrite(TRIGGER_left, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
 
 //////////////// Obstacle Detector back  ////////////////////
@@ -295,7 +305,5 @@ digitalWrite(TRIGGER_back, LOW);
         drive_backwards();
         delay(2000);
         stop_all();
-        delay(1000);
 }
-
 }
