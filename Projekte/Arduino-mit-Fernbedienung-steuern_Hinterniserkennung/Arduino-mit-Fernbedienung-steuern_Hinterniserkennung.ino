@@ -121,7 +121,7 @@ void turn_right() { //turning right
 }
 
 void bypass_left() { // function for bypass objects from left side
-    Serial.println("Bypass left")
+    Serial.println("Bypass left");
     // 1. reduce speed
     delay(250);
     // 2. turn right with analogWrite
