@@ -34,7 +34,6 @@ int ECHO_left = 13;
 
 // Variable for saving the distance
 long Distance_front = 0; 
-
 long Distance_left = 0;
 long Distance_back = 0;
 void setup() {
@@ -243,6 +242,21 @@ digitalWrite(TRIGGER_back, LOW);
         drive_backwards();
         delay(750);
         stop_all();
+}
+
+//////////////// Obstacle Detector left  ////////////////////
+// this sensor gives 0 for an obstacle and 1 for none.
+void detector_left() { 
+  int Distance_left = digitalRead(9); // Read the sensor output
+
+  Serial.print("Sensor (left): ");
+  Serial.println(Distance_left); // Print the sensor output
+
+  if (Distance_left == 0) {
+    Serial.println("Hallo"); // Output "Hallo" if sensor value is 0
+  }
+
+  delay(500); // Wait half a second
 }
 
 
