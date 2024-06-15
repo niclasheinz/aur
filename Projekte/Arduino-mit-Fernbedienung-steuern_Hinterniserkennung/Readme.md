@@ -31,7 +31,7 @@ My goal is to build and program a robot that can be controlled by a remote contr
 | Pin | Status | Usecase | 
 | ------ | ------ | ------ |
 |     1    |  used        | Obstacle Sensor back (TRIGGER)       | 
-|     2    |  used        | Obstacle Sensor back (ECHO)          | 
+|     2    |  used        | Obstacle Sensor right           | 
 |     3    |  used        | ECHO                                 | 
 |     4    |  used        | Transmitting (SENDEN)                | 
 |     5    |  used        | motor left 1       | 
@@ -42,4 +42,4 @@ My goal is to build and program a robot that can be controlled by a remote contr
 |     10   |  used        | motor right 2       | 
 |     11   |  used        | -       | 
 |     12   |  used        | Obstacle Sensor right (Trigger)       | 
-|     13   |  used        | Obstacle Sensor right (ECHO)       | 
+|     13   |  used        | Obstacle Sensor left (ECHO)       | 
