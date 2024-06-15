@@ -25,12 +25,13 @@
 // Pins for the obstacle detectors
 int TRIGGER_front = 4;
 int TRIGGER_back = 7;
-int distance-sensor_left = 2;
+
 //int TRIGGER_back = 1;
 int ECHO_front = 3; 
 int ECHO_back = 8;
-int ECHO_left = 13;
 
+int distance-sensor_left = 13;
+int distance-sensor_right = 2;
 
 // Variable for saving the distance
 long Distance_front = 0; 
@@ -46,6 +47,7 @@ pinMode(7, OUTPUT);
 pinMode(8, OUTPUT);
 pinMode(6, OUTPUT);
 pinMode(distance-sensor_left, INPUT);
+pinMode(distancce-sensor_right, INPUT);
 pinMode(TRIGGER_front, OUTPUT);
 pinMode(ECHO_front, INPUT);
 pinMode(TRIGGER_back,  OUTPUT);
