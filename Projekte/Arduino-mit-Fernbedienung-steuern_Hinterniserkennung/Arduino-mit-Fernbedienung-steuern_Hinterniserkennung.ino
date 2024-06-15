@@ -34,7 +34,6 @@ int ECHO_left = 13;
 
 // Variable for saving the distance
 long Distance_front = 0; 
-long Distance_left = 0;
 long Distance_back = 0;
 void setup() {
 // Activate pins 
