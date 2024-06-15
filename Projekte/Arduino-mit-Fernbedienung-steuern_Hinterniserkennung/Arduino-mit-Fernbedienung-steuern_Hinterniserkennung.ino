@@ -254,7 +254,7 @@ void detector_left() {
   Serial.println(Distance_left); // Print the sensor output
 
   if (Distance_left == 0) {
-    Serial.println("Hallo"); // Output "Hallo" if sensor value is 0
+    Serial.println("Distance to left side to near."); // Output "Hallo" if sensor value is 0
     bypass_left();
   }
 
@@ -270,7 +270,7 @@ void detector_rightt() {
   Serial.println(Distance_right); // Print the sensor output
 
   if (Distance_right == 0) {
-    Serial.println("Hallo"); // Output "Hallo" if sensor value is 0
+    Serial.println("Distance to right side to near."); // Output "Hallo" if sensor value is 0
     bypass_right();
   }
 
