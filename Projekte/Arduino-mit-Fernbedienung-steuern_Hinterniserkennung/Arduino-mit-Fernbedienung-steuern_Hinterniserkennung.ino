@@ -260,5 +260,19 @@ void detector_left() {
   delay(500); // Wait half a second
 }
 
+//////////////// Obstacle Detector right  ////////////////////
+// this sensor gives 0 for an obstacle and 1 for none.
+void detector_rightt() { 
+  int Distance_right = digitalRead(9); // Read the sensor output
+
+  Serial.print("Sensor (left): ");
+  Serial.println(Distance_right); // Print the sensor output
+
+  if (Distance_right == 0) {
+    Serial.println("Hallo"); // Output "Hallo" if sensor value is 0
+  }
+
+  delay(500); // Wait half a second
+}
 
 }
