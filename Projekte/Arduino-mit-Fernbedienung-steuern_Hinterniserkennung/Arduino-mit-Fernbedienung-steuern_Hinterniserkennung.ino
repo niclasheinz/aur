@@ -15,25 +15,26 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  5.2
+#       VERSION:  6.1
 #===============================================================================
  */
 
 #include <IRremote.hpp>
 #define IR_RECEIVE_PIN 11
+
 // Pins for the obstacle detectors
 int TRIGGER_front = 4;
-int TRIGGER_right = 12;
-int TRIGGER_left = 7;
-int TRIGGER_back = 1;
+int TRIGGER_back = 7;
+
+//int TRIGGER_back = 1;
 int ECHO_front = 3; 
-int ECHO_right = 13;
-int ECHO_left = 8;
-int ECHO_back = 2;
+int ECHO_back = 8;
+
+int distance-sensor_left = 13;
+int distance-sensor_right = 2;
+
 // Variable for saving the distance
 long Distance_front = 0; 
-long Distance_right = 0; 
-long Distance_left = 0;
 long Distance_back = 0;
 void setup() {
 // Activate pins 
@@ -45,19 +46,18 @@ pinMode(10, OUTPUT);
 pinMode(7, OUTPUT);
 pinMode(8, OUTPUT);
 pinMode(6, OUTPUT);
-pinMode(6, OUTPUT);
-pinMode(4, OUTPUT);  
+pinMode(distance-sensor_left, INPUT);
+pinMode(distancce-sensor_right, INPUT);
 pinMode(TRIGGER_front, OUTPUT);
 pinMode(ECHO_front, INPUT);
-pinMode(TRIGGER_right,  OUTPUT);
-pinMode(ECHO_right, INPUT);
+pinMode(TRIGGER_back,  OUTPUT);
+pinMode(ECHO_back, INPUT);
 // Serial Monitor
 Serial.begin(9600);        // Start serial communication to receive data using serial monitor
 IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
-// manoeuvre that the arduino script supports
-
+// manoeuvre that the arduino script supports //
 void drive_forwards() { // driving forwards
        Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
@@ -109,8 +109,8 @@ void turn_left() { // turning left
         digitalWrite(9, LOW);
 }
 
-void turn_right() { //turning right
-        Serial.println("Turn right (4)");
+void turn_back() { //turning back
+        Serial.println("Turn back (4)");
         digitalWrite(8, LOW);
         digitalWrite(9, LOW);
         digitalWrite(2, LOW);
@@ -121,17 +121,24 @@ void turn_right() { //turning right
 }
 
 void bypass_left() { // function for bypass objects from left side
-    Serial.println("Bypass left")
-    //reduce speed
-    //turn right
-    //drive straight
-    //turn left
-    //drive straight
-    //turn left
+    Serial.println("Bypass left");
+    // 1. reduce speed
+    delay(250);
+    // 2. turn back with analogWrite
+    // 3. drive straight
+    // 4. turn left
+    // 5. drive straight
+    // 6. turn left
 }
 
-void bypass_right() { // function for bypass objects from right side
-    Serial.println("Bypass right")
+void bypass_back() { // function for bypass objects from right side
+    Serial.println("Bypass back");
+    // 1. reduce speed
+    // 2. turn left // using analogWrite
+    // 3. drive straight
+    // 4. turn right
+    // 5. drive traight
+    // 6. turn right
 }
 
 void force_stop(){ // if distance to one of the sensors is lower than 30 -> force stop
@@ -168,6 +175,8 @@ void loop() {
 
   IrReceiver.resume();  // Enable receiving of the next value
 
+
+delay(100);
 //////////////// Obstacle Detector front  ////////////////////
 digitalWrite(TRIGGER_front, LOW);
  // delay(5);
@@ -193,79 +202,14 @@ digitalWrite(TRIGGER_front, LOW);
     Serial.println(Distance_front);
   }
   if (Distance_front < 40) {
-    Serial.print("unter 40");
+        Serial.print("Obstacle detected front side");
         stop_all();
-        delay(1000);
+        delay(500);
         drive_backwards();
-        delay(2000);
+        delay(750);
         stop_all();
 }
-delay(100);
-//////////////// Obstacle Detector right  ////////////////////
-digitalWrite(TRIGGER_right, LOW);
-  delay(5);
 
-  // transmit signal for 10 microseconds, afterwards turn off
-  digitalWrite(TRIGGER_right, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIGGER_right, LOW);
-
-  // pulseIn -> time measurement, until receiving a signal
-  long time_right = pulseIn(ECHO_right, HIGH);
-
-  // calculate distance in cm
-  // time/2 -> only one track
-  Distance_right = (time_right / 2) * 0.03432;
-  delay(50);
-
-  // display only distance < 100
-  if (Distance_right < 1000) 
-  {
-    // display measurement data
-    Serial.print("Distance from right in cm: ");
-    Serial.println(Distance_right);
-  }
-  if (Distance_right < 40) {
-    Serial.print("right");
-        stop_all(); // stop all
-        delay(1000);
-        // drive backwards
-        drive_backwards();
-        delay(2000);
-        stop_all();
-}
-//////////////// Obstacle Detector left  ////////////////////
-digitalWrite(TRIGGER_left, LOW);
-  delay(5);
-
-  // transmit signal for 10 microseconds, afterwards turn off
-  digitalWrite(TRIGGER_left, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIGGER_left, LOW);
-
-  // pulseIn -> time measurement, until receiving a signal
-  long time_left = pulseIn(ECHO_left, HIGH);
-
-  // calculate distance in cm
-  // time/2 -> only one track
-  Distance_left = (time_left / 2) * 0.03432;
-  delay(5);
-
-  // display only distance < 100
-  if (Distance_left < 1000) 
-  {
-    // display measurement data
-    Serial.print("Distance from left in cm: ");
-    Serial.println(Distance_left);
-  }
-  if (Distance_left < 60) {
-    Serial.print("right");
-        stop_all();
-        delay(1000);
-        drive_backwards();
-        delay(2000);
-        stop_all();
-}
 
 //////////////// Obstacle Detector back  ////////////////////
 digitalWrite(TRIGGER_back, LOW);
@@ -281,8 +225,8 @@ digitalWrite(TRIGGER_back, LOW);
 
   // calculate distance in cm
   // time/2 -> only one track
-  Distance_back = (time_left / 2) * 0.03432;
-  delay(5);
+  Distance_back = (time_back / 2) * 0.03432;
+  delay(50);
 
   // display only distance < 100
   if (Distance_back < 1000) 
@@ -291,12 +235,46 @@ digitalWrite(TRIGGER_back, LOW);
     Serial.print("Distance from back in cm: ");
     Serial.println(Distance_back);
   }
-  if (Distance_back < 60) {
-        Serial.print("Near an obstacle behind the arduino")
-        stop_all();
-        delay(1000);
+  if (Distance_back < 40) {
+       Serial.print("Obstacle detected back side");
+        stop_all(); // stop all
+        delay(500);
+        // drive backwards
         drive_backwards();
-        delay(2000);
+        delay(750);
         stop_all();
 }
+
+//////////////// Obstacle Detector left  ////////////////////
+// this sensor gives 0 for an obstacle and 1 for none.
+void detector_left() { 
+  int Distance_left = digitalRead(9); // Read the sensor output
+
+  Serial.print("Sensor (left): ");
+  Serial.println(Distance_left); // Print the sensor output
+
+  if (Distance_left == 0) {
+    Serial.println("Hallo"); // Output "Hallo" if sensor value is 0
+    bypass_left();
+  }
+
+  delay(500); // Wait half a second
+}
+
+//////////////// Obstacle Detector right  ////////////////////
+// this sensor gives 0 for an obstacle and 1 for none.
+void detector_rightt() { 
+  int Distance_right = digitalRead(9); // Read the sensor output
+
+  Serial.print("Sensor (left): ");
+  Serial.println(Distance_right); // Print the sensor output
+
+  if (Distance_right == 0) {
+    Serial.println("Hallo"); // Output "Hallo" if sensor value is 0
+    bypass_right();
+  }
+
+  delay(500); // Wait half a second
+}
+
 }

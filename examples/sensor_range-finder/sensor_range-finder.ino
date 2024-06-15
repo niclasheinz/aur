@@ -23,8 +23,8 @@
 #define IR_RECEIVE_PIN 11
 int Kommando = (IrReceiver.decodedIRData.decodedRawData, HEX);  // New essential definition vor the usage of the new libary
 
-int SENDEN = 4; // Pin für den Sender
-int ECHO = 3; // Pin für das vom Objekt reflektierte Signal
+int SENDEN = 2; // Pin für den Sender
+int ECHO = 13; // Pin für das vom Objekt reflektierte Signal
 long Entfernung = 0; // Variable für die Speicherung der Entfernung
 void setup() {
 
