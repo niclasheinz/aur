@@ -255,6 +255,7 @@ void detector_left() {
 
   if (Distance_left == 0) {
     Serial.println("Hallo"); // Output "Hallo" if sensor value is 0
+    bypass_left();
   }
 
   delay(500); // Wait half a second
@@ -270,6 +271,7 @@ void detector_rightt() {
 
   if (Distance_right == 0) {
     Serial.println("Hallo"); // Output "Hallo" if sensor value is 0
+    bypass_right();
   }
 
   delay(500); // Wait half a second
