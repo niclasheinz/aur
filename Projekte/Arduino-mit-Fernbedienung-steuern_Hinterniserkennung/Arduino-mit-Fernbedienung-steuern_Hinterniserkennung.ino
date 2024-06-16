@@ -250,8 +250,8 @@ digitalWrite(TRIGGER_back, LOW);
 void detector_left() { 
   int Distance_left = digitalRead(9); // Read the sensor output
 
-  Serial.print("Sensor (left): ");
-  Serial.println(Distance_left); // Print the sensor output
+  Serial.print("Distance ': ");
+  Serial.println("Distance_left' to left"); // Print the sensor output
 
   if (Distance_left == 0) {
     Serial.println("Distance to left side to near."); // Output "Hallo" if sensor value is 0
