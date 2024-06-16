@@ -266,8 +266,9 @@ void detector_left() {
 void detector_rightt() { 
   int Distance_right = digitalRead(9); // Read the sensor output
 
-  Serial.print("Sensor (right): ");
-  Serial.println(Distance_right); // Print the sensor output
+  Serial.print("Distance ': ");
+  Serial.println("Distance_right' to right"); // Print the sensor output
+
 
   if (Distance_right == 0) {
     Serial.println("Distance to right side to near."); // Output "Hallo" if sensor value is 0
