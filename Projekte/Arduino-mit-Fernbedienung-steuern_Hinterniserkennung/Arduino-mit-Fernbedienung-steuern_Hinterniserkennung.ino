@@ -2,12 +2,12 @@
 #===============================================================================
 #
 #          FILE:  Arduino-with-remote-control_obstacle-detection.ino
-#         USAGE:  Only compatible with Arduino IDE
+#         USAGE:  Only compatible with Arduino Uno
 # ARDUINO MODEL:  Arduino Uno
 #
 #   DESCRIPTION:  My goal is to build and program a robot that can be controlled
                   by a remote control. I'm also working on an all-round obstacle
-                  detection system with a easy bypass functionality.
+                  detection system with a easy bypass functionality. 
 #
 #  REQUIREMENTS:  Arduino Uno, Arduino IDE, IRremote 4.3.1 by shirriff and this script of course :)
 #          BUGS:  ---
@@ -16,6 +16,7 @@
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
 #       VERSION:  6.1
+# LATEST COMMIT: 
 #===============================================================================
  */
 
@@ -250,8 +251,8 @@ digitalWrite(TRIGGER_back, LOW);
 void detector_left() { 
   int Distance_left = digitalRead(9); // Read the sensor output
 
-  Serial.print("Sensor (left): ");
-  Serial.println(Distance_left); // Print the sensor output
+  Serial.print("Distance ': ");
+  Serial.println("Distance_left' to left"); // Print the sensor output
 
   if (Distance_left == 0) {
     Serial.println("Distance to left side to near."); // Output "Hallo" if sensor value is 0
@@ -266,8 +267,9 @@ void detector_left() {
 void detector_rightt() { 
   int Distance_right = digitalRead(9); // Read the sensor output
 
-  Serial.print("Sensor (right): ");
-  Serial.println(Distance_right); // Print the sensor output
+  Serial.print("Distance ': ");
+  Serial.println("Distance_right' to right"); // Print the sensor output
+
 
   if (Distance_right == 0) {
     Serial.println("Distance to right side to near."); // Output "Hallo" if sensor value is 0
