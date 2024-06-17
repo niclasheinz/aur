@@ -63,7 +63,7 @@ void drive_forwards() { // driving forwards
        Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
         analogWrite(10, 230);
-        digitalWrite(10, HIGH);
+//      digitalWrite(10, HIGH);
         digitalWrite(5, LOW);
         digitalWrite(9, LOW);
         digitalWrite(2, HIGH);
@@ -124,6 +124,8 @@ void turn_back() { //turning back
 void bypass_left() { // function for bypass objects from left side
     Serial.println("Bypass left");
     // 1. reduce speed
+    analogWrite(6, 100);
+    analogWrite(10, 100);
     delay(250);
     // 2. turn back with analogWrite
     // 3. drive straight
