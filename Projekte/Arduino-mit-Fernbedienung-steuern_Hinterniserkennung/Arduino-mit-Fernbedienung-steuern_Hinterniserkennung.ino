@@ -7,7 +7,7 @@
 #
 #   DESCRIPTION:  My goal is to build and program a robot that can be controlled
                   by a remote control. I'm also working on an all-round obstacle
-                  detection system with a easy bypass functionality.
+                  detection system with a easy bypass functionality. 
 #
 #  REQUIREMENTS:  Arduino Uno, Arduino IDE, IRremote 4.3.1 by shirriff and this script of course :)
 #          BUGS:  ---
@@ -16,6 +16,7 @@
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
 #       VERSION:  6.1
+# LATEST COMMIT: 
 #===============================================================================
  */
 
