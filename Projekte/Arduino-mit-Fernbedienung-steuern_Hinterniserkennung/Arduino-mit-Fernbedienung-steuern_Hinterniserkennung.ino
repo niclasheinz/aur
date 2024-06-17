@@ -38,9 +38,11 @@ int distance-sensor_right = 2;
 long Distance_front = 0; 
 long Distance_back = 0;
 
-// Variables for the right motor
+// Variables for the motors
 int mo_re_1 = 9;
 int mo_re_2 = 10;
+int mo_li_1 = 6;
+int mo_li_2 = 7;
 void setup() {
 // Activate pins 
 pinMode(2, OUTPUT);
