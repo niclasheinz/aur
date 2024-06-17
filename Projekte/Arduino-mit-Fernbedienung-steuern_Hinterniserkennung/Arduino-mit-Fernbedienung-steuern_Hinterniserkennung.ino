@@ -37,6 +37,10 @@ int distance-sensor_right = 2;
 // Variable for saving the distance
 long Distance_front = 0; 
 long Distance_back = 0;
+
+// Variables for the right motor
+int mo_re_1 = 9;
+int mo_re_2 = 10;
 void setup() {
 // Activate pins 
 pinMode(2, OUTPUT);
@@ -108,6 +112,16 @@ void turn_left() { // turning left
         digitalWrite(6, LOW);
         delay(250);
         digitalWrite(9, LOW);
+}
+
+void turn_right() { //turing right
+        Serial.println("Drehung nach rechts (4)");
+        digitalWrite(8, LOW);
+        digitalWrite(mo_re_1, LOW);
+        digitalWrite(2, LOW);
+        digitalWrite(mo_re_2, LOW);
+        delay(250);
+        digitalWrite(mo_li_2, LOW);
 }
 
 void turn_back() { //turning back
