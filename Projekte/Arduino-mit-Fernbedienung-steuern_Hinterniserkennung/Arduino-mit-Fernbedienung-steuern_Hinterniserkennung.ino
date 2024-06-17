@@ -62,10 +62,10 @@ IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 void drive_forwards() { // driving forwards
        Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
+        analogWrite(10, 230);
         digitalWrite(10, HIGH);
         digitalWrite(5, LOW);
         digitalWrite(9, LOW);
-        analogWrite(10, 230);
         digitalWrite(2, HIGH);
 }
 
