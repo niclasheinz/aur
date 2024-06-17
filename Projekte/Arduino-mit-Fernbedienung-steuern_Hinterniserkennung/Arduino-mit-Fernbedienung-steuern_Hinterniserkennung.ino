@@ -2,7 +2,7 @@
 #===============================================================================
 #
 #          FILE:  Arduino-with-remote-control_obstacle-detection.ino
-#         USAGE:  Only compatible with Arduino IDE
+#         USAGE:  Only compatible with Arduino Uno
 # ARDUINO MODEL:  Arduino Uno
 #
 #   DESCRIPTION:  My goal is to build and program a robot that can be controlled
