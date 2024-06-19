@@ -43,6 +43,8 @@ int mo_re_1 = 9;
 int mo_re_2 = 10;
 int mo_li_1 = 6;
 int mo_li_2 = 7;
+int obstacle_sensor_left = ;
+int obstacle_sensor_right = ;
 void setup() {
 // Activate pins 
 pinMode(2, OUTPUT);
@@ -53,8 +55,8 @@ pinMode(10, OUTPUT);
 pinMode(7, OUTPUT);
 pinMode(8, OUTPUT);
 pinMode(6, OUTPUT);
-pinMode(distance-sensor_left, INPUT);
-pinMode(distancce-sensor_right, INPUT);
+pinMode(obstacle_sensor_left, INPUT);
+pinMode(obstacle_sensor_right, INPUT);
 pinMode(TRIGGER_front, OUTPUT);
 pinMode(ECHO_front, INPUT);
 pinMode(TRIGGER_back,  OUTPUT);
