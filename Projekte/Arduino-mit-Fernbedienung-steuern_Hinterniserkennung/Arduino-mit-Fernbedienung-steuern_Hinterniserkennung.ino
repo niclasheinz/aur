@@ -42,7 +42,7 @@ int mo_re_1 = 9;
 int mo_re_2 = 10;
 int mo_li_1 = 6;
 int mo_li_2 = 7;
-int obstacle_sensor_left = 12;
+int obstacle_detector_left = 13;
 void setup() {
 // Activate pins 
 pinMode(2, OUTPUT);
