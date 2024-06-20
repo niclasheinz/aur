@@ -285,7 +285,7 @@ digitalWrite(TRIGGER_back, LOW);
 
   if (Distance_left == 0) {
     Serial.println("Obstacle detected from left"); // Output "Hallo" if sensor value is 0
-    bypass_right();
+    bypass_left();
   }
 
   delay(500); // Wait half a second
