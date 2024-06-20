@@ -268,7 +268,7 @@ digitalWrite(TRIGGER_back, LOW);
 // this sensor gives 0 for an obstacle and 1 regularly.
   int Distance_left = digitalRead(12); // Read the sensor output
 
-  Serial.print("Sensor (left): ");
+  Serial.print("Distance from left: ");
   Serial.println(Distance_left); // Print the sensor output
 
   if (Distance_left == 0) {
@@ -282,7 +282,7 @@ digitalWrite(TRIGGER_back, LOW);
 // this sensor gives 0 for an obstacle and 1 regularly.
   int Distance_right = digitalRead(2); // Read the sensor output
 
-  Serial.print("Sensor (right): ");
+  Serial.print("Distance from right: ");
   Serial.println(Distance_right); // Print the sensor output
 
   if (Distance_right == 0) {
