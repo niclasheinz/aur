@@ -15,7 +15,7 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  6.2
+#       VERSION:  6.3
 # LATEST COMMIT: 20.06.2024
 #===============================================================================
  */
@@ -32,7 +32,6 @@ int ECHO_front = 3;
 int ECHO_back = 8;
 
 
-
 // Variable for saving the distance
 long Distance_front = 0; 
 long Distance_back = 0;
@@ -45,7 +44,7 @@ int mo_li_2 = 7;
 int obstacle_detector_left_PIN = 12;
 void setup() {
 // Activate pins 
-pinMode(2, OUTPUT);
+pinMode(2, INPUT); // distance sensor right
 pinMode(3, OUTPUT);
 pinMode(4, OUTPUT);
 pinMode(9, OUTPUT);
@@ -53,7 +52,7 @@ pinMode(10, OUTPUT);
 pinMode(7, OUTPUT);
 pinMode(8, OUTPUT);
 pinMode(6, OUTPUT);
-pinMode(12, INPUT);
+pinMode(12, INPUT); // distance sensor left
 //pinMode(obstacle_sensor_right, INPUT);
 pinMode(TRIGGER_front, OUTPUT);
 pinMode(ECHO_front, INPUT);
@@ -273,12 +272,25 @@ digitalWrite(TRIGGER_back, LOW);
   Serial.println(Distance_left); // Print the sensor output
 
   if (Distance_left == 0) {
-    Serial.println("Hallo"); // Output "Hallo" if sensor value is 0
+    Serial.println("Obstacle detected from left"); // Output "Hallo" if sensor value is 0
     bypass_right();
   }
 
   delay(500); // Wait half a second
 
+//////////////// Obstacle Detector right  ////////////////////
+// this sensor gives 0 for an obstacle and 1 regularly.
+  int Distance_right = digitalRead(2); // Read the sensor output
+
+  Serial.print("Sensor (right): ");
+  Serial.println(Distance_right); // Print the sensor output
+
+  if (Distance_right == 0) {
+    Serial.println("Obstacle detected from right"); // Output "Hallo" if sensor value is 0
+    bypass_right();
+  
+  delay(500); // Wait half a second
+}
 
 
 }
