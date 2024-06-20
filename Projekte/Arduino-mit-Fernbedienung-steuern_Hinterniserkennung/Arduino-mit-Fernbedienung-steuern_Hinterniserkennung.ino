@@ -15,8 +15,8 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  6.1
-# LATEST COMMIT: 
+#       VERSION:  6.2
+# LATEST COMMIT: 20.06.2024
 #===============================================================================
  */
 
@@ -42,7 +42,7 @@ int mo_re_1 = 9;
 int mo_re_2 = 10;
 int mo_li_1 = 6;
 int mo_li_2 = 7;
-int obstacle_detector_left_PIN = 13;
+int obstacle_detector_left_PIN = 12;
 void setup() {
 // Activate pins 
 pinMode(2, OUTPUT);
@@ -53,7 +53,7 @@ pinMode(10, OUTPUT);
 pinMode(7, OUTPUT);
 pinMode(8, OUTPUT);
 pinMode(6, OUTPUT);
-pinMode(13, INPUT);
+pinMode(12, INPUT);
 //pinMode(obstacle_sensor_right, INPUT);
 pinMode(TRIGGER_front, OUTPUT);
 pinMode(ECHO_front, INPUT);
@@ -267,7 +267,7 @@ digitalWrite(TRIGGER_back, LOW);
 
 //////////////// Obstacle Detector left  ////////////////////
 // this sensor gives 0 for an obstacle and 1 regularly.
-  int Distance_left = digitalRead(13); // Read the sensor output
+  int Distance_left = digitalRead(12); // Read the sensor output
 
   Serial.print("Sensor (left): ");
   Serial.println(Distance_left); // Print the sensor output
