@@ -64,8 +64,8 @@ IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
 // manoeuvre that the arduino script supports //
-void drive_backwards() { // driving backwards
-       Serial.println("Drive backwards (2)");
+void drive_forwards() { // driving forwards
+       Serial.println("Drive forwards (2)");
         digitalWrite(6, HIGH);
         analogWrite(10, 230);
 //      digitalWrite(10, HIGH);
@@ -73,7 +73,7 @@ void drive_backwards() { // driving backwards
         digitalWrite(9, LOW);
 }
 
-void drive_forwards() { // driving forwards
+void drive_backwards() { // driving backwards
         Serial.println("Drive backwards (3)");
         digitalWrite(6, LOW);
         digitalWrite(10, LOW);
