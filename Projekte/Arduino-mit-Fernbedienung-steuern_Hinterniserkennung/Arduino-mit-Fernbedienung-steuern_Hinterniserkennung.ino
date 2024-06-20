@@ -64,17 +64,16 @@ IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 }
 
 // manoeuvre that the arduino script supports //
-void drive_forwards() { // driving forwards
-       Serial.println("Drive forwards (2)");
+void drive_backwards() { // driving backwards
+       Serial.println("Drive backwards (2)");
         digitalWrite(6, HIGH);
         analogWrite(10, 230);
 //      digitalWrite(10, HIGH);
         digitalWrite(5, LOW);
         digitalWrite(9, LOW);
-        digitalWrite(2, HIGH);
 }
 
-void drive_backwards() { // driving backwards
+void drive_forwards() { // driving forwards
         Serial.println("Drive backwards (3)");
         digitalWrite(6, LOW);
         digitalWrite(10, LOW);
@@ -148,8 +147,14 @@ void bypass_left() { // function for bypass objects from left side
     // 5. drive straight
     // 6. turn left
 }
+
+void stop_back() {
+
+}
 void drive_forwards_bypass() {
-  
+    
+    analogWrite(10, 230);
+    analogWrite(6, 130);
 }
 
 void bypass_right() { // function for bypass objects from right side
