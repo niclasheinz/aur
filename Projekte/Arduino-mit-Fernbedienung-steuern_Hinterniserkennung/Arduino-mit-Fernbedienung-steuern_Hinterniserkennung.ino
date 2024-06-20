@@ -73,6 +73,12 @@ void drive_forwards() { // driving forwards
         digitalWrite(9, LOW);
 }
 
+void drive_forwards_bypass() {
+    
+    analogWrite(10, 130);
+    analogWrite(6, 130);
+}
+
 void drive_backwards() { // driving backwards
         Serial.println("Drive backwards (3)");
         digitalWrite(6, LOW);
