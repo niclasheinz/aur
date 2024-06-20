@@ -31,8 +31,7 @@ int TRIGGER_back = 7;
 int ECHO_front = 3; 
 int ECHO_back = 8;
 
-int distance-sensor_left = 13;
-int distance-sensor_right = 2;
+
 
 // Variable for saving the distance
 long Distance_front = 0; 
@@ -43,8 +42,7 @@ int mo_re_1 = 9;
 int mo_re_2 = 10;
 int mo_li_1 = 6;
 int mo_li_2 = 7;
-int obstacle_sensor_left = ;
-int obstacle_sensor_right = ;
+int obstacle_sensor_left = 12;
 void setup() {
 // Activate pins 
 pinMode(2, OUTPUT);
@@ -56,7 +54,7 @@ pinMode(7, OUTPUT);
 pinMode(8, OUTPUT);
 pinMode(6, OUTPUT);
 pinMode(obstacle_sensor_left, INPUT);
-pinMode(obstacle_sensor_right, INPUT);
+//pinMode(obstacle_sensor_right, INPUT);
 pinMode(TRIGGER_front, OUTPUT);
 pinMode(ECHO_front, INPUT);
 pinMode(TRIGGER_back,  OUTPUT);
@@ -155,7 +153,7 @@ void bypass_left() { // function for bypass objects from left side
 void bypass_right() { // function for bypass objects from right side
     Serial.println("Bypass right");
     // 1. reduce speed
-    analogWrite()
+    //analogWrite()
     // 2. turn left // using analogWrite
     // 3. drive straight
     // 4. turn right
@@ -164,7 +162,7 @@ void bypass_right() { // function for bypass objects from right side
 }
 
 void force_stop(){ // if distance to one of the sensors is lower than 30 -> force stop
-  if (Distance_front < 30 || Distance_back < 30 || Distance_right < 30 || Distance_left < 30) {
+  if (Distance_front < 30 || Distance_back < 30) {
     Serial.println("Executing force-stop in 1s");
     stop_all();
   }
@@ -269,23 +267,21 @@ digitalWrite(TRIGGER_back, LOW);
 
 //////////////// Obstacle Detector left  ////////////////////
 // this sensor gives 0 for an obstacle and 1 for none.
-void detector_left() { 
-  int Distance_left = digitalRead(9); // Read the sensor output
+  int Numbre_left = digitalRead(9); // Read the sensor output
 
   Serial.print("Distance ': ");
-  Serial.println("Distance_left' to left"); // Print the sensor output
+  Serial.println("Numbre_left' to left"); // Print the sensor output
 
-  if (Distance_left == 0) {
+  if (Numbre_left == 0) {
     Serial.println("Distance to left side to near."); // Output "Hallo" if sensor value is 0
     bypass_left();
   }
 
   delay(500); // Wait half a second
-}
+
 
 //////////////// Obstacle Detector right  ////////////////////
 // this sensor gives 0 for an obstacle and 1 for none.
-void detector_rightt() { 
   int Distance_right = digitalRead(9); // Read the sensor output
 
   Serial.print("Distance ': ");
@@ -298,6 +294,6 @@ void detector_rightt() {
   }
 
   delay(500); // Wait half a second
-}
+
 
 }
