@@ -144,6 +144,8 @@ void bypass_left() { // function for bypass objects from left side
     Serial.println("Bypass left");
     // 1. reduce speed
     drive_forwardsbypass();
+    delay(1000);
+    drive_forwardsbypassstop();
 
     // 2. turn back with analogWrite
     // 3. drive straight
@@ -156,9 +158,12 @@ void stop_back() {
 
 }
 void drive_forwardsbypass() {
-    
     analogWrite(10, 230);
     analogWrite(6, 130);
+}
+void drive_forwardsbypassstop() {
+    analogWrite(10, 0);
+    analogWrite(6, 0);
 }
 
 void bypass_right() { // function for bypass objects from right side
