@@ -267,12 +267,12 @@ digitalWrite(TRIGGER_back, LOW);
 
 //////////////// Obstacle Detector left  ////////////////////
 // this sensor gives 0 for an obstacle and 1 for none.
-  int Numbre_left = digitalRead(9); // Read the sensor output
+  int Distance_left = digitalRead(obstacle_detector_left); // Read the sensor output
 
   Serial.print("Distance ': ");
-  Serial.println("Numbre_left' to left"); // Print the sensor output
+  Serial.println("Distance_left' to left"); // Print the sensor output
 
-  if (Numbre_left == 0) {
+  if (Distance_left == 0) {
     Serial.println("Distance to left side to near."); // Output "Hallo" if sensor value is 0
     bypass_left();
   }
