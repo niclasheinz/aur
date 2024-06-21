@@ -310,6 +310,4 @@ digitalWrite(TRIGGER_back, LOW);
   
   delay(500); // Wait half a second
 }
-
-
 }
