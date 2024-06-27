@@ -147,6 +147,9 @@ void bypass_left() { // function for bypass objects from left side
     delay(1000);
     drive_forwardsbypassstop();
     turn_right();
+    delay(1000);
+    stop_all();
+    
 
     // 2. turn back with analogWrite
     // 3. drive straight
