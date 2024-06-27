@@ -152,7 +152,7 @@ void turn_back() { //turning back
 }
 
 void bypass_left() { // function for bypass objects from left side
-        Serial.println("bypass_left()");
+    Serial.println("bypass_left()");
     Serial.println("Bypass left");
     // 1. reduce speed
     drive_forwardsbypass();
@@ -189,15 +189,14 @@ void drive_forwardsbypassstop() {
 }
 
 void bypass_right() { // function for bypass objects from right side
-        Serial.println("bypass_right()");
+    Serial.println("bypass_right()");
     Serial.println("Bypass right");
-    // 1. reduce speed
-    //analogWrite()
-    // 2. turn left // using analogWrite
-    // 3. drive straight
-    // 4. turn right
-    // 5. drive traight
-    // 6. turn right
+    drive_forwardsbypass();
+    delay(1000);
+    drive_forwardsbypassstop();
+    turn_left();
+    delay(500);
+    stop_all();
 }
 
 void force_stop(){ // if distance to one of the sensors is lower than 30 -> force stop
