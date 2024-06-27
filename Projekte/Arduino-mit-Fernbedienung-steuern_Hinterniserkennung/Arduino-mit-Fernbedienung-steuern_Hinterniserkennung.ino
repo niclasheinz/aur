@@ -76,10 +76,10 @@ void drive_forwards() { // driving forwards
 }
 
 void drive_forwards_bypass() {
-          Serial.println("drive_forwards_bypass()");
-
+    Serial.println("drive_forwards_bypass()");
     analogWrite(mo_re_2, 130);
     analogWrite(mo_li_1, 130);
+    stop_all();
 }
 
 void drive_backwards() { // driving backwards
