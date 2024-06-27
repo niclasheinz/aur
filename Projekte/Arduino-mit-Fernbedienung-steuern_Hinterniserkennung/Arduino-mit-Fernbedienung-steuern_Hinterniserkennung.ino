@@ -18,7 +18,7 @@
 #       VERSION:  6.3
 # LATEST COMMIT: 20.06.2024
 #===============================================================================
- */
+*/
 
 #include <IRremote.hpp>
 #define IR_RECEIVE_PIN 11
