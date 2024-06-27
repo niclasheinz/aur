@@ -47,11 +47,11 @@ void setup() {
 pinMode(2, INPUT); // distance sensor right
 pinMode(3, OUTPUT);
 pinMode(4, OUTPUT);
-pinMode(9, OUTPUT);
-pinMode(10, OUTPUT);
-pinMode(7, OUTPUT);
+pinMode(mo_re_1, OUTPUT);
+pinMode(mo_re_2, OUTPUT);
+pinMode(mo_li_2, OUTPUT);
 pinMode(8, OUTPUT);
-pinMode(6, OUTPUT);
+pinMode(mo_li_1, OUTPUT);
 pinMode(12, INPUT); // distance sensor left
 //pinMode(obstacle_sensor_right, INPUT);
 pinMode(TRIGGER_front, OUTPUT);
@@ -68,37 +68,35 @@ void drive_forwards() { // driving forwards
         Serial.println("drive_forwards()");
 
        Serial.println("Drive forwards (2)");
-        digitalWrite(6, HIGH);
-        analogWrite(10, 230);
-//      digitalWrite(10, HIGH);
+        digitalWrite(mo_li_1, HIGH);
+        analogWrite(mo_re_2, 230);
+//      digitalWrite(mo_re_2, HIGH);
         digitalWrite(5, LOW);
-        digitalWrite(9, LOW);
+        digitalWrite(mo_re_1, LOW);
 }
 
 void drive_forwards_bypass() {
           Serial.println("drive_forwards_bypass()");
 
-    analogWrite(10, 130);
-    analogWrite(6, 130);
-    delay(500);
-    stop_all();
+    analogWrite(mo_re_2, 130);
+    analogWrite(mo_li_1, 130);
 }
 
 void drive_backwards() { // driving backwards
         Serial.println("drive_backwards()");
         Serial.println("Drive backwards (3)");
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
+        digitalWrite(mo_li_1, LOW);
+        digitalWrite(mo_re_2, LOW);
         digitalWrite(2, LOW);
-        analogWrite(6, 70);
-        analogWrite(10, 70);
-        digitalWrite(6, LOW);
-        digitalWrite(10, LOW);
+        analogWrite(mo_li_1, 70);
+        analogWrite(mo_re_2, 70);
+        digitalWrite(mo_li_1, LOW);
+        digitalWrite(mo_re_2, LOW);
         delay(500);
-        analogWrite(9, 150);
+        analogWrite(mo_re_1, 150);
         analogWrite(5, 150);
         delay(500);
-        digitalWrite(9, HIGH);
+        digitalWrite(mo_re_1, HIGH);
         digitalWrite(5, HIGH);
 }
 
@@ -106,11 +104,11 @@ void stop_all() { //stop all motors
         Serial.println("stop_all()");
         Serial.println("stop all (On/Off)");
         digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
+        digitalWrite(mo_li_1, LOW);
         digitalWrite(8, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(9, LOW);
+        digitalWrite(mo_li_2, LOW);
+        digitalWrite(mo_re_2, LOW);
+        digitalWrite(mo_re_1, LOW);
         digitalWrite(4, LOW);
         digitalWrite(3, LOW);
         digitalWrite(2, LOW);
@@ -120,12 +118,12 @@ void turn_left() { // turning left
         Serial.println("turn_left()");
         Serial.println("Turn left (9)");
         digitalWrite(8, LOW);
-        digitalWrite(9, LOW);
+        digitalWrite(mo_re_1, LOW);
         digitalWrite(2, LOW);
-        digitalWrite(9, HIGH);
-        digitalWrite(6, LOW);
+        digitalWrite(mo_re_1, HIGH);
+        digitalWrite(mo_li_1, LOW);
         delay(250);
-        digitalWrite(9, LOW);
+        digitalWrite(mo_re_1, LOW);
 }
 
 void turn_right() { //turing right
@@ -142,14 +140,14 @@ void turn_right() { //turing right
 
 void turn_back() { //turning back
         Serial.println("turn_back()");
-        Serial.println("Turn back (4)");
+        Serial.println("Turn back (4)");;
         digitalWrite(8, LOW);
-        digitalWrite(9, LOW);
+        digitalWrite(mo_re_1, LOW);
         digitalWrite(2, LOW);
-        digitalWrite(6, HIGH);
-        digitalWrite(10, LOW);
+        digitalWrite(mo_li_1, HIGH);
+        digitalWrite(mo_re_2, LOW);
         delay(250);
-        digitalWrite(6, LOW);
+        digitalWrite(mo_li_1, LOW);
 }
 
 void bypass_left() { // function for bypass objects from left side
@@ -178,8 +176,8 @@ void stop_back() {
 void drive_forwardsbypass() {
           Serial.println("drive_forwardsbypass()");
 
-    analogWrite(10, 230);
-    analogWrite(6, 130);
+    analogWrite(mo_re_2, 230);
+    analogWrite(mo_li_1, 130);
     delay(500);
     drive_forwardsbypassstop();
 }
