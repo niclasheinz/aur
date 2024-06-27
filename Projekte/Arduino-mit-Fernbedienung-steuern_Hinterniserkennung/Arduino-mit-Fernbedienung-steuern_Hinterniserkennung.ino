@@ -79,6 +79,7 @@ void drive_forwards_bypass() {
     Serial.println("drive_forwards_bypass()");
     analogWrite(mo_re_2, 130);
     analogWrite(mo_li_1, 130);
+    delay(500);
     stop_all();
 }
 
