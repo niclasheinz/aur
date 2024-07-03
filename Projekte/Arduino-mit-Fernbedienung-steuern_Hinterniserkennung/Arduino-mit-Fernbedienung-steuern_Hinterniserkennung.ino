@@ -27,7 +27,7 @@
 int TRIGGER_front = 4;
 int TRIGGER_back = 7;
 
-//int TRIGGER_back = 1;
+// Echo Pins for the obstacle detectors
 int ECHO_front = 3; 
 int ECHO_back = 8;
 
@@ -52,7 +52,7 @@ pinMode(mo_re_2, OUTPUT);
 pinMode(mo_li_2, OUTPUT);
 pinMode(8, OUTPUT);
 pinMode(mo_li_1, OUTPUT);
-pinMode(12, INPUT); // distance sensor left
+pinMode(obstacle_detector_left_PIN, INPUT); // distance sensor left
 //pinMode(obstacle_sensor_right, INPUT);
 pinMode(TRIGGER_front, OUTPUT);
 pinMode(ECHO_front, INPUT);
