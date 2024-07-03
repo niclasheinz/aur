@@ -15,8 +15,8 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  6.3
-# LATEST COMMIT: 20.06.2024
+#       VERSION:  7.0
+# LATEST COMMIT: 04.07.2024
 #===============================================================================
 */
 
