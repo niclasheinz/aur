@@ -66,8 +66,7 @@ IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 // manoeuvre that the arduino script supports //
 void drive_forwards() { // driving forwards
         Serial.println("drive_forwards()");
-
-       Serial.println("Drive forwards (2)");
+        Serial.println("Drive forwards (2)");
         analogWrite(mo_li_1, 180);
         analogWrite(mo_re_2, 200);
         // digitalWrite(mo_re_2, LOW);
