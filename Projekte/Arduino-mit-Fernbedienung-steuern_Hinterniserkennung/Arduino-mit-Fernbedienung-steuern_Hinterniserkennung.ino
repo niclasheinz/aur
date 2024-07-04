@@ -40,8 +40,8 @@ long Distance_back = 0;
 // Variables for the motors
 int mo_re_1 = 9;
 int mo_re_2 = 10;
-int mo_li_1 = 6;
-int mo_li_2 = 7;
+int mo_li_1 = 5;
+int mo_li_2 = 6;
 int obstacle_detector_left_PIN = 12;
 void setup() {
 // Activate pins 
@@ -68,8 +68,8 @@ IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 void drive_forwards() { // driving forwards
         Serial.println("drive_forwards()");
         Serial.println("Drive forwards (2)");
-        analogWrite(mo_li_1, 190);
-        analogWrite(mo_re_2, 200);
+        analogWrite(mo_li_1, 150);
+        analogWrite(mo_re_2, 160);
         // digitalWrite(mo_re_2, LOW);
         // digitalWrite(mo_re_1, LOW);
         delay(2000);
@@ -86,8 +86,8 @@ void drive_forwards_bypass() {
 
 void drive_backwards() { // driving backwards
         Serial.println("drive_backwards()");
-        analogWrite(mo_re_1, 250);
-        analogWrite(mo_li_2, 250);
+        analogWrite(mo_re_1, 150);
+        analogWrite(mo_li_2, 160);
         delay(2000);
         //stop_all();
 }
