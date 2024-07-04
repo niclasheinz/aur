@@ -72,6 +72,8 @@ void drive_forwards() { // driving forwards
         analogWrite(mo_re_2, 200);
         // digitalWrite(mo_re_2, LOW);
         // digitalWrite(mo_re_1, LOW);
+        delay(2000);
+        stop_all();
 }
 
 void drive_forwards_bypass() {
@@ -84,10 +86,10 @@ void drive_forwards_bypass() {
 
 void drive_backwards() { // driving backwards
         Serial.println("drive_backwards()");
-        analogWrite(mo_re_1, 130);
-        analogWrite(mo_li_2, 130);
-        delay(500);
-        stop_all();
+        analogWrite(mo_re_1, 250);
+        analogWrite(mo_li_2, 250);
+        delay(2000);
+        //stop_all();
 }
 
 void stop_all() { //stop all motors
@@ -189,6 +191,9 @@ void force_stop(){ // if distance to one of the sensors is lower than 30 -> forc
   }
 }
 
+void drive_forwards1() {
+  Serial.println("Hall");
+}
 void loop() {
 
   if (IrReceiver.decode()) {
@@ -276,7 +281,7 @@ digitalWrite(TRIGGER_back, LOW);
    // Serial.print("Distance from back in cm: ");
    // Serial.println(Distance_back);
   }
-  if (Distance_back < 40) {
+  if (Distance_back < 20) {
        Serial.print("Obstacle detected back side");
         stop_all(); // stop all
         delay(500);
