@@ -84,17 +84,10 @@ void drive_forwards_bypass() {
 
 void drive_backwards() { // driving backwards
         Serial.println("drive_backwards()");
-        Serial.println("Drive backwards (3)");
-        digitalWrite(mo_li_1, LOW);
-        digitalWrite(mo_re_2, LOW);
-        digitalWrite(2, LOW);
-        analogWrite(mo_li_1, 70);
-        analogWrite(mo_re_2, 70);
-        digitalWrite(mo_li_1, LOW);
-        digitalWrite(mo_re_2, LOW);
+        analogWrite(mo_re_1, 130);
+        analogWrite(mo_li_2, 130);
         delay(500);
-        analogWrite(mo_re_1, 150);
-        analogWrite(5, 150);
+        stop_all();
 }
 
 void stop_all() { //stop all motors
