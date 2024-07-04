@@ -149,10 +149,9 @@ void bypass_left() { // function for bypass objects from left side
     digitalWrite(8, LOW);
     digitalWrite(mo_re_1, LOW);
     digitalWrite(2, LOW);
-    digitalWrite(mo_re_1, HIGH);
-    analogWrite(mo_li_1, 200);
+    analogWrite(mo_re_2, 200);
     delay(250);
-    digitalWrite(mo_li_1, LOW);//reducing speed
+    digitalWrite(mo_re_2, LOW);//reducing speed
 
 }
 
@@ -282,12 +281,11 @@ digitalWrite(TRIGGER_back, LOW);
   }
   if (Distance_back < 10) {
        Serial.println("Obstacle detected back side");
-        stop_all(); // stop all
-        delay(500);
-        // drive backwards
-        drive_forwards();
-        delay(750);
-        stop_all();
+       stop_all(); // stop all
+       delay(500);
+       drive_forwards();
+       delay(750);
+       stop_all();
 }
 
 //////////////// Obstacle Detector left  ////////////////////
