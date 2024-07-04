@@ -124,7 +124,7 @@ void turn_right() { //turing right
         digitalWrite(8, LOW);
         digitalWrite(mo_re_1, LOW);
         digitalWrite(3, LOW);
-        digitalWrite(mo_re_2, LOW);
+        analogWrite(mo_re_2, 200);
         delay(250);
         digitalWrite(mo_li_2, LOW);
         stop_all();
@@ -145,7 +145,15 @@ void turn_back() { //turning back
 void bypass_left() { // function for bypass objects from left side
     Serial.println("bypass_left()");
     Serial.println("Bypass left");
-    //reducing speed
+    Serial.println("Turn left (9)");
+    digitalWrite(8, LOW);
+    digitalWrite(mo_re_1, LOW);
+    digitalWrite(2, LOW);
+    digitalWrite(mo_re_1, HIGH);
+    analogWrite(mo_re_1, 200);
+    digitalWrite(mo_li_1, LOW);
+    delay(250);
+    digitalWrite(mo_re_1, LOW);//reducing speed
 
     // 1. reduce speed
     // drive_forwardsbypass();
@@ -193,9 +201,6 @@ void force_stop(){ // if distance to one of the sensors is lower than 30 -> forc
   }
 }
 
-void drive_forwards1() {
-  Serial.println("Hall");
-}
 void loop() {
 
   if (IrReceiver.decode()) {
@@ -250,7 +255,7 @@ digitalWrite(TRIGGER_front, LOW);
    // Serial.println(Distance_front);
   }
   if (Distance_front < 40) {
-        Serial.print("Obstacle detected front side");
+        Serial.println("Obstacle detected front side");
         stop_all();
         delay(500);
         drive_backwards();
@@ -280,11 +285,11 @@ digitalWrite(TRIGGER_back, LOW);
   if (Distance_back < 1000) 
   {
     // display measurement data
-   // Serial.print("Distance from back in cm: ");
-   // Serial.println(Distance_back);
+    //Serial.print("Distance from back in cm: ");
+    //Serial.println(Distance_back);
   }
-  if (Distance_back < 20) {
-       Serial.print("Obstacle detected back side");
+  if (Distance_back < 10) {
+       Serial.println("Obstacle detected back side");
         stop_all(); // stop all
         delay(500);
         // drive backwards
