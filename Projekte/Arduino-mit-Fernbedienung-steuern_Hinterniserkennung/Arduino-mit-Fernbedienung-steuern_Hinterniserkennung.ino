@@ -70,9 +70,8 @@ void drive_forwards() { // driving forwards
        Serial.println("Drive forwards (2)");
         analogWrite(mo_li_1, 230);
         analogWrite(mo_re_2, 200);
-//      digitalWrite(mo_re_2, HIGH);
-        digitalWrite(mo_re_2, LOW);
-        digitalWrite(mo_re_1, LOW);
+        // digitalWrite(mo_re_2, LOW);
+        // digitalWrite(mo_re_1, LOW);
 }
 
 void drive_forwards_bypass() {
