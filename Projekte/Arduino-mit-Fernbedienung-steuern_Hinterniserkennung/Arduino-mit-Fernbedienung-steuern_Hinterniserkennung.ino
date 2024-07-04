@@ -151,7 +151,6 @@ void bypass_left() { // function for bypass objects from left side
     analogWrite(mo_re_2, 200);
     delay(250);
     digitalWrite(mo_re_2, LOW);
-
 }
 
 void stop_back() {
@@ -275,8 +274,8 @@ digitalWrite(TRIGGER_back, LOW);
   if (Distance_back < 1000) 
   {
     // display measurement data
-    Serial.print("Distance from back in cm: ");
-    Serial.println(Distance_back);
+   // Serial.print("Distance from back in cm: ");
+   // Serial.println(Distance_back); 
   }
   if (Distance_back < 20) {
        Serial.println("Obstacle detected back side");
