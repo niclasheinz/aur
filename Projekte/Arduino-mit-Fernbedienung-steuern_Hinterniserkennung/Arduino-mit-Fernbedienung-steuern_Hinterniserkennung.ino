@@ -16,7 +16,7 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  7.0.1
+#       VERSION:  7.1
 # LATEST COMMIT: 04.07.2024
 #===============================================================================
 */
@@ -166,8 +166,7 @@ void drive_forwardsbypass() {
 }
 void drive_forwardsbypassstop() {
           Serial.println("drive_forwardsbypasstop()");
-
-    stop_all();
+          stop_all();
 }
 
 void bypass_right() { // function for bypass objects from right side
