@@ -95,9 +95,6 @@ void drive_backwards() { // driving backwards
         delay(500);
         analogWrite(mo_re_1, 150);
         analogWrite(5, 150);
-        delay(500);
-        digitalWrite(mo_re_1, HIGH);
-        digitalWrite(5, HIGH);
 }
 
 void stop_all() { //stop all motors
