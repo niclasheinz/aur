@@ -181,7 +181,7 @@ void bypass_right() { // function for bypass objects from right side
     digitalWrite(2, LOW);
     digitalWrite(mo_re_1, HIGH);
     digitalWrite(mo_li_1, LOW);
-    delay(250);
+    delay(500);
     digitalWrite(mo_re_1, LOW);
     drive_forwards();
 }
