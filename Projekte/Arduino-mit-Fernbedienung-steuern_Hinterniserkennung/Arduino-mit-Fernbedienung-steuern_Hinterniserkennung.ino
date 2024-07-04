@@ -38,10 +38,10 @@ long Distance_front = 0;
 long Distance_back = 0;
 
 // Variables for the motors
-int mo_re_1 = 9;
-int mo_re_2 = 10;
-int mo_li_1 = 5;
-int mo_li_2 = 6;
+int mo_re_1 = 10;
+int mo_re_2 = 9;
+int mo_li_1 = 6;
+int mo_li_2 = 5;
 int obstacle_detector_left_PIN = 12;
 void setup() {
 // Activate pins 
@@ -179,9 +179,9 @@ void bypass_right() { // function for bypass objects from right side
     digitalWrite(8, LOW);
     digitalWrite(mo_re_1, LOW);
     digitalWrite(2, LOW);
-    digitalWrite(mo_re_1, HIGH);
+    analogWrite(mo_re_1, 180);
     digitalWrite(mo_li_1, LOW);
-    delay(500);
+    delay(400);
     digitalWrite(mo_re_1, LOW);
     drive_forwards();
 }
