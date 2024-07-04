@@ -112,10 +112,9 @@ void turn_left() { // turning left
         digitalWrite(8, LOW);
         digitalWrite(mo_re_1, LOW);
         digitalWrite(2, LOW);
-        digitalWrite(mo_re_1, HIGH);
-        digitalWrite(mo_li_1, LOW);
+        analogWrite(mo_re_2, 200);
         delay(250);
-        digitalWrite(mo_re_1, LOW);
+        digitalWrite(mo_re_2, LOW);
 }
 
 void turn_right() { //turing right
@@ -151,7 +150,7 @@ void bypass_left() { // function for bypass objects from left side
     digitalWrite(2, LOW);
     analogWrite(mo_re_2, 200);
     delay(250);
-    digitalWrite(mo_re_2, LOW);//reducing speed
+    digitalWrite(mo_re_2, LOW);
 
 }
 
@@ -245,7 +244,7 @@ digitalWrite(TRIGGER_front, LOW);
    // Serial.print("Distance Front in cm: ");
    // Serial.println(Distance_front);
   }
-  if (Distance_front < 40) {
+  if (Distance_front < 20) {
         Serial.println("Obstacle detected front side");
         stop_all();
         delay(500);
@@ -279,7 +278,7 @@ digitalWrite(TRIGGER_back, LOW);
     Serial.print("Distance from back in cm: ");
     Serial.println(Distance_back);
   }
-  if (Distance_back < 10) {
+  if (Distance_back < 20) {
        Serial.println("Obstacle detected back side");
        stop_all(); // stop all
        delay(500);
