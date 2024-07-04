@@ -4,6 +4,7 @@
 #          FILE:  Arduino-with-remote-control_obstacle-detection.ino
 #         USAGE:  Only compatible with Arduino Uno
 # ARDUINO MODEL:  Arduino Uno
+#  REQUIREMENTS:  IRremote 4.4.0 by shirriff
 #
 #   DESCRIPTION:  My goal is to build and program a robot that can be controlled
                   by a remote control. I'm also working on an all-round obstacle
@@ -152,7 +153,7 @@ void turn_back() { //turning back
 void bypass_left() { // function for bypass objects from left side
     Serial.println("bypass_left()");
     Serial.println("Bypass left");
-    analogWrite//reducing speed
+    //reducing speed
 
     // 1. reduce speed
     // drive_forwardsbypass();
