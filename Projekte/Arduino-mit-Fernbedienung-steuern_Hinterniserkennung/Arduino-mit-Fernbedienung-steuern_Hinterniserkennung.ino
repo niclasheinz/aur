@@ -15,7 +15,7 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  7.0
+#       VERSION:  7.0.1
 # LATEST COMMIT: 04.07.2024
 #===============================================================================
 */
@@ -68,10 +68,10 @@ void drive_forwards() { // driving forwards
         Serial.println("drive_forwards()");
 
        Serial.println("Drive forwards (2)");
-        digitalWrite(mo_li_1, HIGH);
-        analogWrite(mo_re_2, 230);
+        analogWrite(mo_li_1, 230);
+        analogWrite(mo_re_2, 200);
 //      digitalWrite(mo_re_2, HIGH);
-        digitalWrite(5, LOW);
+        digitalWrite(mo_re_2, LOW);
         digitalWrite(mo_re_1, LOW);
 }
 
@@ -132,7 +132,7 @@ void turn_right() { //turing right
         Serial.println("Drehung nach rechts (4)");
         digitalWrite(8, LOW);
         digitalWrite(mo_re_1, LOW);
-        digitalWrite(2, LOW);
+        digitalWrite(3, LOW);
         digitalWrite(mo_re_2, LOW);
         delay(250);
         digitalWrite(mo_li_2, LOW);
