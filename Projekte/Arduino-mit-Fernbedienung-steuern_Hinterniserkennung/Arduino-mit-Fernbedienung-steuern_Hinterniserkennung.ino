@@ -4,6 +4,7 @@
 #          FILE:  Arduino-with-remote-control_obstacle-detection.ino
 #         USAGE:  Only compatible with Arduino Uno
 # ARDUINO MODEL:  Arduino Uno
+#  REQUIREMENTS:  IRremote 4.4.0 by shirriff
 #
 #   DESCRIPTION:  My goal is to build and program a robot that can be controlled
                   by a remote control. I'm also working on an all-round obstacle
@@ -15,8 +16,8 @@
 #        AUTHOR:  Niclas Heinz
 #        GITLAB:  www.gitlab.com/niclasheinz/aur
 #       COMPANY:  - 
-#       VERSION:  6.3
-# LATEST COMMIT: 20.06.2024
+#       VERSION:  7.1
+# LATEST COMMIT: 04.07.2024
 #===============================================================================
 */
 
@@ -27,7 +28,7 @@
 int TRIGGER_front = 4;
 int TRIGGER_back = 7;
 
-//int TRIGGER_back = 1;
+// Echo Pins for the obstacle detectors
 int ECHO_front = 3; 
 int ECHO_back = 8;
 
@@ -37,10 +38,10 @@ long Distance_front = 0;
 long Distance_back = 0;
 
 // Variables for the motors
-int mo_re_1 = 9;
-int mo_re_2 = 10;
+int mo_re_1 = 10;
+int mo_re_2 = 9;
 int mo_li_1 = 6;
-int mo_li_2 = 7;
+int mo_li_2 = 5;
 int obstacle_detector_left_PIN = 12;
 void setup() {
 // Activate pins 
@@ -52,7 +53,7 @@ pinMode(mo_re_2, OUTPUT);
 pinMode(mo_li_2, OUTPUT);
 pinMode(8, OUTPUT);
 pinMode(mo_li_1, OUTPUT);
-pinMode(12, INPUT); // distance sensor left
+pinMode(obstacle_detector_left_PIN, INPUT); // distance sensor left
 //pinMode(obstacle_sensor_right, INPUT);
 pinMode(TRIGGER_front, OUTPUT);
 pinMode(ECHO_front, INPUT);
@@ -66,13 +67,13 @@ IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // Start the receiver
 // manoeuvre that the arduino script supports //
 void drive_forwards() { // driving forwards
         Serial.println("drive_forwards()");
-
-       Serial.println("Drive forwards (2)");
-        digitalWrite(mo_li_1, HIGH);
-        analogWrite(mo_re_2, 230);
-//      digitalWrite(mo_re_2, HIGH);
-        digitalWrite(5, LOW);
-        digitalWrite(mo_re_1, LOW);
+        Serial.println("Drive forwards (2)");
+        analogWrite(mo_li_1, 150);
+        analogWrite(mo_re_2, 160);
+        // digitalWrite(mo_re_2, LOW);
+        // digitalWrite(mo_re_1, LOW);
+        delay(2000);
+        stop_all();
 }
 
 void drive_forwards_bypass() {
@@ -85,20 +86,10 @@ void drive_forwards_bypass() {
 
 void drive_backwards() { // driving backwards
         Serial.println("drive_backwards()");
-        Serial.println("Drive backwards (3)");
-        digitalWrite(mo_li_1, LOW);
-        digitalWrite(mo_re_2, LOW);
-        digitalWrite(2, LOW);
-        analogWrite(mo_li_1, 70);
-        analogWrite(mo_re_2, 70);
-        digitalWrite(mo_li_1, LOW);
-        digitalWrite(mo_re_2, LOW);
-        delay(500);
         analogWrite(mo_re_1, 150);
-        analogWrite(5, 150);
-        delay(500);
-        digitalWrite(mo_re_1, HIGH);
-        digitalWrite(5, HIGH);
+        analogWrite(mo_li_2, 160);
+        delay(2000);
+        //stop_all();
 }
 
 void stop_all() { //stop all motors
@@ -121,10 +112,9 @@ void turn_left() { // turning left
         digitalWrite(8, LOW);
         digitalWrite(mo_re_1, LOW);
         digitalWrite(2, LOW);
-        digitalWrite(mo_re_1, HIGH);
-        digitalWrite(mo_li_1, LOW);
+        analogWrite(mo_re_2, 200);
         delay(250);
-        digitalWrite(mo_re_1, LOW);
+        digitalWrite(mo_re_2, LOW);
 }
 
 void turn_right() { //turing right
@@ -132,8 +122,8 @@ void turn_right() { //turing right
         Serial.println("Drehung nach rechts (4)");
         digitalWrite(8, LOW);
         digitalWrite(mo_re_1, LOW);
-        digitalWrite(2, LOW);
-        digitalWrite(mo_re_2, LOW);
+        digitalWrite(3, LOW);
+        analogWrite(mo_re_2, 200);
         delay(250);
         digitalWrite(mo_li_2, LOW);
         stop_all();
@@ -152,23 +142,15 @@ void turn_back() { //turning back
 }
 
 void bypass_left() { // function for bypass objects from left side
-        Serial.println("bypass_left()");
+    Serial.println("bypass_left()");
     Serial.println("Bypass left");
-    // 1. reduce speed
-    drive_forwardsbypass();
-    delay(1000);
-    drive_forwardsbypassstop();
-    turn_right();
-    delay(500);
-    stop_all();
-
-
-    // 2. turn back with analogWrite
-    // 3. drive straight
-    drive_forwards_bypass();
-    // 4. turn left
-    // 5. drive straight
-    // 6. turn left
+    Serial.println("Turn left (9)");
+    digitalWrite(8, LOW);
+    digitalWrite(mo_re_1, LOW);
+    digitalWrite(2, LOW);
+    analogWrite(mo_re_2, 200);
+    delay(250);
+    digitalWrite(mo_re_2, LOW);
 }
 
 void stop_back() {
@@ -184,20 +166,20 @@ void drive_forwardsbypass() {
 }
 void drive_forwardsbypassstop() {
           Serial.println("drive_forwardsbypasstop()");
-
-    stop_all();
+          stop_all();
 }
 
 void bypass_right() { // function for bypass objects from right side
-        Serial.println("bypass_right()");
+    Serial.println("bypass_right()");
     Serial.println("Bypass right");
-    // 1. reduce speed
-    //analogWrite()
-    // 2. turn left // using analogWrite
-    // 3. drive straight
-    // 4. turn right
-    // 5. drive traight
-    // 6. turn right
+    digitalWrite(8, LOW);
+    digitalWrite(mo_re_1, LOW);
+    digitalWrite(2, LOW);
+    analogWrite(mo_re_1, 180);
+    digitalWrite(mo_li_1, LOW);
+    delay(400);
+    digitalWrite(mo_re_1, LOW);
+    drive_forwards();
 }
 
 void force_stop(){ // if distance to one of the sensors is lower than 30 -> force stop
@@ -260,8 +242,8 @@ digitalWrite(TRIGGER_front, LOW);
    // Serial.print("Distance Front in cm: ");
    // Serial.println(Distance_front);
   }
-  if (Distance_front < 40) {
-        Serial.print("Obstacle detected front side");
+  if (Distance_front < 20) {
+        Serial.println("Obstacle detected front side");
         stop_all();
         delay(500);
         drive_backwards();
@@ -292,16 +274,15 @@ digitalWrite(TRIGGER_back, LOW);
   {
     // display measurement data
    // Serial.print("Distance from back in cm: ");
-   // Serial.println(Distance_back);
+   // Serial.println(Distance_back); 
   }
-  if (Distance_back < 40) {
-       Serial.print("Obstacle detected back side");
-        stop_all(); // stop all
-        delay(500);
-        // drive backwards
-        drive_forwards();
-        delay(750);
-        stop_all();
+  if (Distance_back < 20) {
+       Serial.println("Obstacle detected back side");
+       stop_all(); // stop all
+       delay(500);
+       drive_forwards();
+       delay(750);
+       stop_all();
 }
 
 //////////////// Obstacle Detector left  ////////////////////
